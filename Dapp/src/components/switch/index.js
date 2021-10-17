@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
-const Switch = ({ states = [], onChange, defaultIdx=0 }) => {
+const Switch = ({ states = [], selected=0, setSelected }) => {
     const activeStyling = "bg-red-500 text-white ";
-    const [selected, setSelected] = useState(defaultIdx);
+    
 
     return (
         <div className="flex bg-white rounded shadow">

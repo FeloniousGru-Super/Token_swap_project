@@ -6,6 +6,7 @@ import { HiRefresh } from "react-icons/hi";
 import FromInputField from "./FromInputField";
 import ToInputField from "./ToInputField";
 import SelectToken from "../select_token_card";
+import Pool from "./pool";
 
 const ConversionCard = ({
     changeScreen,
@@ -14,13 +15,12 @@ const ConversionCard = ({
     fromInput,
     toInput,
 }) => {
-    
     const [tooltipVisibility, setTooltipVisibility] = useState(false);
 
     const handleInvertClick = () => {
-        const temp = fromInput
-        setFromInput(toInput)
-        setToInput(temp)
+        const temp = fromInput;
+        setFromInput(toInput);
+        setToInput(temp);
     };
 
     const [displayTokenSelect, setDisplayTokenSelect] = useState(false);
@@ -31,8 +31,10 @@ const ConversionCard = ({
             setFromInput(token);
         } else setToInput(token);
 
-        setDisplayTokenSelect(false)
+        setDisplayTokenSelect(false);
     };
+
+    const [switchBtn, setSwitchBtn] = useState(0);
 
     return (
         <>
@@ -44,7 +46,11 @@ const ConversionCard = ({
             ) : (
                 <div className="max-w-md mx-auto rounded-2xl shadow p-8 bg-white space-y-8 relative">
                     <div className="flex items-center">
-                        <Switch states={["Swap", "Pool"]} />
+                        <Switch
+                            states={["Swap", "Pool"]}
+                            selected={switchBtn}
+                            setSelected={setSwitchBtn}
+                        />
                         <div className="ml-auto settings flex items-center gap-4 text-red-500">
                             <button>
                                 <MdOutlineSettings
@@ -56,6 +62,9 @@ const ConversionCard = ({
                             <button>
                                 <MdInfoOutline
                                     size={24}
+                                    onClick={() =>
+                                        setTooltipVisibility((prev) => !prev)
+                                    }
                                     onMouseEnter={() =>
                                         setTooltipVisibility(true)
                                     }
@@ -80,41 +89,45 @@ const ConversionCard = ({
                             </button>
                         </div>
                     </div>
+                    {!switchBtn && (
+                        <form action="">
+                            <FromInputField
+                                changeScreen={changeScreen}
+                                onTokenChangeClick={() => {
+                                    setSeletecingTokenFor("from");
+                                    setDisplayTokenSelect(true);
+                                }}
+                                fromInput={fromInput}
+                            />
+                            <div className="flex justify-center mt-6 text-red-500">
+                                <button
+                                    type="button"
+                                    onClick={handleInvertClick}
+                                >
+                                    <HiRefresh size={48} />
+                                </button>
+                            </div>
+                            <ToInputField
+                                changeScreen={changeScreen}
+                                onTokenChangeClick={() => {
+                                    setSeletecingTokenFor("to");
+                                    setDisplayTokenSelect(true);
+                                }}
+                                toInput={toInput}
+                            />
 
-                    {/* form */}
-                    <form action="">
-                        <FromInputField
-                            changeScreen={changeScreen}
-                            onTokenChangeClick={() => {
-                                setSeletecingTokenFor("from");
-                                setDisplayTokenSelect(true);
-                            }}
-                            fromInput={fromInput}
-                        />
-                        <div className="flex justify-center mt-6 text-red-500">
-                            <button type="button" onClick={handleInvertClick}>
-                                <HiRefresh size={48} />
-                            </button>
-                        </div>
-                        <ToInputField
-                            changeScreen={changeScreen}
-                            onTokenChangeClick={() => {
-                                setSeletecingTokenFor("to");
-                                setDisplayTokenSelect(true);
-                            }}
-                            toInput={toInput}
-                        />
-
-                        <div className="text-center pt-6">
-                            <button
-                                type="submit"
-                                value="Connect to a Wallet"
-                                className="py-2 px-4 bg-red-500 text-white rounded-xl mt-2 shadow-md"
-                            >
-                                Connect to a Wallet
-                            </button>
-                        </div>
-                    </form>
+                            <div className="text-center pt-6">
+                                <button
+                                    type="submit"
+                                    value="Connect to a Wallet"
+                                    className="py-2 px-4 bg-red-500 text-white rounded-xl mt-2 shadow-md"
+                                >
+                                    Connect to a Wallet
+                                </button>
+                            </div>
+                        </form>
+                    )}
+                    {!!switchBtn && <Pool />}
                 </div>
             )}
         </>
