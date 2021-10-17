@@ -73,7 +73,7 @@ const ConversionCard = ({
                                     }
                                 />
                                 <div
-                                    className={`absolute w-64 bg-white p-2 rounded shadow -mt-4 ml-16 ${
+                                    className={`absolute w-64 bg-white p-2 rounded shadow right-0 lg:left-96 border ${
                                         tooltipVisibility ? "visible" : "hidden"
                                     }`}
                                 >
