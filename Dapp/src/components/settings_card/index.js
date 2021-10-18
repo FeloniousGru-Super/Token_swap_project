@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdArrowBack, MdInfoOutline } from "react-icons/md";
 import OptionsBox from "./options_box";
 
-const Settings = ({changeScreen}) => {
-    const options = [
+const Settings = ({
+    changeScreen,
+    selectedSpeedOption,
+    setSelectedSpeedOption,
+    selectedToleranceOption,
+    setSelectedToleranceOption,
+    customToleranceValue,
+    setCustomToleranceValue,
+}) => {
+    const speedOptions = [
         { title: "Standard (5)" },
         { title: "Fast (6)" },
         { title: "Instant (7)" },
     ];
+
     const toleranceOptions = [
         { title: "0.1" },
         { title: "0.5" },
@@ -18,19 +27,28 @@ const Settings = ({changeScreen}) => {
         <div className="max-w-md mx-auto shadow p-8 bg-white rounded-2xl">
             <div className="flex items-center gap-2">
                 <button>
-                    <MdArrowBack size={24} onClick={() => changeScreen("home")}/>
+                    <MdArrowBack
+                        size={24}
+                        onClick={() => changeScreen("home")}
+                    />
                 </button>
                 <p className="text-lg font-medium">Settings</p>
             </div>
 
             <OptionsBox
-                options={options}
+                options={speedOptions}
+                onChange={setSelectedSpeedOption}
+                selected={selectedSpeedOption}
                 title="Default Transaction Speed (GWEI)"
             />
             <OptionsBox
                 options={toleranceOptions}
+                onChange={setSelectedToleranceOption}
+                selected={selectedToleranceOption}
                 title="Slipage Tolerance"
                 custom="true"
+                customToleranceValue={customToleranceValue}
+                setCustomToleranceValue={setCustomToleranceValue}
                 postfix="%"
             />
 
@@ -53,7 +71,6 @@ const Settings = ({changeScreen}) => {
                     />
                     <p className="pr-4">minutes</p>
                 </div>
-                
             </div>
         </div>
     );
