@@ -12,9 +12,9 @@ const Navbar = ({ changeScreen }) => {
             <div className="switch ml-auto">
                 <div className="flex bg-white rounded shadow">
                     <button
-                        className={`py-2 px-6 rounded`}
+                        className={`py-2 px-6 rounded font-medium`}
                     >
-                        BSC Mainnet
+                        BSC Smart Chain
                     </button>
                     <button
                         className={`py-2 px-6 rounded bg-red-500 text-white font-medium hover:bg-red-400`}
