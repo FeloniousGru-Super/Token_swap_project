@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: uniswap-interface\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-10-11 14:06\n"
+"PO-Revision-Date: 2021-10-17 03:06\n"
 "Last-Translator: \n"
 "Language: ja_JP\n"
 "Language-Team: Japanese\n"
@@ -270,7 +270,7 @@ msgstr "{0} を承認中"
 
 #: src/components/Header/NetworkSelector.tsx
 msgid "Arbiscan"
-msgstr "アルビスカン"
+msgstr "Arbiscan"
 
 #: src/components/Header/NetworkSelector.tsx
 msgid "Arbitrum Bridge"
@@ -303,10 +303,6 @@ msgstr "自動ルーター"
 #: src/components/earn/StakingModal.tsx
 msgid "Available to deposit: {0}"
 msgstr "預け入れ可能： {0}"
-
-#: src/components/WalletModal/index.tsx
-msgid "Back"
-msgstr "戻る"
 
 #: src/components/Header/UniBalanceContent.tsx
 msgid "Balance:"
@@ -469,7 +465,7 @@ msgstr "報酬を取得"
 
 #: src/components/AccountDetails/TransactionSummary.tsx
 msgid "Collect {0}/{1} fees"
-msgstr "収集 {0}/{1} の手数料"
+msgstr "{0}/{1} の報酬を受け取る"
 
 #: src/pages/Pool/PositionPage.tsx
 msgid "Collected"
@@ -835,7 +831,7 @@ msgstr "全範囲"
 
 #: src/pages/AddLiquidity/index.tsx
 msgid "Full range positions may earn less fees than concentrated positions. Learn more <0>here</0>."
-msgstr "フルレンジのポジションは、集中ポジションよりも少ない手数料を稼ぐことができます。詳細はこちら<0></0> 。"
+msgstr "全範囲のポジションは、集中型ポジションよりも手数料報酬が少ない場合があります。詳細は<0>こちら</0> 。"
 
 #: src/components/ErrorBoundary/index.tsx
 msgid "Get support on Discord"
@@ -909,17 +905,17 @@ msgstr "上記は概算です。最大で<0>{0} {1}</0>を売れなければ、�
 msgid "Install Metamask"
 msgstr "メタマスクのインストール"
 
+#: src/pages/Swap/index.tsx
+msgid "Insufficient liquidity for this trade."
+msgstr "流動性が不足しているため、取引できません。"
+
 #: src/state/mint/hooks.tsx
 #: src/state/mint/hooks.tsx
 #: src/state/mint/v3/hooks.tsx
 #: src/state/mint/v3/hooks.tsx
 #: src/state/swap/hooks.tsx
-msgid "Insufficient ${0} balance"
-msgstr "不十分な ${0} バランス"
-
-#: src/pages/Swap/index.tsx
-msgid "Insufficient liquidity for this trade."
-msgstr "流動性が不足しているため、取引できません。"
+msgid "Insufficient {0} balance"
+msgstr "{0} の残高が足りません"
 
 #: src/components/Settings/index.tsx
 msgid "Interface Settings"
@@ -1128,6 +1124,10 @@ msgstr "V2の流動性が見つかりません。"
 #: src/pages/Earn/index.tsx
 msgid "No active pools"
 msgstr "アクティブなプールがありません"
+
+#: src/components/FeeSelector/index.tsx
+msgid "No data"
+msgstr "データがありません"
 
 #: src/state/governance/hooks.ts
 msgid "No description."
@@ -1406,13 +1406,13 @@ msgstr "流動性を削除"
 msgid "Remove list"
 msgstr "リストを削除"
 
-#: src/pages/RemoveLiquidity/index.tsx
-msgid "Removing ${0} ${1} and ${2} ${3}"
-msgstr "取り外し ${0} ${1} 及び ${2} ${3}"
-
 #: src/pages/RemoveLiquidity/V3.tsx
 msgid "Removing {0} {1} and {2} {3}"
 msgstr "{0} {1} と {2} {3} を解除中"
+
+#: src/pages/RemoveLiquidity/index.tsx
+msgid "Removing {0} {1} and{2} {3}"
+msgstr "{0} {1} と {2} {3} を削除"
 
 #: src/components/TransactionConfirmationModal/index.tsx
 #: src/components/TransactionConfirmationModal/index.tsx
@@ -1430,7 +1430,7 @@ msgstr "ペアを選択"
 
 #: src/components/Header/NetworkSelector.tsx
 msgid "Select a network"
-msgstr "ネットワークを選択する"
+msgstr "ネットワークを選択"
 
 #: src/components/CurrencyInputPanel/index.tsx
 #: src/components/SearchModal/CurrencySearch.tsx
@@ -1535,8 +1535,8 @@ msgid "Supply"
 msgstr "追加"
 
 #: src/pages/AddLiquidityV2/index.tsx
-msgid "Supplying ${0} ${1} and ${2} ${3}"
-msgstr "供給 ${0} ${1} 及び ${2} ${3}"
+msgid "Supplying {0} {1} and{2} {3}"
+msgstr "{0} {1} と{2} {3} を提供"
 
 #: src/components/Header/index.tsx
 #: src/components/NavigationTabs/index.tsx
@@ -1548,7 +1548,7 @@ msgstr "スワップ"
 
 #: src/components/AccountDetails/TransactionSummary.tsx
 msgid "Swap <0/> for exactly <1/>"
-msgstr "<0 />を正確に<1 />にスワップします"
+msgstr "<0 />を<1 />に正確にスワップする"
 
 #: src/pages/Swap/index.tsx
 #: src/pages/Swap/index.tsx
@@ -1557,7 +1557,7 @@ msgstr "問題発生の可能性があるが、スワップする"
 
 #: src/components/AccountDetails/TransactionSummary.tsx
 msgid "Swap exactly <0/> for <1/>"
-msgstr "正確に<0 />を<1 />にスワップします"
+msgstr "<0 />を<1 />に正確にスワップする"
 
 #: src/hooks/useSwapCallback.tsx
 #: src/hooks/useSwapCallback.tsx
@@ -1716,7 +1716,7 @@ msgstr "取引が送信されました"
 
 #: src/components/TransactionConfirmationModal/index.tsx
 msgid "Transaction completed in"
-msgstr "で完了したトランザクション"
+msgstr "で完了した取引"
 
 #: src/components/TransactionSettings/index.tsx
 msgid "Transaction deadline"
@@ -1725,7 +1725,7 @@ msgstr "取引期限"
 #: src/hooks/useSwapCallback.tsx
 #: src/hooks/useSwapCallback.tsx
 msgid "Transaction rejected."
-msgstr "トランザクションが拒否されました。"
+msgstr "取引が拒否されました"
 
 #: src/pages/CreateProposal/ProposalActionSelector.tsx
 msgid "Transfer Token"
@@ -1821,8 +1821,8 @@ msgid "Unknown Source"
 msgstr "不明なソース"
 
 #: src/hooks/useSwapCallback.tsx
-msgid "Unknown error${0}. Try increasing your slippage tolerance. Note: fee on transfer and rebase tokens are incompatible with Uniswap V3."
-msgstr "不明なエラー${0}。スリッページの許容範囲を広げてみてください。注：転送およびリベーストークンの料金は、UniswapV3と互換性がありません。"
+msgid "Unknown error{0}. Try increasing your slippage tolerance. Note: fee on transfer and rebase tokens are incompatible with Uniswap V3."
+msgstr "不明なエラー{0}。スリッページの許容範囲を広げてみてください。注：転送時に手数料が発生するトークンおよびリベーストークンは、UniswapV3と互換性がありません。"
 
 #: src/pages/Vote/VotePage.tsx
 #: src/pages/Vote/index.tsx
