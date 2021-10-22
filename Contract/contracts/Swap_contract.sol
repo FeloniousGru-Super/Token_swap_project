@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.6.6;
 
 
 //import the ERC20 interface
@@ -25,7 +25,7 @@ interface IERC20 {
 //this will allow us to import swapExactTokensForTokens into our contract
 
 interface IUniswapV2Router {
-  function getAmountsOut(uint256 amountIn, address[] memory path)
+  function getAmountsOut(uint256 amountIn, address[] calldata path)
     external
     view
     returns (uint256[] memory amounts);

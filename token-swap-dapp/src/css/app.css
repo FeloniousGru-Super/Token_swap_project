@@ -1,0 +1,99 @@
+/* PAGE */
+
+body,
+.pure-g [class*=pure-u] {
+  font-family: 'Roboto', sans-serif;
+  color: #404040;
+  background-color: #f2f9ff;
+}
+
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  color: #008aff;
+}
+
+code {
+  display: block;
+  margin: 20px 0 15px 0;
+  padding: 10px;
+  background: white;
+}
+
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 80px 25px;
+}
+
+/* FORM */
+
+.pure-form input:not([type]) {
+  border-radius: 2px;
+}
+
+/* NAVBAR */
+
+.navbar {
+  position: fixed;
+  padding: 5px;
+  background-color: #008aff;
+  /* background: linear-gradient(to bottom, #008aff, #baabff); */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  z-index: 1000;
+}
+
+.navbar img {
+  width: 141px;
+}
+
+.navbar a {
+  color: #fff;
+}
+
+button {
+  border: 1px solid #008aff !important;
+  background: transparent !important;
+  color: #008aff !important;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #008aff !important;
+  color: white !important;
+}
+
+.navbar a:active,
+.navbar a:focus,
+.navbar a:hover {
+  background: transparent;
+}
+
+.navbar a.logo {
+  border: none !important;
+  background: none !important;
+}
+
+.navbar .pure-menu-heading {
+  font-weight: bold;
+  text-transform: none;
+}
+
+.navbar .pure-menu-link {
+  padding: 8px 12px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.navbar .navbar-right {
+  float: right;
+}
+
+.navbar .uport-logo {
+  height: 16px;
+  margin-right: 10px;
+}
