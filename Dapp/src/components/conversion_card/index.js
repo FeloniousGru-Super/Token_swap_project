@@ -120,7 +120,7 @@ const ConversionCard = ({
                                 <button
                                     type="submit"
                                     value="Connect to a Wallet"
-                                    className="py-2 px-4 bg-red-500 text-white rounded-xl mt-2 shadow-md"
+                                    className="py-2 px-4 bg-red-500 text-white rounded-xl mt-2 shadow-md font-medium"
                                 >
                                     Connect to a Wallet
                                 </button>

@@ -17,7 +17,7 @@ const To = ({ onTokenChangeClick, toInput, input = true }) => {
                             <img src={toInput.img} alt="" />
                         </div>
                     )}
-                    <p className="title w-full">{`${
+                    <p className="title w-full font-medium">{`${
                         toInput !== null ? toInput.title : "Select a Token"
                     }`}</p>{" "}
                     <BsChevronDown />
