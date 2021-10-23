@@ -6,6 +6,7 @@ import ConnectWallet from "./components/connect_wallet_card";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AddLiquidityForm from "./components/add_liq_form";
 import ImportLiquidityForm from "./components/import_liq_form";
+import MainButton from "./components/main_button";
 function App() {
     //
     // conversion form state
@@ -71,9 +72,10 @@ function App() {
     }
 
     return (
-        <div className="App bg-blue-100 min-h-screen">
-            <div className="container mx-auto">
+        <div className="App bg-secondary-light min-h-screen">
+            <div className="container mx-auto pb-8">
                 <Navbar changeScreen={changeScreen} />
+                <MainButton changeScreen={changeScreen}/>
                 <Switch>
                     <Route path={"/add_liq"}>
                         <AddLiquidityForm />

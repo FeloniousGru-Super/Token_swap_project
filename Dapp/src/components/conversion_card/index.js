@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Switch from "../switch";
-import { MdInfoOutline, MdOutlineSettings } from "react-icons/md";
+import { MdInfoOutline, MdOutlineSettings, MdArrowDownward } from "react-icons/md";
 import { HiRefresh } from "react-icons/hi";
 
 import FromInputField from "./FromInputField";
@@ -44,7 +44,7 @@ const ConversionCard = ({
                     onSelect={handleTokenSelect}
                 />
             ) : (
-                <div className="max-w-md mx-auto rounded-2xl shadow p-8 bg-white space-y-8 relative">
+                <div className="max-w-xl mx-auto rounded-2xl shadow p-8 bg-white space-y-8 relative">
                     <div className="flex items-center">
                         <Switch
                             states={["Swap", "Pool"]}
@@ -99,12 +99,13 @@ const ConversionCard = ({
                                 }}
                                 fromInput={fromInput}
                             />
-                            <div className="flex justify-center mt-6 text-red-500">
-                                <button
+                            <div className="flex justify-center relative text-black mt-2">
+                                    <button
+                                        className="bg-secondary absolute -top-8 rounded-full p-2"
                                     type="button"
                                     onClick={handleInvertClick}
                                 >
-                                    <HiRefresh size={48} />
+                                    <MdArrowDownward size={36} />
                                 </button>
                             </div>
                             <ToInputField
@@ -120,7 +121,7 @@ const ConversionCard = ({
                                 <button
                                     type="submit"
                                     value="Connect to a Wallet"
-                                    className="py-2 px-4 bg-red-500 text-white rounded-xl mt-2 shadow-md font-medium"
+                                    className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
                                 >
                                     Connect to a Wallet
                                 </button>

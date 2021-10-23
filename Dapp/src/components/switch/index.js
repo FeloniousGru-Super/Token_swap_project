@@ -1,16 +1,15 @@
 import React from "react";
-import { useState } from "react";
 
 const Switch = ({ states = [], selected=0, setSelected }) => {
-    const activeStyling = "bg-red-500 text-white ";
+    const activeStyling = "bg-primary text-white ";
     
 
     return (
-        <div className="flex bg-white rounded shadow">
+        <div className="flex bg-secondary text-white rounded-full overflow-hidden shadow">
             {states.map((state, idx) => {
                 return (
                     <button
-                        className={`py-2 px-6 rounded font-medium ${
+                        className={`py-4 px-6 rounded-full font-medium ${
                             idx === selected ? activeStyling : ""
                         }`}
                         onClick={() => setSelected(idx)}
