@@ -2,7 +2,7 @@ import React from "react";
 
 const MainButton = ({ changeScreen }) => {
     return (
-        <div className="mb-8">
+        <div className="my-16">
             <h2 className="text-center text-2xl font-bold p-2 mb-6 text-primary">Swap</h2>
             <div className="flex justify-center">
                 <div className="flex bg-secondary text-white rounded-full overflow-hidden shadow">
