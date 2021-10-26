@@ -20,7 +20,7 @@ function App() {
     //
     const [selectedSpeedOption, setSelectedSpeedOption] = useState(0);
     const [selectedToleranceOption, setSelectedToleranceOption] = useState(0);
-    const [customToleranceValue, setCustomToleranceValue] = useState('')
+    const [customToleranceValue, setCustomToleranceValue] = useState('');
     //
     // settings screen state
     //
