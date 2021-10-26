@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Switch from "../switch";
-import { MdInfoOutline, MdOutlineSettings, MdArrowDownward } from "react-icons/md";
-import { HiRefresh } from "react-icons/hi";
-
+import {
+    MdInfoOutline,
+    MdOutlineSettings,
+    MdArrowDownward,
+} from "react-icons/md";
 import FromInputField from "./FromInputField";
 import ToInputField from "./ToInputField";
 import SelectToken from "../select_token_card";
@@ -44,7 +46,7 @@ const ConversionCard = ({
                     onSelect={handleTokenSelect}
                 />
             ) : (
-                <div className="max-w-xl mx-auto rounded-2xl shadow p-8 bg-white space-y-8 relative">
+                <div className="max-w-xl mx-auto rounded-2xl p-8 bg-primary-muted space-y-8 relative conversion_card_shadow">
                     <div className="flex items-center">
                         <Switch
                             states={["Swap", "Pool"]}
@@ -100,8 +102,8 @@ const ConversionCard = ({
                                 fromInput={fromInput}
                             />
                             <div className="flex justify-center relative text-black mt-2">
-                                    <button
-                                        className="bg-secondary absolute -top-8 rounded-full p-2"
+                                <button
+                                    className="bg-secondary absolute -top-8 rounded-full p-2"
                                     type="button"
                                     onClick={handleInvertClick}
                                 >
