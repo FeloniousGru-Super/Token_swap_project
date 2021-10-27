@@ -5,11 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
+import { DAppProvider } from '@usedapp/core'
+
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <DAppProvider config={{}}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </DAppProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );

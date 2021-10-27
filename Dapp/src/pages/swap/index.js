@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import AddLiquidityForm from "../../components/add_liq_form";
 import ImportLiquidityForm from "../../components/import_liq_form";
 import MainButton from "../../components/main_button";
@@ -12,12 +12,12 @@ import { Route, Switch } from 'react-router';
 import bg_pattern_flip from "../../assets/bg_pattern_2.jpg"
 import Footer from '../../components/footer';
 
-
 const Swap = () => {
 
     //
     // conversion form state
     //
+    //wallet provider information
 
     const [fromInput, setFromInput] = useState(null);
     const [toInput, setToInput] = useState(null);

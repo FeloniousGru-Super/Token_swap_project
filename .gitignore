@@ -2,3 +2,7 @@ Dapp/node_modules/
 Dapp/build/
 Contract/node_modules/
 Contract/build/
+fork-uniswap/node_modules/
+fork-uniswap/core/node_modules/
+fork-uniswap/periphery/node_modules/
+fork-uniswap/migrator/node_modules/
