@@ -1,13 +1,22 @@
 import React from "react";
 import { MdArrowBack, MdSearch } from "react-icons/md";
-import sfmLogo from '../../assets/sfm.png'
+import sfmLogo from "../../assets/sfm.png";
+import logo from "../../assets/logo.png"
 
 const SelectToken = ({ onBack, onSelect }) => {
-    const tokens = ["BNB", "WBNB", "SFM"];
-    const tokens_ = [{ id: 1, title: "BNB", img: "https://cryptologos.cc/logos/binance-coin-bnb-logo.png" },
-        { id: 2, title: "WBNB", img: "https://cryptologos.cc/logos/binance-coin-bnb-logo.png" },
-        {id: 3, title: "SFM", img: sfmLogo}
-    ]
+    const tokens_ = [
+        {
+            id: 1,
+            title: "ETH",
+            img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
+        },
+        {
+            id: 2,
+            title: "WETH",
+            img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
+        },
+        { id: 3, title: "LUNACHOW", img: logo },
+    ];
 
     return (
         <div className="max-w-md mx-auto rounded-lg shadow p-8 space-y-4 bg-white">
@@ -37,10 +46,7 @@ const SelectToken = ({ onBack, onSelect }) => {
                             onClick={() => onSelect(token)}
                         >
                             <div className="w-8">
-                                <img
-                                    src={token.img}
-                                    alt="WBNB logo"
-                                />
+                                <img src={token.img} alt="WBNB logo" />
                             </div>
                             <p className="title">{token.title}</p>
                             <p className="value ml-auto"> - </p>
