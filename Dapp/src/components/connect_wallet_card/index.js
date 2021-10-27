@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdArrowBack } from "react-icons/md";
 import Switch from "../switch";
-import logo from "../../assets/logo.png";
+import binanceWallet from "../../assets/binanceWallet.png";
+import metamask from "../../assets/metamask.png";
+import trustWallet from "../../assets/trustWallet.png";
+import { useEthers, useEtherBalance } from "@usedapp/core";
 
 const ConnectWallet = ({ changeScreen }) => {
     const [switchBtn, setSwitchBtn] = useState(0);
+    const { activateBrowserWallet, account } = useEthers();
+    const etherBalance = useEtherBalance(account);
+
+    useEffect(() => {
+        // activateBrowserWallet();
+        console.log('etherBalance', etherBalance);
+    }, []);
+
+    function handleConnectWallet(){
+        activateBrowserWallet();
+        console.log('etherBalance', etherBalance);
+    }
 
     return (
         <div className="max-w-md mx-auto rounded-lg shadow p-8 space-y-4 bg-white">
@@ -12,7 +27,7 @@ const ConnectWallet = ({ changeScreen }) => {
                 <button onClick={() => changeScreen("home")}>
                     <MdArrowBack size={24} />
                 </button>
-                <p className="text-lg font-medium">Connect to a Token</p>
+                <p className="text-lg font-medium">Connect to a Wallet</p>
             </div>
 
             <div className={"flex justify-center"}>
@@ -27,59 +42,49 @@ const ConnectWallet = ({ changeScreen }) => {
                 <ul className="space-y-2">
                     <li className="">
                         <a
-                            href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4"
+                            // href="/"
+                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                            onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
-                                <img src={logo} alt="" />
+                                <img src={binanceWallet} alt="" />
                             </div>
                             <p className="font-medium">
-                                Install Binance Chain Wallet
+                                Binance Chain Wallet
                             </p>
                         </a>
                     </li>
 
                     <li className="">
                         <a
-                            href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4"
+                            // href="/"
+                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                            onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
-                                <img src={logo} alt="" />
+                                <img src={metamask} alt="" />
                             </div>
                             <p className="font-medium">
-                                Install Metamask
+                                Metamask
                             </p>
                         </a>
                     </li>
 
                     <li className="">
                         <a
-                            href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4"
+                            // href="/"
+                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                            onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
-                                <img src={logo} alt="" />
+                                <img src={trustWallet} alt="" />
                             </div>
                             <p className="font-medium">
-                                Install Trustwallet
+                                Trustwallet
                             </p>
                         </a>
                     </li>
 
-                    <li className="">
-                        <a
-                            href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4"
-                        >
-                            <div className="img w-10">
-                                <img src={logo} alt="" />
-                            </div>
-                            <p className="font-medium">
-                                Get MathWallet App
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             )}
 
@@ -87,42 +92,30 @@ const ConnectWallet = ({ changeScreen }) => {
                 <ul className="space-y-2">
                     <li className="">
                         <a
-                            href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4"
+                            // href="/"
+                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                            onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
-                                <img src={logo} alt="" />
+                                <img src={metamask} alt="" />
                             </div>
                             <p className="font-medium">
-                                Install Metamask
+                                Metamask
                             </p>
                         </a>
                     </li>
 
                     <li className="">
                         <a
-                            href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4"
+                            // href="/"
+                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                            onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
-                                <img src={logo} alt="" />
+                                <img src={trustWallet} alt="" />
                             </div>
                             <p className="font-medium">
-                                Install TrustWallet
-                            </p>
-                        </a>
-                    </li>
-
-                    <li className="">
-                        <a
-                            href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4"
-                        >
-                            <div className="img w-10">
-                                <img src={logo} alt="" />
-                            </div>
-                            <p className="font-medium">
-                                Get MathWallet App
+                                TrustWallet
                             </p>
                         </a>
                     </li>
