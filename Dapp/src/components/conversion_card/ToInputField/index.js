@@ -27,7 +27,7 @@ const To = ({ onTokenChangeClick, toInput, input = true }) => {
                         
                         type="number"
                         placeholder="0.0"
-                        className="bg-primary-muted lex-grow p-2 text-right text-lg font-bold placeholder-black"
+                        className="bg-primary-muted flex-grow p-2 text-right text-lg font-bold placeholder-black"
                     />
                 )}
             </div>
