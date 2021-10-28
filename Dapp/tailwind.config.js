@@ -6,7 +6,10 @@ module.exports = {
             colors: {
                 primary: {
                     DEFAULT: "#e24717",
-                    muted: "#FFE7E0"
+                    muted: "#FFE7E0",
+                    grayed: "#EDCFC6",
+                    dark: "#E17C5D",
+                    darker: "#741F04"
                 },
                 secondary: {
                     DEFAULT: "#f0af6d",
@@ -14,7 +17,8 @@ module.exports = {
                 },
             },
             borderRadius: {
-                '8xl': '3rem'
+                '8xl': '3rem',
+                '16xl': '6rem'
             }
         },
     },

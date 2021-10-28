@@ -1,5 +1,6 @@
 import { Route, Switch } from "react-router";
 import "./App.css";
+import Home from "./pages/home";
 import Swap from "./pages/swap";
 function App() {
     return (
@@ -8,7 +9,9 @@ function App() {
                 <Swap />
             </Route>
 
-            <Route path="/">Homepage</Route>
+            <Route path="/">
+                <Home />
+            </Route>
         </Switch>
     );
 }

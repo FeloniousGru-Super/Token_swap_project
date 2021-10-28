@@ -1,13 +1,12 @@
 import React from "react";
 import logo from "../../assets/logo.png";
-import pattern_bg from "../../assets/bg_pattern_2.jpg";
 import pattern_bg_flip from "../../assets/bg_pattern_1_flip.png";
 
 const Navbar = ({ changeScreen }) => {
     return (
-        <div>
+        <div className="sticky top-0 z-10">
             <div
-                className="bg-secondary-light p-2 bg-center bg-cover relative z-10"
+                className="bg-secondary-light p-2 bg-center bg-cover relative"
                 style={{ backgroundImage: `url(${pattern_bg_flip})` }}
             >
                 <nav className="container mx-auto flex items-center p-4">
@@ -94,12 +93,6 @@ const Navbar = ({ changeScreen }) => {
                         </ul>
                     </div>
                 </nav>
-            </div>
-
-            <div className="relative" style={{ zIndex: -99 }}>
-                <div className="pattern_bg absolute -top-36 -left-20">
-                    <img src={pattern_bg} alt="" className="w-10/12" />
-                </div>
             </div>
         </div>
     );

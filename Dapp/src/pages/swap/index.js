@@ -1,20 +1,18 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import AddLiquidityForm from "../../components/add_liq_form";
 import ImportLiquidityForm from "../../components/import_liq_form";
 import MainButton from "../../components/main_button";
-import "../../App.css"
-import ConversionCard from '../../components/conversion_card';
-import Settings from '../../components/settings_card';
-import ConnectWallet from '../../components/connect_wallet_card';
-import Navbar from '../../components/navbar';
-import { Route, Switch } from 'react-router';
+import "../../App.css";
+import ConversionCard from "../../components/conversion_card";
+import Settings from "../../components/settings_card";
+import ConnectWallet from "../../components/connect_wallet_card";
+import Navbar from "../../components/navbar";
+import { Route, Switch } from "react-router";
 
-import bg_pattern_flip from "../../assets/bg_pattern_2.jpg"
-import Footer from '../../components/footer';
-
+import bg_pattern_flip from "../../assets/bg_pattern_2.jpg";
+import Footer from "../../components/footer";
 
 const Swap = () => {
-
     //
     // conversion form state
     //
@@ -27,7 +25,7 @@ const Swap = () => {
     //
     const [selectedSpeedOption, setSelectedSpeedOption] = useState(0);
     const [selectedToleranceOption, setSelectedToleranceOption] = useState(0);
-    const [customToleranceValue, setCustomToleranceValue] = useState('')
+    const [customToleranceValue, setCustomToleranceValue] = useState("");
     //
     // settings screen state
     //
@@ -82,7 +80,15 @@ const Swap = () => {
         <div className="min-h-screen">
             <div className="">
                 <Navbar changeScreen={changeScreen} />
-                <MainButton changeScreen={changeScreen}/>
+
+                <div className="relative" style={{ zIndex: -99 }}>
+                    <div className="pattern_bg absolute -top-36 -left-20">
+                        <img src={bg_pattern_flip} alt="" className="w-10/12" />
+                    </div>
+                </div>
+
+                <MainButton changeScreen={changeScreen} />
+
                 <Switch>
                     <Route path={"/swap/add_liq"}>
                         <AddLiquidityForm />
@@ -93,15 +99,26 @@ const Swap = () => {
                     <Route path="/swap">{component}</Route>
                 </Switch>
 
-                <div className="relative flex justify-end" style={{ height: '300px'}}>
-                    <img className="absolute right-0 -top-10" src={bg_pattern_flip} alt="" style={{zIndex: -99, height: '450px', transform: 'scale(-1, -1)'}}/>
+                <div
+                    className="relative flex justify-end"
+                    style={{ height: "300px" }}
+                >
+                    <img
+                        className="absolute right-0 -top-10"
+                        src={bg_pattern_flip}
+                        alt=""
+                        style={{
+                            zIndex: -99,
+                            height: "450px",
+                            transform: "scale(-1, -1)",
+                        }}
+                    />
                 </div>
 
                 <Footer />
-
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Swap
+export default Swap;

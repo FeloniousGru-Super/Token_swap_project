@@ -33,7 +33,7 @@ const ImportLiquidityForm = ({ changeScreen }) => {
                     onSelect={handleTokenSelect}
                 />
             ) : (
-                <div className="max-w-xl mx-auto rounded-lg shadow p-8 space-y-4 bg-white">
+                <div className="max-w-xl mx-auto rounded-lg shadow p-8 space-y-4 bg-secondary-light">
                     <div className="flex items-center gap-3">
                         <button onClick={() => history.goBack()}>
                             <MdArrowBack size={24} />
