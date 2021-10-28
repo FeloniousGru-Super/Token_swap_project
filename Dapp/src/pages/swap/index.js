@@ -29,7 +29,7 @@ const Swap = () => {
     //
     // settings screen state
     //
-
+    const [accountAddress, setAccountAddress] = useState(true);
     //
     // end of settings screen state
     //
@@ -70,7 +70,11 @@ const Swap = () => {
             );
             break;
         case "connect_wallet":
-            component = <ConnectWallet changeScreen={changeScreen} />;
+            component = <ConnectWallet 
+                            changeScreen={changeScreen} 
+                            accountAddress={accountAddress} 
+                            setAccountAddress={setAccountAddress}
+                        />;
             break;
         default:
             break;
@@ -80,15 +84,17 @@ const Swap = () => {
         <div className="min-h-screen">
             <div className="">
                 <Navbar changeScreen={changeScreen} />
-
                 <div className="relative" style={{ zIndex: -99 }}>
                     <div className="pattern_bg absolute -top-36 -left-20">
                         <img src={bg_pattern_flip} alt="" className="w-10/12" />
                     </div>
                 </div>
 
-                <MainButton changeScreen={changeScreen} />
-
+                <MainButton 
+                    changeScreen={changeScreen}
+                    accountAddress={accountAddress} 
+                    setAccountAddress={setAccountAddress}
+                />
                 <Switch>
                     <Route path={"/swap/add_liq"}>
                         <AddLiquidityForm />

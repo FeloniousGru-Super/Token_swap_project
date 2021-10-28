@@ -1,6 +1,6 @@
 import React from "react";
 
-const MainButton = ({ changeScreen }) => {
+const MainButton = ({ changeScreen, accountAddress, setAccountAddress }) => {
     return (
         <div className="my-16">
             <h2 className="text-center text-2xl font-bold p-2 mb-6 text-primary">Swap</h2>
@@ -13,7 +13,8 @@ const MainButton = ({ changeScreen }) => {
                         className={`py-3 px-6 rounded-full bg-primary font-medium hover:bg-red-400`}
                         onClick={() => changeScreen("connect_wallet")}
                     >
-                        Connect to a Wallet
+                        {console.log('accountAddress', accountAddress)}
+                        { accountAddress == true ? ( <p>Connect to a Wallet</p> ) : String(accountAddress).substring(0, 7) + "..."  + String(accountAddress).substring(35) }
                     </button>
                 </div>
             </div>

@@ -6,7 +6,7 @@ import metamask from "../../assets/metamask.png";
 import trustWallet from "../../assets/trustWallet.png";
 import { useEthers, useEtherBalance } from "@usedapp/core";
 
-const ConnectWallet = ({ changeScreen }) => {
+const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
     const [switchBtn, setSwitchBtn] = useState(0);
     const { activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
@@ -18,6 +18,7 @@ const ConnectWallet = ({ changeScreen }) => {
 
     function handleConnectWallet(){
         activateBrowserWallet();
+        setAccountAddress(account);
         console.log('etherBalance', etherBalance);
     }
 
@@ -27,7 +28,7 @@ const ConnectWallet = ({ changeScreen }) => {
                 <button onClick={() => changeScreen("home")}>
                     <MdArrowBack size={24} />
                 </button>
-                <p className="text-lg font-medium">Connect to a Wallet</p>
+                <p className="text-lg font-medium">Back</p>
             </div>
 
             <div className={"flex justify-center"}>
