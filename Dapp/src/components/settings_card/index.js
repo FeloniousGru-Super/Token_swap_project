@@ -24,7 +24,7 @@ const Settings = ({
     ];
 
     return (
-        <div className="max-w-md mx-auto shadow p-8 bg-white rounded-2xl">
+        <div className="max-w-md mx-auto shadow p-8 bg-secondary-light rounded-2xl">
             <div className="flex items-center gap-2">
                 <button>
                     <MdArrowBack
