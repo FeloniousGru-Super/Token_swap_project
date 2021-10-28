@@ -124,6 +124,7 @@ const ConversionCard = ({
                                     type="submit"
                                     value="Connect to a Wallet"
                                     className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
+                                    onClick = {() => changeScreen("connect_wallet")}
                                 >
                                     Connect to a Wallet
                                 </button>
