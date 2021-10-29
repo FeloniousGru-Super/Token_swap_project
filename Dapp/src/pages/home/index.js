@@ -45,10 +45,14 @@ const Home = () => {
                                         </span>
                                     </h2>
                                     <div className="flex gap-2">
-
                                         <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
                                             <div className="w-6">
-                                            <img src={"https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"} alt="" />
+                                                <img
+                                                    src={
+                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
+                                                    }
+                                                    alt=""
+                                                />
                                             </div>
                                             <span>DxAxWkdfCfed</span>
                                             <button>
@@ -57,19 +61,42 @@ const Home = () => {
                                         </div>
                                         <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
                                             <div className="w-6">
-                                            <img src={"https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"} alt="" />
+                                                <img
+                                                    src={
+                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
+                                                    }
+                                                    alt=""
+                                                />
                                             </div>
                                             <span>DxAxWkdfCfed</span>
                                             <button>
                                                 <MdCopyAll size={22} />
                                             </button>
                                         </div>
-
+                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                            <div className="w-6">
+                                                <img
+                                                    src={
+                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
+                                                    }
+                                                    alt=""
+                                                />
+                                            </div>
+                                            <span>DxAxWkdfCfed</span>
+                                            <button>
+                                                <MdCopyAll size={22} />
+                                            </button>
+                                        </div>
                                     </div>
                                     <div className="flex gap-2">
-                                    <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
                                             <div className="w-6">
-                                            <img src={"https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"} alt="" />
+                                                <img
+                                                    src={
+                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
+                                                    }
+                                                    alt=""
+                                                />
                                             </div>
                                             <span>DxAxWkdfCfed</span>
                                             <button>
@@ -78,14 +105,32 @@ const Home = () => {
                                         </div>
                                         <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
                                             <div className="w-6">
-                                            <img src={"https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"} alt="" />
+                                                <img
+                                                    src={
+                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
+                                                    }
+                                                    alt=""
+                                                />
                                             </div>
                                             <span>DxAxWkdfCfed</span>
                                             <button>
                                                 <MdCopyAll size={22} />
                                             </button>
                                         </div>
-
+                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                            <div className="w-6">
+                                                <img
+                                                    src={
+                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
+                                                    }
+                                                    alt=""
+                                                />
+                                            </div>
+                                            <span>DxAxWkdfCfed</span>
+                                            <button>
+                                                <MdCopyAll size={22} />
+                                            </button>
+                                        </div>
                                     </div>
 
                                     <button className="block w-full text-center font-medium bg-gradient-to-b from-yellow-500 to-yellow-600 rounded-full text-white p-3">
@@ -95,9 +140,11 @@ const Home = () => {
                                         <button className="w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
                                             Donate
                                         </button>
-                                        <button className="w-1/2 rounded-full py-2 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
+
+                                        <a href="/swap" className="block text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
                                             Swap
-                                        </button>
+                                        </a>
+
                                     </div>
                                 </div>
 
