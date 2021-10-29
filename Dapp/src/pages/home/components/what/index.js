@@ -1,5 +1,6 @@
 import React from "react";
 import pattern from "../../../../assets/bg_pattern_2.jpg";
+import coins from "./static/coins.png"
 
 const What = () => {
     return (
@@ -26,6 +27,11 @@ const What = () => {
                 </div>
 
                 <div className="flex justify-end gap-4">
+
+                    <div className="relative -right-24">
+                        <img src={coins} alt="" className="h-64"/>
+                    </div>
+
                     <div className="px-8 py-12 bg-primary rounded-8xl w-80 space-y-4">
                         <p className="text-white">
                         Inspired by Shiba Inu and Dogecoin, LunaChow boasts an aggressive token burn structure. 99.9% of all LunaChow tokens are burned at protocol launch.

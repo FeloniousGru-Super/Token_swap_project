@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import { MdCopyAll } from "react-icons/md";
-
 import catWithCoins from "./static/cat_with_coins.png";
 import pattern from "../../assets/bg_pattern_1.png";
 import unicorn from "./static/unicorn.png";
@@ -12,6 +11,14 @@ import What from "./components/what";
 import Tokenomics from "./components/tokenomics";
 import Fair from "./components/fair";
 import Upcoming from "./components/upcoming";
+import Roadmap from "./components/roadmap";
+import AsSeen from "./components/as_seen";
+import CoreValues from "./components/core_values";
+import Featured from "./components/featured";
+import FAQ from "./components/faq";
+import ContactUS from "./components/contact_us";
+import CryptoNews from "./components/news";
+import Map from "./components/map";
 
 const Home = () => {
     return (
@@ -20,7 +27,10 @@ const Home = () => {
             <div className="min-h-screen">
                 <div className="bg-primary-grayed rounded-br-16xl">
                     <div className="hero bg-secondary-light overflow-hidden rounded-br-16xl">
-                        <div className="container mx-auto px-12">
+                        <div
+                            className="container mx-auto px-12 relative"
+                            style={{ zIndex: 1 }}
+                        >
                             <div className="flex items-center gap-16 justify-between py-20">
                                 <div className="w-1/2 space-y-6">
                                     <h2 className="text-8xl font-black tracking-wide">
@@ -35,21 +45,47 @@ const Home = () => {
                                         </span>
                                     </h2>
                                     <div className="flex gap-2">
-                                        <div className="bg-primary text-white font-medium py-1 px-6 rounded-full flex gap-2 items-center">
-                                            <img src="" alt="" />
+
+                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                            <div className="w-6">
+                                            <img src={"https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"} alt="" />
+                                            </div>
+                                            <span>DxAxWkdfCfed</span>
+                                            <button>
+                                                <MdCopyAll size={22} />
+                                            </button>
+                                        </div>
+                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                            <div className="w-6">
+                                            <img src={"https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"} alt="" />
+                                            </div>
                                             <span>DxAxWkdfCfed</span>
                                             <button>
                                                 <MdCopyAll size={22} />
                                             </button>
                                         </div>
 
-                                        <div className="bg-primary text-white font-medium py-1 px-6 rounded-full flex gap-2 items-center">
-                                            <img src="" alt="" />
+                                    </div>
+                                    <div className="flex gap-2">
+                                    <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                            <div className="w-6">
+                                            <img src={"https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"} alt="" />
+                                            </div>
                                             <span>DxAxWkdfCfed</span>
                                             <button>
                                                 <MdCopyAll size={22} />
                                             </button>
                                         </div>
+                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                            <div className="w-6">
+                                            <img src={"https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"} alt="" />
+                                            </div>
+                                            <span>DxAxWkdfCfed</span>
+                                            <button>
+                                                <MdCopyAll size={22} />
+                                            </button>
+                                        </div>
+
                                     </div>
 
                                     <button className="block w-full text-center font-medium bg-gradient-to-b from-yellow-500 to-yellow-600 rounded-full text-white p-3">
@@ -116,6 +152,14 @@ const Home = () => {
             <Tokenomics />
             <Fair />
             <Upcoming />
+            <Map />
+            <Roadmap />
+            <AsSeen />
+            <CoreValues />
+            <Featured />
+            <FAQ />
+            <CryptoNews />
+            <ContactUS />
 
             <Footer />
         </div>
