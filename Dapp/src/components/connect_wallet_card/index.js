@@ -23,7 +23,7 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
     }
 
     return (
-        <div className="max-w-md mx-auto rounded-lg shadow p-8 space-y-4 bg-white">
+        <div className="max-w-lg mx-auto rounded-lg shadow p-8 space-y-4 bg-secondary-light">
             <div className="flex items-center gap-3">
                 <button onClick={() => changeScreen("home")}>
                     <MdArrowBack size={24} />
@@ -42,9 +42,8 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
             {!switchBtn && (
                 <ul className="space-y-2">
                     <li className="">
-                        <a
-                            // href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                        <button
+                            className="flex items-center gap-4 rounded bg-primary-dark text-white p-4 cursor-pointer w-full"
                             onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
@@ -53,13 +52,12 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
                             <p className="font-medium">
                                 Binance Chain Wallet
                             </p>
-                        </a>
+                        </button>
                     </li>
 
                     <li className="">
-                        <a
-                            // href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                        <button
+                            className="flex items-center gap-4 rounded bg-primary-dark text-white p-4 cursor-pointer w-full"
                             onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
@@ -68,13 +66,12 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
                             <p className="font-medium">
                                 Metamask
                             </p>
-                        </a>
+                        </button>
                     </li>
 
                     <li className="">
-                        <a
-                            // href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                        <button
+                            className="flex items-center gap-4 rounded bg-primary-dark text-white p-4 cursor-pointer w-full"
                             onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
@@ -83,7 +80,7 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
                             <p className="font-medium">
                                 Trustwallet
                             </p>
-                        </a>
+                        </button>
                     </li>
 
                 </ul>
@@ -92,9 +89,8 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
             {!!switchBtn && (
                 <ul className="space-y-2">
                     <li className="">
-                        <a
-                            // href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                        <button
+                            className="flex items-center gap-4 rounded bg-primary-dark text-white p-4 cursor-pointer w-full"
                             onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
@@ -103,13 +99,12 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
                             <p className="font-medium">
                                 Metamask
                             </p>
-                        </a>
+                        </button>
                     </li>
 
                     <li className="">
-                        <a
-                            // href="/"
-                            className="flex items-center gap-4 rounded bg-gray-100 border p-4 cursor-pointer"
+                        <button
+                            className="flex items-center gap-4 rounded bg-primary-dark text-white p-4 cursor-pointer w-full"
                             onClick = {handleConnectWallet}
                         >
                             <div className="img w-10">
@@ -118,7 +113,7 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
                             <p className="font-medium">
                                 TrustWallet
                             </p>
-                        </a>
+                        </button>
                     </li>
                 </ul>
             )}
