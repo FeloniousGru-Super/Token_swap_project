@@ -19,12 +19,13 @@ import FAQ from "./components/faq";
 import ContactUS from "./components/contact_us";
 import CryptoNews from "./components/news";
 import Map from "./components/map";
+import homepage_content from "./static/content/content";
 
 const Home = () => {
     return (
         <div>
             <Navbar />
-            <div className="min-h-screen">
+            <div className="min-h-screen" id="section1">
                 <div className="bg-primary-grayed rounded-br-16xl">
                     <div className="hero bg-secondary-light overflow-hidden rounded-br-16xl">
                         <div
@@ -45,97 +46,48 @@ const Home = () => {
                                         </span>
                                     </h2>
                                     <div className="flex gap-2">
-                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                        {homepage_content.contracts_1.map(contract => (
+                                            <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
                                             <div className="w-6">
                                                 <img
                                                     src={
-                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
+                                                        contract.img
                                                     }
                                                     alt=""
                                                 />
                                             </div>
-                                            <span>DxAxWkdfCfed</span>
+                                            <span>{contract.text}</span>
                                             <button>
                                                 <MdCopyAll size={22} />
                                             </button>
                                         </div>
-                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
-                                            <div className="w-6">
-                                                <img
-                                                    src={
-                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
-                                                    }
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <span>DxAxWkdfCfed</span>
-                                            <button>
-                                                <MdCopyAll size={22} />
-                                            </button>
-                                        </div>
-                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
-                                            <div className="w-6">
-                                                <img
-                                                    src={
-                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
-                                                    }
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <span>DxAxWkdfCfed</span>
-                                            <button>
-                                                <MdCopyAll size={22} />
-                                            </button>
-                                        </div>
+                                        ))}
+                                        
+                                       
                                     </div>
                                     <div className="flex gap-2">
-                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
+                                    {homepage_content.contracts_2.map(contract => (
+                                            <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
                                             <div className="w-6">
                                                 <img
                                                     src={
-                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
+                                                        contract.img
                                                     }
                                                     alt=""
                                                 />
                                             </div>
-                                            <span>DxAxWkdfCfed</span>
+                                            <span>{contract.text}</span>
                                             <button>
                                                 <MdCopyAll size={22} />
                                             </button>
                                         </div>
-                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
-                                            <div className="w-6">
-                                                <img
-                                                    src={
-                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
-                                                    }
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <span>DxAxWkdfCfed</span>
-                                            <button>
-                                                <MdCopyAll size={22} />
-                                            </button>
-                                        </div>
-                                        <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
-                                            <div className="w-6">
-                                                <img
-                                                    src={
-                                                        "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg"
-                                                    }
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <span>DxAxWkdfCfed</span>
-                                            <button>
-                                                <MdCopyAll size={22} />
-                                            </button>
-                                        </div>
+                                        ))}
                                     </div>
 
-                                    <button className="block w-full text-center font-medium bg-gradient-to-b from-yellow-500 to-yellow-600 rounded-full text-white p-3">
+                                    <a href="https://lunachow.com/wp-content/uploads/2021/08/LunaChow-Whitepaper-V2.pdf" className="block w-full text-center font-medium bg-gradient-to-b from-yellow-500 to-yellow-600 rounded-full text-white p-3">
                                         Whitepaper
-                                    </button>
+                                    </a>
+
                                     <div className="flex gap-4">
                                         <button className="w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
                                             Donate
@@ -181,15 +133,15 @@ const Home = () => {
                         </div>
 
                         <div className="flex justify-center gap-4">
-                            <button>
+                            <a href="https://app.uniswap.org/#/swap">
                                 <img src={unicorn} alt="" className="w-32" />
-                            </button>
-                            <button>
+                            </a>
+                            <a href="https://pancakeswap.finance/swap">
                                 <img src={cat} alt="" className="w-32" />
-                            </button>
-                            <button>
+                            </a>
+                            <a href="https://dexlabs.app/">
                                 <img src={experiment} alt="" className="w-32" />
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

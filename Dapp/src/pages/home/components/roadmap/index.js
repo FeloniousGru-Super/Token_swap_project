@@ -5,7 +5,7 @@ import ListItem from "./list_item";
 
 const Roadmap = () => {
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen" id="roadmap_section">
             <div className="container mx-auto space-y-20">
                 <div className=" space-y-8">
                     <h2 className="text-center text-4xl font-bold text-primary">Roadmap</h2>
@@ -19,46 +19,46 @@ const Roadmap = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <img src={roadmap} alt="" />
+                        <img src={roadmap} alt="" className="w-full object-cover" />
                     </div>
 
                     <div className="flex justify-center gap-44 relative -top-20">
-                        <div className="relative -top-32">
-                            <h3 className="text-lg font-medium">Phase 1</h3>
+                        <div className="md:w-1/4 relative -top-32">
+                            <h3 className="text-lg font-medium ">Phase 1</h3>
                             <ul className="text-gray-600">
                                 <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
+                                <ListItem>Whitepaper design</ListItem>
+                                <ListItem>Website design</ListItem>
+                                <ListItem>Burn Event - 99.9% token burned</ListItem>
                             </ul>
                         </div>
 
-                        <div className="">
+                        <div className="md:w-1/4 ">
                             <h3 className="text-lg font-medium">Phase 2</h3>
                             <ul className="text-gray-600">
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
+                                <ListItem>List on CoinMarketCap</ListItem>
+                                <ListItem>List on CoinGecko</ListItem>
+                                <ListItem>Social Media Marketing</ListItem>
+                                <ListItem>Charity Drive</ListItem>
                             </ul>
                         </div>
 
-                        <div className="relative -top-32">
+                        <div className="md:w-1/4 relative -top-32">
                             <h3 className="text-lg font-medium">Phase 3</h3>
                             <ul className="text-gray-600">
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
+                                <ListItem>Third Party Auditing of Contract</ListItem>
+                                <ListItem>Website Redesign</ListItem>
+                                <ListItem>Marketplace NFT & GIFT</ListItem>
+                                <ListItem>Website Redesign</ListItem>
                             </ul>
                         </div>
 
-                        <div className="">
+                        <div className="md:w-1/4 ">
                             <h3 className="text-lg font-medium">Phase 4</h3>
                             <ul className="text-gray-600">
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Token Launch</ListItem>
+                                <ListItem>Exchange App Development - Stage 1</ListItem>
+                                <ListItem>Global multimedia marketing push</ListItem>
+                                <ListItem>Partnership with Payment System Providers - CoinPayments etc</ListItem>
                                 <ListItem>Token Launch</ListItem>
                             </ul>
                         </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 
-const Question = () => {
+const Question = ({question, answer}) => {
     const [expand, setExpand] = useState(false);
 
     return (
@@ -15,7 +15,7 @@ const Question = () => {
                 className="flex items-center gap-2 w-full text-white font-medium cursor-pointer"
                 onClick={() => setExpand(!expand)}
             >
-                <h2>What is LunaChow?</h2>
+                <h2>{question}</h2>
                 <div className="ml-auto">
                     {expand ? (
                         <IoIosArrowForward size={24} />
@@ -28,10 +28,7 @@ const Question = () => {
             {expand && (
                 <div className="text-white space-y-2">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Sit, illum. Veritatis, nihil possimus tempora
-                        voluptatem libero quo in esse asperiores ut neque amet,
-                        sequi iste soluta dolores ipsa eos voluptatibus!
+                       {answer}
                     </p>
                 </div>
             )}

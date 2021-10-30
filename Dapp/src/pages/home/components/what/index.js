@@ -4,7 +4,7 @@ import coins from "./static/coins.png"
 
 const What = () => {
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen" id="about_section">
             <div className="background-top relative" style={{ zIndex: -99 }}>
                 <div className="absolute right-0 -top-40">
                     <img

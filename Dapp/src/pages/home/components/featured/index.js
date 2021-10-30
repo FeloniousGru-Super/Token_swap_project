@@ -1,6 +1,19 @@
 import React from "react";
-import yahoo_finance from "./static/yahoo_finance.png";
+// import "~slick-carousel/slick/slick.css";
+// import "~slick-carousel/slick/slick-theme.css";
+
+import Slider from "react-slick";
+import homepage_content from "../../static/content/content";
+
 const Featured = () => {
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+    };
+
     return (
         <div className="min-h-screen">
             <div className="container mx-auto space-y-20 py-20">
@@ -13,73 +26,22 @@ const Featured = () => {
                         Burn now, Not Later!
                     </p>
                 </div>
-
-                <div className="flex flex-wrap">
-                    <div className="p-2 md:w-1/4">
-                        <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light">
-                            <div className="flex justify-center">
-                                <img src={yahoo_finance} alt="" />
-                            </div>
-                            <p>
-                                To counteract these potential threats, many
-                                projects burn tokens at the launch or
-                                periodically to deliver value to shareholders.
-                                LunaChow leverages this approach in a unique
-                                way. By burning 99.9% of the initial supply,
-                                LunaChow fairly and immediately delivers
-                                years-worth of value
-                            </p>
-                        </div>{" "}
-                    </div>
-                    <div className="p-2 md:w-1/4">
-                        <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light">
-                            <div className="flex justify-center">
-                                <img src={yahoo_finance} alt="" />
-                            </div>
-                            <p>
-                                To counteract these potential threats, many
-                                projects burn tokens at the launch or
-                                periodically to deliver value to shareholders.
-                                LunaChow leverages this approach in a unique
-                                way. By burning 99.9% of the initial supply,
-                                LunaChow fairly and immediately delivers
-                                years-worth of value
-                            </p>
+                <Slider {...settings}>
+                    {homepage_content.featured_carousel.map((featured) => (
+                        <div className="p-2 md:w-1/4">
+                            <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light">
+                                <div className="flex justify-center h-32">
+                                    <img
+                                        src={featured.img}
+                                        alt=""
+                                        className="object-contain"
+                                    />
+                                </div>
+                                <p>{featured.desc}</p>
+                            </div>{" "}
                         </div>
-                    </div>
-                    <div className="p-2 md:w-1/4">
-                        <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light">
-                            <div className="flex justify-center">
-                                <img src={yahoo_finance} alt="" />
-                            </div>
-                            <p>
-                                To counteract these potential threats, many
-                                projects burn tokens at the launch or
-                                periodically to deliver value to shareholders.
-                                LunaChow leverages this approach in a unique
-                                way. By burning 99.9% of the initial supply,
-                                LunaChow fairly and immediately delivers
-                                years-worth of value
-                            </p>
-                        </div>
-                    </div>
-                    <div className="p-2 md:w-1/4">
-                        <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light">
-                            <div className="flex justify-center">
-                                <img src={yahoo_finance} alt="" />
-                            </div>
-                            <p>
-                                To counteract these potential threats, many
-                                projects burn tokens at the launch or
-                                periodically to deliver value to shareholders.
-                                LunaChow leverages this approach in a unique
-                                way. By burning 99.9% of the initial supply,
-                                LunaChow fairly and immediately delivers
-                                years-worth of value
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                    ))}
+                </Slider>
             </div>
         </div>
     );

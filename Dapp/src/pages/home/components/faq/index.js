@@ -1,13 +1,12 @@
-import React from 'react'
+import React from "react";
 import pattern from "../../../../assets/bg_pattern_1.png";
-import Question from './question';
-
+import Question from "./question";
+import homepage_content from "../../static/content/content";
 
 const FAQ = () => {
     return (
-        <div className="min-h-screen overflow-hidden bg-secondary-light relative">
-
-            <div className="relative" style={{zIndex: 1}}>
+        <div className="min-h-screen overflow-hidden bg-secondary-light relative" id="faq_section">
+            <div className="relative" style={{ zIndex: 1 }}>
                 <div className="absolute right-0 -top-40">
                     <img
                         src={pattern}
@@ -17,7 +16,10 @@ const FAQ = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto py-32 relative" style={{zIndex: 1}}>
+            <div
+                className="container mx-auto py-32 relative"
+                style={{ zIndex: 1 }}
+            >
                 <div className="text-center space-y-4">
                     <h2 className="text-4xl font-bold text-primary">
                         Frequently Asked Questions
@@ -27,16 +29,11 @@ const FAQ = () => {
                         Burn now, not later!
                     </p>
 
-                    
                     <div className="space-y-4">
-                        <Question />
-                        <Question />
-                        <Question />
-                        <Question />
-                        <Question />
-                        <Question />
+                        {homepage_content.questions.map((question) => (
+                            <Question {...question} />
+                        ))}
                     </div>
-
                 </div>
             </div>
 
@@ -50,7 +47,7 @@ const FAQ = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FAQ
+export default FAQ;
