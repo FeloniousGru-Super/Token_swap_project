@@ -43,9 +43,9 @@ const Upcoming = () => {
                             />
                         </div>
                         <h4 className="text-primary-darker text-lg">
-                            Lunachow now on Polygon Chain
+                            NFT Marketplace
                         </h4>
-                        <p className="text-white">LUCHOW is now available on Polygon blockchain. </p>
+                        <p className="text-white">Development is currently ongoing on the NFT Marketplace.</p>
                     </div>
 
                     <div className="px-8 pb-8  bg-primary-dark rounded-3xl w-80 text-center relative">
@@ -60,9 +60,9 @@ const Upcoming = () => {
                             />
                         </div>
                         <h4 className="text-primary-darker text-lg">
-                            Lunachow now on Polygon Chain
+                            Now listed on CoinGecko and CoinMarketCap
                         </h4>
-                        <p className="text-white">LUCHOW is now available on Polygon blockchain. </p>
+                        <p className="text-white">Development is currently ongoing on the NFT.</p>
                     </div>
 
                 

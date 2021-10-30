@@ -1,5 +1,5 @@
 import React from "react";
-import news from "./static/news.png";
+import homepage_content from "../../static/content/content";
 
 const CryptoNews = () => {
     return (
@@ -15,90 +15,32 @@ const CryptoNews = () => {
                     </p>
                 </div>
 
-                <div className="flex flex-wrap">
-                    <div className="md:w-1/4 p-2">
-                        <div className="rounded-3xl overflow-hidden bg-secondary-light">
-                            <div className="flex justify-center">
-                                <img src={news} alt="" />
-                            </div>
+                <div className="flex flex-wrap justify-center">
+                    {homepage_content.news.map((news) => (
+                        <div className="md:w-1/4 p-2">
+                            <div className="rounded-8xl overflow-hidden bg-secondary-light">
+                                <div className="flex justify-center h-44">
+                                    <img src={news.img} alt="" className="w-full h-full object-cover"/>
+                                </div>
 
-                            <div className="px-6 py-8 space-y-4">
-                                <h2 className="text-primary font-medium">
-                                    Let’s be clear: Blockchain technology is
-                                    infrastructure
-                                </h2>
-                                <p>
-                                    With continued dialogue between the
-                                    blockchain industry and the U.S. Congress,
-                                    there is still hope
-                                </p>
+                                <div className="px-6 py-8 space-y-4">
+                                    <h2 className="text-primary font-medium">
+                                        {news.title}
+                                    </h2>
+                                    <p className="max-h-20">
+                                        {news.desc}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="md:w-1/4 p-2">
-                        <div className="rounded-3xl overflow-hidden bg-secondary-light">
-                            <div className="flex justify-center">
-                                <img src={news} alt="" />
-                            </div>
-
-                            <div className="px-6 py-8 space-y-4">
-                                <h2 className="text-primary font-medium">
-                                    Let’s be clear: Blockchain technology is
-                                    infrastructure
-                                </h2>
-                                <p>
-                                    With continued dialogue between the
-                                    blockchain industry and the U.S. Congress,
-                                    there is still hope
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="md:w-1/4 p-2">
-                        <div className="rounded-3xl overflow-hidden bg-secondary-light">
-                            <div className="flex justify-center">
-                                <img src={news} alt="" />
-                            </div>
-
-                            <div className="px-6 py-8 space-y-4">
-                                <h2 className="text-primary font-medium">
-                                    Let’s be clear: Blockchain technology is
-                                    infrastructure
-                                </h2>
-                                <p>
-                                    With continued dialogue between the
-                                    blockchain industry and the U.S. Congress,
-                                    there is still hope
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="md:w-1/4 p-2">
-                        <div className="rounded-3xl overflow-hidden bg-secondary-light">
-                            <div className="flex justify-center">
-                                <img src={news} alt="" />
-                            </div>
-
-                            <div className="px-6 py-8 space-y-4">
-                                <h2 className="text-primary font-medium">
-                                    Let’s be clear: Blockchain technology is
-                                    infrastructure
-                                </h2>
-                                <p>
-                                    With continued dialogue between the
-                                    blockchain industry and the U.S. Congress,
-                                    there is still hope
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
                 <div className="flex justify-center">
-                    <a  href="/" className=" text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
+                    <a
+                        href="/"
+                        className=" text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white"
+                    >
                         Read more
                     </a>
                 </div>
