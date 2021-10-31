@@ -16,7 +16,7 @@ import image12 from "./static/12.png";
 const AsSeen = () => {
     return (
         <div className="">
-            <div className="container mx-auto my-20">
+            <div className="px-8 container mx-auto my-20">
                 <div className=" space-y-16">
                     <h2 className="text-center text-4xl font-bold text-primary">
                         As seen in

@@ -10,8 +10,8 @@ import telegram from "../../assets/telegram.png"
 const Footer = () => {
     return (
         <div className="bg-secondary-light py-12">
-            <div className="container mx-auto md:p-12 space-y-8">
-                <div className="flex flex-wrap gap-16 justify-between">
+            <div className="container mx-auto p-8 md:p-12 space-y-8">
+                <div className="md:flex flex-wrap gap-16 justify-between space-y-8">
                     <div className="flex gap-6">
                         <div>
                             <img src={logo} alt="" />
@@ -95,10 +95,10 @@ const Footer = () => {
 
                 <div className="pt-0.5 bg-primary rounded-full"></div>
 
-                <div className="flex flex-wrap items-center">
+                <div className="flex flex-wrap items-center space-y-4 justify-center">
                     <p className="text-primary">Copyright © 2021, LunaChow LLC | All Rights Reserved</p>
 
-                    <ul className="ml-auto flex gap-2">
+                    <ul className="md:ml-auto flex gap-2">
                         <li><a href="@"><img src={facebook} alt="" /></a></li>
                         <li><a href="@"><img src={telegram} alt="" /></a></li>
                         <li><a href="@"><img src={instagram} alt="" /></a></li>
