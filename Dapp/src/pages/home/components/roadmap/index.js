@@ -6,7 +6,7 @@ import ListItem from "./list_item";
 const Roadmap = () => {
     return (
         <div className="min-h-screen" id="roadmap_section">
-            <div className="container mx-auto space-y-20">
+            <div className="px-8 container mx-auto space-y-20">
                 <div className=" space-y-8">
                     <h2 className="text-center text-4xl font-bold text-primary">Roadmap</h2>
                     <p className="text-center max-w-md mx-auto text-lg text-gray-600">
@@ -18,12 +18,12 @@ const Roadmap = () => {
                         <img src={dog_on_rocekt} alt="" />
                     </div>
 
-                    <div className="flex justify-center">
+                    <div className="hidden md:flex justify-center">
                         <img src={roadmap} alt="" className="w-full object-cover" />
                     </div>
 
-                    <div className="flex justify-center gap-44 relative -top-20">
-                        <div className="md:w-1/4 relative -top-32">
+                    <div className="p-8 space-y-4 md:p-0 md:space-y-0 md:flex md:justify-center md:gap-44 relative md:-top-20">
+                        <div className="md:w-1/4 relative md:-top-32">
                             <h3 className="text-lg font-medium ">Phase 1</h3>
                             <ul className="text-gray-600">
                                 <ListItem>Token Launch</ListItem>
@@ -43,7 +43,7 @@ const Roadmap = () => {
                             </ul>
                         </div>
 
-                        <div className="md:w-1/4 relative -top-32">
+                        <div className="md:w-1/4 relative md:-top-32">
                             <h3 className="text-lg font-medium">Phase 3</h3>
                             <ul className="text-gray-600">
                                 <ListItem>Third Party Auditing of Contract</ListItem>

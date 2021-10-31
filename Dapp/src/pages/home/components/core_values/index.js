@@ -3,7 +3,7 @@ import React from "react";
 const CoreValues = () => {
     return (
         <div className="min-h-screen overflow-hidden bg-secondary-light relative">
-            <div className="py-32 space-y-20 container mx-auto">
+            <div className="py-32 space-y-20 container mx-auto px-8">
                 <div className="text-center space-y-4">
                     <h2 className="font-bold text-4xl text-primary">
                         Core Values

@@ -15,7 +15,7 @@ const What = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto py-32 space-y-20">
+            <div className="container px-8 mx-auto py-32 space-y-20">
                 <div className="text-center space-y-4">
                     <h2 className="text-4xl font-bold text-primary">
                         What is <span className="uppercase text-yellow-500">$Luchow</span> Token
@@ -26,9 +26,9 @@ const What = () => {
                     </p>
                 </div>
 
-                <div className="flex justify-end gap-4">
+                <div className="flex flex-wrap justify-center md:justify-end gap-4">
 
-                    <div className="relative -right-24">
+                    <div className="hidden md:block relative -right-24">
                         <img src={coins} alt="" className="h-64"/>
                     </div>
 

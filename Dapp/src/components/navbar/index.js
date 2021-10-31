@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import pattern_bg_flip from "../../assets/bg_pattern_1_flip.png";
-
-import { Link } from "react-scroll";
+import { CgDetailsMore } from "react-icons/cg";
+import NavbarLinks from "./links";
 
 const Navbar = ({ changeScreen }) => {
+    const [displayLinks, setDisplayLinks] = useState(false);
+
     return (
-        <div className="sticky top-0 z-10">
+        <div className="sticky top-0 z-10 shadow">
             <div
                 className="bg-secondary-light p-2 bg-center bg-cover relative"
                 style={{ backgroundImage: `url(${pattern_bg_flip})` }}
@@ -19,113 +21,27 @@ const Navbar = ({ changeScreen }) => {
                         </span>
                     </div>
 
-                    <div className="ml-auto links">
-                        <ul className="flex">
-                            <li>
-                                <Link
-                                    to={"section1"}
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-70}
-                                >
-                                    <a
-                                        href="#section_1"
-                                        className="font-medium text-lg text-primary py-2 px-4"
-                                    >
-                                        Home
-                                    </a>
-                                </Link>
-                            </li>
+                    <div className="ml-auto links hidden xl:block text-primary-darker">
+                        <NavbarLinks />
+                    </div>
 
-                            <li>
-                                <Link
-                                    to={"about_section"}
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-90}
-                                    
-                                >
-                                    <a
-                                        href="#about_section"
-                                        className="font-medium text-lg text-primary py-2 px-4"
-                                    >
-                                        About
-                                    </a>
-                                </Link>
-                            </li>
-
-                            <li>
-                                <a
-                                    href="#how_section"
-                                    className="font-medium text-lg text-primary py-2 px-4"
-                                >
-                                    How to Buy
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                    href="#marketplace_section"
-                                    className="font-medium text-lg text-primary py-2 px-4"
-                                >
-                                    Marketplace
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                    href="#charity_section"
-                                    className="font-medium text-lg text-primary py-2 px-4"
-                                >
-                                    Charity
-                                </a>
-                            </li>
-
-                            <li>
-                                <Link
-                                    to={"roadmap_section"}
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-100}
-                                    
-                                >
-                                    <a
-                                        href="#roadmap_section"
-                                        className="font-medium text-lg text-primary py-2 px-4"
-                                    >
-                                        Roadmap
-                                    </a>
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    to={"contact_section"}
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-100}
-                                    
-                                >
-                                    <a
-                                        href="#contact_section"
-                                        className="font-medium text-lg text-primary py-2 px-4"
-                                    >
-                                        Contact
-                                    </a>
-                                </Link>
-                            </li>
-
-                            <li>
-                                <a
-                                    href="#more_section"
-                                    className="font-medium text-lg text-primary py-2 px-4"
-                                >
-                                    More
-                                </a>
-                            </li>
-                        </ul>
+                    {/* mobile */}
+                    <div className="ml-auto xl:hidden">
+                        <button
+                            class="text-primary-muted bg-primary-darker p-2 rounded shadow-none"
+                            onClick={() => setDisplayLinks(!displayLinks)}
+                        >
+                            <CgDetailsMore size={32} />
+                        </button>
                     </div>
                 </nav>
+                {displayLinks && (
+                    <div className="relative container mx-auto xl:hidden z-10">
+                        <div className="absolute w-full top-2 bg-primary-darker py-3 rounded-lg text-white rounded-br-3xl rounded-bl-3xl shadow-sm">
+                            <NavbarLinks />
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -10,7 +10,7 @@ const ContactUS = () => {
                 </h2>
                 <p className="text-center">Any questions? Reach out to us</p>
 
-                <div className="py-6 text-gray-700 flex justify-center gap-4">
+                <div className="py-6 text-gray-700 flex flex-wrap justify-center gap-4">
                     <div className="flex gap-2">
                         <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
                             <MdMail size="16"/>
@@ -36,17 +36,17 @@ const ContactUS = () => {
             </div>
 
             <div>
-                <form action="" className="max-w-xl mx-auto space-y-4">
-                    <div className="flex gap-2">
+                <form action="" className="max-w-xl mx-auto px-8 space-y-4">
+                    <div className="flex gap-2 ">
                         <input
                             type="text"
-                            className="p-2 px-4 rounded-full bg-gray-100 flex-grow"
+                            className="w-full p-2 px-4 rounded-full bg-gray-100 flex-grow"
                             placeholder="Name"
                         />
 
                         <input
                             type="email"
-                            className="p-2 px-4 rounded-full bg-gray-100 flex-grow"
+                            className="w-full p-2 px-4 rounded-full bg-gray-100 flex-grow"
                             placeholder="Email"
                         />
                     </div>

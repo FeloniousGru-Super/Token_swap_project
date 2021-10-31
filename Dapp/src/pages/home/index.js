@@ -32,9 +32,10 @@ const Home = () => {
                             className="container mx-auto px-12 relative"
                             style={{ zIndex: 1 }}
                         >
-                            <div className="flex items-center gap-16 justify-between py-20">
-                                <div className="w-1/2 space-y-6">
-                                    <h2 className="text-8xl font-black tracking-wide">
+                            <div className="flex items-center justify-center gap-16  py-20 md:justify-between">
+                                
+                                <div className="md:w-1/2 md:space-y-6 space-y-8">
+                                    <h2 className="text-center text-5xl md:text-8xl font-black">
                                         <span className="text-primary block">
                                             Lunachow
                                         </span>
@@ -45,7 +46,7 @@ const Home = () => {
                                             Protocol
                                         </span>
                                     </h2>
-                                    <div className="flex gap-2">
+                                    <div className="flex flex-wrap justify-center gap-2">
                                         {homepage_content.contracts_1.map(contract => (
                                             <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
                                             <div className="w-6">
@@ -65,7 +66,7 @@ const Home = () => {
                                         
                                        
                                     </div>
-                                    <div className="flex gap-2">
+                                    <div className="flex flex-wrap justify-center gap-2">
                                     {homepage_content.contracts_2.map(contract => (
                                             <div className="bg-primary text-white font-medium py-2 px-6 rounded-full flex gap-2 items-center">
                                             <div className="w-6">
@@ -84,9 +85,12 @@ const Home = () => {
                                         ))}
                                     </div>
 
+                                    <div class="">
+
                                     <a href="https://lunachow.com/wp-content/uploads/2021/08/LunaChow-Whitepaper-V2.pdf" className="block w-full text-center font-medium bg-gradient-to-b from-yellow-500 to-yellow-600 rounded-full text-white p-3">
                                         Whitepaper
                                     </a>
+                                    </div>
 
                                     <div className="flex gap-4">
                                         <button className="w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
@@ -100,13 +104,14 @@ const Home = () => {
                                     </div>
                                 </div>
 
-                                <div className="w-1/2 h-96 flex justify-center">
+                                <div className="hidden md:flex w-1/2 h-96 justify-center">
                                     <img
                                         src={catWithCoins}
                                         alt=""
-                                        className=""
+                                        className="object-contain"
                                     />
                                 </div>
+
                             </div>
                         </div>
 
@@ -121,12 +126,12 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="py-32 flex items-center justify-center gap-16">
-                        <div className="space-y-4">
-                            <h2 className="text-6xl text-primary font-bold">
+                    <div className="py-32 px-8 md:flex items-center justify-center gap-16 space-y-4">
+                        <div className="space-y-8">
+                            <h2 className="text-center md:text-left text-6xl text-primary font-bold">
                                 Buy $LUCHOW
                             </h2>
-                            <p className="text-2xl text-gray-600 max-w-md">
+                            <p className="text-center md:text-left text-2xl text-gray-600 max-w-md">
                                 You can buy $LUCHOW Token from Uniswap, Pancake
                                 Swap & Dexlabs
                             </p>

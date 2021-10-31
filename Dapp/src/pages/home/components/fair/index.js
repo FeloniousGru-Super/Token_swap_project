@@ -17,7 +17,7 @@ const Fair = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto py-32 space-y-20">
+            <div className="container mx-auto py-32 px-8 space-y-20">
                 <div className="text-center space-y-4">
                     <h2 className="text-4xl font-bold text-primary">
                         Token Fair Launch
