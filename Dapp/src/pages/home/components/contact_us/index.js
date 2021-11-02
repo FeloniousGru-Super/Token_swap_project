@@ -36,7 +36,7 @@ const ContactUS = () => {
             </div>
 
             <div>
-                <form action="" className="max-w-xl mx-auto px-8 space-y-4">
+                <form action="" className="max-w-2xl mx-auto px-8 space-y-4">
                     <div className="flex gap-2 ">
                         <input
                             type="text"

@@ -31,7 +31,10 @@ const Tokenomics = () => {
                     </p>
 
                     <div className="pt-32 flex justify-center ">
+                        <div>
+
                         <img src={pieChart} alt="" className="max-w-3xl" />
+                        </div>
                         {/* <Pie3D data={data} config={config}/> */}
 
                         {/* <PieChart

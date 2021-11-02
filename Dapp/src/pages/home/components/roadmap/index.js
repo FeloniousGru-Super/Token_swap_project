@@ -22,24 +22,24 @@ const Roadmap = () => {
                         <img src={roadmap} alt="" className="w-full object-cover" />
                     </div>
 
-                    <div className="p-8 space-y-4 md:p-0 md:space-y-0 md:flex md:justify-center md:gap-44 relative md:-top-20">
+                    <div className="p-8 space-y-4 md:p-0 md:space-y-0 md:flex md:justify-center lg:gap-44 relative lg:-top-20">
                         <div className="md:w-1/4 relative md:-top-32">
                             <h3 className="text-lg font-medium ">Phase 1</h3>
                             <ul className="text-gray-600">
-                                <ListItem>Token Launch</ListItem>
-                                <ListItem>Whitepaper design</ListItem>
-                                <ListItem>Website design</ListItem>
-                                <ListItem>Burn Event - 99.9% token burned</ListItem>
+                                <ListItem checked={true}>Token Launch</ListItem>
+                                <ListItem checked={true}>Whitepaper design</ListItem>
+                                <ListItem checked={true}>Website design</ListItem>
+                                <ListItem checked={true}>Burn Event - 99.9% token burned</ListItem>
                             </ul>
                         </div>
 
                         <div className="md:w-1/4 ">
                             <h3 className="text-lg font-medium">Phase 2</h3>
                             <ul className="text-gray-600">
-                                <ListItem>List on CoinMarketCap</ListItem>
-                                <ListItem>List on CoinGecko</ListItem>
-                                <ListItem>Social Media Marketing</ListItem>
-                                <ListItem>Charity Drive</ListItem>
+                                <ListItem checked={true}>List on CoinMarketCap</ListItem>
+                                <ListItem checked={true}>List on CoinGecko</ListItem>
+                                <ListItem checked={true}>Social Media Marketing</ListItem>
+                                <ListItem checked={true}>Charity Drive</ListItem>
                             </ul>
                         </div>
 

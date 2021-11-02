@@ -1,11 +1,12 @@
 import React from "react";
-import logo from "../../assets/logo_2.png";
-import facebook from "../../assets/facebook.png"
-import twitter from "../../assets/twitter.png"
-import instagram from "../../assets/instagram.png"
-import reddit from "../../assets/reddit.png"
-import github from "../../assets/github.png"
-import telegram from "../../assets/telegram.png"
+import logo from "../../assets/logo.png";
+import facebook from "../../assets/facebook.png";
+import twitter from "../../assets/twitter.png";
+import instagram from "../../assets/instagram.png";
+import reddit from "../../assets/reddit.png";
+import github from "../../assets/github.png";
+import telegram from "../../assets/telegram.png";
+import coin from "./static/coin.png";
 
 const Footer = () => {
     return (
@@ -14,12 +15,19 @@ const Footer = () => {
                 <div className="md:flex flex-wrap gap-16 justify-between space-y-8">
                     <div className="flex gap-6">
                         <div>
-                            <img src={logo} alt="" />
+                            <img
+                                src={coin}
+                                alt=""
+                                className="filter drop-shadow-2xl"
+                            />
                         </div>
                         <div className="space-y-2">
-                            <h2 className="text-lg uppercase text-primary font-bold">
-                                Lunachow
-                            </h2>
+                            <div className="flex items-center gap-2">
+                                <img src={logo} alt="" className="w-8" />
+                                <h2 className="text-lg uppercase text-primary font-bold">
+                                    Lunachow
+                                </h2>
+                            </div>
                             <p className="w-80 text-gray-500">
                                 LUNACHOW is a decentralized digital currency
                                 that can be used as a medium of exchange or to
@@ -96,19 +104,43 @@ const Footer = () => {
                 <div className="pt-0.5 bg-primary rounded-full"></div>
 
                 <div className="flex flex-wrap items-center space-y-4 justify-center">
-                    <p className="text-primary">Copyright © 2021, LunaChow LLC | All Rights Reserved</p>
+                    <p className="text-primary">
+                        Copyright © 2021, LunaChow LLC | All Rights Reserved
+                    </p>
 
                     <ul className="md:ml-auto flex gap-2">
-                        <li><a href="@"><img src={facebook} alt="" /></a></li>
-                        <li><a href="@"><img src={telegram} alt="" /></a></li>
-                        <li><a href="@"><img src={instagram} alt="" /></a></li>
-                        <li><a href="@"><img src={github} alt="" /></a></li>
-                        <li><a href="@"><img src={reddit} alt="" /></a></li>
-                        <li><a href="@"><img src={twitter} alt="" /></a></li>
+                        <li>
+                            <a href="@">
+                                <img src={facebook} alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@">
+                                <img src={telegram} alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@">
+                                <img src={instagram} alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@">
+                                <img src={github} alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@">
+                                <img src={reddit} alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@">
+                                <img src={twitter} alt="" />
+                            </a>
+                        </li>
                     </ul>
-
                 </div>
-
             </div>
         </div>
     );
