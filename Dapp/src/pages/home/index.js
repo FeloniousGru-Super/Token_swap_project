@@ -38,10 +38,10 @@ const Home = () => {
                             <div className="flex items-center justify-center gap-2 py-20 md:justify-between">
                                 <div className="md:w-2/3 md:space-y-6 space-y-8">
                                     <h2 className="text-xl space-y-4 text-center py-4">
-                                        <span className="font-medium text-4xl md:text-5xl text-primary uppercase">
+                                        <span className="font-medium text-4xl md:text-6xl text-primary uppercase">
                                             Community Driven
                                         </span>
-                                        <span className="block text-4xl md:text-5xl font-light">
+                                        <span className="block text-4xl md:text-6xl font-light">
                                             Decentralized Protocol
                                         </span>
                                     </h2>
