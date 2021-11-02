@@ -45,8 +45,8 @@ const Featured = () => {
                 </div>
                 <Slider {...settings}>
                     {homepage_content.featured_carousel.map((featured) => (
-                        <div className="p-2 md:w-1/4">
-                            <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light">
+                        <div className="p-2 md:w-1/4 " >
+                            <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light" style={{ height: '460px'}}>
                                 <div className="flex justify-center h-32">
                                     <img
                                         src={featured.img}
