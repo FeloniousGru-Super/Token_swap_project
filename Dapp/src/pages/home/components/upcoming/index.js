@@ -43,7 +43,7 @@ const Upcoming = () => {
                 <div className="">
                     <Slider {...settings}>
                         <div className="py-16 px-2">
-                            <div className="px-8 pb-8 bg-primary-dark rounded-3xl text-center relative">
+                            <div className="px-8 pb-8 bg-primary-dark rounded-3xl text-center relative" style={{ height: '260px'}}>
                                 <div className="flex justify-center relative -top-10">
                                     <img
                                         src={polygon}
@@ -64,7 +64,7 @@ const Upcoming = () => {
                             </div>
                         </div>
                         <div className="py-16 px-2">
-                            <div className="px-8 pb-8  bg-primary-dark rounded-3xl  text-center relative">
+                            <div className="px-8 pb-8  bg-primary-dark rounded-3xl  text-center relative" style={{ height: '260px'}}>
                                 <div className="flex justify-center relative -top-10">
                                     <img
                                         src={nft}
@@ -85,7 +85,7 @@ const Upcoming = () => {
                             </div>
                         </div>
                         <div className="py-16 px-2">
-                            <div className="px-8 pb-8  bg-primary-dark rounded-3xl  text-center relative">
+                            <div className="px-8 pb-8  bg-primary-dark rounded-3xl  text-center relative" style={{ height: '260px'}}>
                                 <div className="flex justify-center relative  -top-10">
                                     <img
                                         src={coin_gecko}
@@ -105,7 +105,7 @@ const Upcoming = () => {
                             </div>
                         </div>
                         <div className="py-16 px-2">
-                            <div className="px-8 pb-8 bg-primary-dark rounded-3xl text-center relative">
+                            <div className="px-8 pb-8 bg-primary-dark rounded-3xl text-center relative" style={{ height: '260px'}}>
                                 <div className="flex justify-center relative -top-10">
                                     <img
                                         src={polygon}
