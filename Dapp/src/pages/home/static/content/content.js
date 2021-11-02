@@ -2,32 +2,53 @@ const homepage_content = {
     contracts_1: [
         {
             img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
-            text: "DxAxWkdfCfed",
+            text: "0xAdFF...54yTd7U83",
         },
         {
-            img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
-            text: "DxAxWkdfCfed",
+            img: require('./contracts_images/2.png').default,
+            text: "0xAdFF...54yTd7U83",
         },
         {
-            img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
-            text: "DxAxWkdfCfed",
+            img: require('./contracts_images/3.png').default,
+            text: "0xAdFF...54yTd7U83",
         },
     ],
     contracts_2: [
         {
-            img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
-            text: "AxAxWkdfCfed",
+            img: require('./contracts_images/4.png').default,
+            text: "0xAdFF...54yTd7U83",
         },
         {
-            img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
-            text: "AxAxWkdfCfed",
+            img: require('./contracts_images/5.png').default,
+            text: "0xAdFF...54yTd7U83",
         },
         {
-            img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
-            text: "AxAxWkdfCfed",
+            img: require('./contracts_images/6.png').default,
+            text: "0xAdFF...54yTd7U83",
         },
     ],
-
+    what_section_slider: [
+        {
+            tite: "The People’s Token",
+            text: "LunaChow revolutionizes blockchain tokenomics – no private sale, no team allocation, 100% fairness. All LunaChow tokens sold goes through a public sale process, maximizing stakeholder equity.",
+        },
+        {
+            tite: "LUCHOW As A Currency",
+            text: "LUCHOW is a decentralized digital currency that can be used as a medium of exchange or to facilitate a trade. It is a borderless democratic form of digital money with an inflation resisting measures.",
+        },
+        {
+            tite: "Cross-chain",
+            text: "LunaChow is available on several networks, thanks to bridge integration system. LunaChow has been bridged to the following blockchain – Binance Smart Chain, Polygon, Avalanche, Harmony, Solana and counting.",
+        },
+        {
+            tite: "Aggressive Burn Structure",
+            text: "Inspired by Shiba Inu and Dogecoin, LunaChow boasts an aggressive burn structure – 99.9% of initial supply was burned at protocol launch. LunaChow also comes with auto buyback each time liquidity is provided on CEX and DEX.",
+        },
+        {
+            tite: "Charity Drive",
+            text: "LunaChow Charity drive will donate the proceed to special need kids and underprivileged kids around the world. LunaChow is very dedicated in this aspect and it’s our mission to make the world a better place in our own little way.",
+        },
+    ],
     featured_carousel: [
         {
             img: require("./featured_section_images/market_watch.png").default,

@@ -5,7 +5,7 @@ import homepage_content from "../../static/content/content";
 
 const FAQ = () => {
     return (
-        <div className="px-16 min-h-screen overflow-hidden bg-secondary-light relative" id="faq_section">
+        <div className="min-h-screen overflow-hidden bg-secondary-light relative" id="faq_section">
             <div className="relative" style={{ zIndex: 1 }}>
                 <div className="absolute right-0 -top-40">
                     <img
@@ -17,7 +17,7 @@ const FAQ = () => {
             </div>
 
             <div
-                className="container mx-auto py-32 relative"
+                className="container mx-auto py-32 px-16  relative"
                 style={{ zIndex: 1 }}
             >
                 <div className="text-center space-y-4">
