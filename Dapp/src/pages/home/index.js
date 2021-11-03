@@ -27,7 +27,7 @@ import hero_background_3 from "../../assets/hero_background_5.png";
 const Home = () => {
     return (
         <div>
-            <Navbar />
+            <Navbar homepage={true}/>
             <div className="min-h-screen" id="section1">
                 <div className="bg-primary-grayed rounded-br-16xl">
                     <div className="hero overflow-hidden bg-secondary-light rounded-br-16xl">
