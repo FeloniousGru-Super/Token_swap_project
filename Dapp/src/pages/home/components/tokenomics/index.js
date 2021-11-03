@@ -20,7 +20,7 @@ const Tokenomics = () => {
                 </div>
             </div>
 
-            <div className="px-8 py-32 relative" style={{ zIndex: 1 }}>
+            <div className="container mx-auto px-8 py-32 relative" style={{ zIndex: 1 }}>
                 <div className="text-center space-y-4">
                     <h2 className="text-4xl font-bold text-primary">
                         Tokenomics
@@ -32,8 +32,7 @@ const Tokenomics = () => {
 
                     <div className="pt-32 flex justify-center ">
                         <div>
-
-                        <img src={pieChart} alt="" className="max-w-3xl" />
+                            <img src={pieChart} alt="" className="" />
                         </div>
                         {/* <Pie3D data={data} config={config}/> */}
 
@@ -51,11 +50,7 @@ const Tokenomics = () => {
                             suffix="%"
                             
                         /> */}
-
-                        
                     </div>
-
-
                 </div>
             </div>
 
