@@ -17,7 +17,7 @@ const CoreValues = () => {
                     </p>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-8">
+                <div className="flex flex-wrap justify-center gap-8 space-y-4">
                     <div className="md:w-1/4 bg-primary rounded-3xl px-4 pb-12 text-white text-center">
                         <div className="w-24 h-24 mx-auto rounded-full border-2 border-primary relative -top-10 bg-primary">
                             <div className="h-full rounded-full border-secondary-light border-4 flex items-center justify-center">

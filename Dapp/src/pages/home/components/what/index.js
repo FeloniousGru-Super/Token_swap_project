@@ -66,7 +66,7 @@ const What = () => {
                     <Slider {...settings}>
                         {homepage_content.what_section_slider.map((what) => (
                             <div className="p-2">
-                                <div className="px-8 py-12 bg-primary rounded-8xl space-y-4">
+                                <div className="px-8 py-12 bg-primary rounded-8xl space-y-4" style={{height: '280px'}}>
                                     <h3 className="font-medium text-primary-darker text-center text-lg">
                                         {what.tite}
                                     </h3>
