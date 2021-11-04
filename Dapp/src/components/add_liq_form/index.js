@@ -5,7 +5,7 @@ import ToInputField from "../conversion_card/ToInputField";
 import SelectToken from "../select_token_card";
 import { MdArrowBack } from "react-icons/md";
 import {AiOutlinePlusCircle} from "react-icons/ai"
-import { useHistory } from "react-router";
+import { Route, useHistory } from "react-router";
 
 const AddLiquidityForm = ({
     changeScreen
@@ -27,7 +27,7 @@ const AddLiquidityForm = ({
         setDisplayTokenSelect(false);
     };
 
-    const history = useHistory()
+    // const history = useHistory()
 
     return (
         <>
@@ -39,7 +39,7 @@ const AddLiquidityForm = ({
             ) : (
                 <div className="max-w-xl mx-auto rounded-lg p-8 space-y-4 bg-secondary-light">
                     <div className="flex items-center gap-3">
-                        <button onClick={() => history.goBack()}>
+                        <button onClick={event =>  window.location.href='/swap'}>
                             <MdArrowBack size={24} />
                         </button>
                         <p className="text-lg font-medium">Add Liquidity</p>
