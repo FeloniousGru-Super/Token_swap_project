@@ -32,11 +32,11 @@ const Fair = () => {
 
                 <div className="flex flex-wrap gap-12 justify-center pt-16">
                     <div className="px-8 pb-8  bg-primary rounded-3xl w-80 text-center relative">
-                        <div className="flex justify-center relative -top-10">
+                        <div className="h-28 flex justify-center relative -top-10">
                             <img
                                 src={dog_coin}
                                 alt=""
-                                className="w-32 h-32"
+                                className="object-contain"
                                 style={{
                                     filter: "drop-shadow(-15px 15px 20px rgba(0,0,0,.5))",
                                 }}
@@ -49,11 +49,11 @@ const Fair = () => {
                     </div>
 
                     <div className="px-8 pb-8  bg-primary rounded-3xl w-80 text-center relative">
-                        <div className="flex justify-center relative -top-10">
+                        <div className="h-24 flex justify-center relative -top-10">
                             <img
                                 src={coins_pot}
                                 alt=""
-                                className="w-32 h-32 object-contain"
+                                className="object-contain"
                                 style={{
                                     filter: "drop-shadow(-15px 15px 20px rgba(0,0,0,.5))",
                                 }}
@@ -68,11 +68,11 @@ const Fair = () => {
                     </div>
 
                     <div className="px-8 pb-8  bg-primary rounded-3xl w-80 text-center relative">
-                        <div className="flex justify-center relative -top-16">
+                        <div className="h-28 flex justify-center relative -top-16">
                             <img
                                 src={coins}
                                 alt=""
-                                className="w-32 h-32 object-cover"
+                                className="object-contain "
                                 style={{
                                     filter: "drop-shadow(-15px 15px 20px rgba(0,0,0,.5))",
                                 }}

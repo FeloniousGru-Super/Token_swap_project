@@ -1,34 +1,19 @@
 import React from "react";
-import { Link } from "react-scroll";
+import MyNavLink from "./nav_link";
 
-const NavbarLinks = () => {
+const NavbarLinks = ({ homepage = false }) => {
     return (
         <ul className={`text-center xl:flex space-y-4 xl:space-y-0`}>
             <li>
-                <Link to={"section1"} spy={true} smooth={true} offset={-70}>
-                    <a
-                        href="#section_1"
-                        className="font-medium text-lg  py-2 px-4"
-                    >
-                        Home
-                    </a>
-                </Link>
+                <MyNavLink homepage={homepage} to={"section1"}>
+                    Home
+                </MyNavLink>
             </li>
 
             <li>
-                <Link
-                    to={"about_section"}
-                    spy={true}
-                    smooth={true}
-                    offset={-90}
-                >
-                    <a
-                        href="#about_section"
-                        className="font-medium text-lg  py-2 px-4"
-                    >
-                        About
-                    </a>
-                </Link>
+                <MyNavLink homepage={homepage} to={"about_section"}>
+                    About
+                </MyNavLink>
             </li>
 
             <li>
@@ -59,35 +44,15 @@ const NavbarLinks = () => {
             </li>
 
             <li>
-                <Link
-                    to={"roadmap_section"}
-                    spy={true}
-                    smooth={true}
-                    offset={-100}
-                >
-                    <a
-                        href="#roadmap_section"
-                        className="font-medium text-lg  py-2 px-4"
-                    >
-                        Roadmap
-                    </a>
-                </Link>
+                <MyNavLink homepage={homepage} to={"roadmap_section"}>
+                    Roadmap
+                </MyNavLink>
             </li>
 
             <li>
-                <Link
-                    to={"contact_section"}
-                    spy={true}
-                    smooth={true}
-                    offset={-100}
-                >
-                    <a
-                        href="#contact_section"
-                        className="font-medium text-lg  py-2 px-4"
-                    >
-                        Contact
-                    </a>
-                </Link>
+                <MyNavLink homepage={homepage} to={"contact_section"}>
+                    Contact us
+                </MyNavLink>
             </li>
 
             <li>

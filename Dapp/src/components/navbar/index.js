@@ -4,7 +4,7 @@ import pattern_bg_flip from "../../assets/bg_pattern_1_flip.png";
 import { CgDetailsMore } from "react-icons/cg";
 import NavbarLinks from "./links";
 
-const Navbar = ({ changeScreen }) => {
+const Navbar = ({ changeScreen, homepage }) => {
     const [displayLinks, setDisplayLinks] = useState(false);
 
     return (
@@ -22,7 +22,7 @@ const Navbar = ({ changeScreen }) => {
                     </div>
 
                     <div className="ml-auto links hidden xl:block text-primary-darker">
-                        <NavbarLinks />
+                        <NavbarLinks homepage={homepage} />
                     </div>
 
                     {/* mobile */}
