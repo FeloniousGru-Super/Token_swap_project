@@ -10,6 +10,7 @@ const Settings = ({
     setSelectedToleranceOption,
     customToleranceValue,
     setCustomToleranceValue,
+    setCustomTransactionDetail,
     useGasPrice
 }) => {
     var gasPrice = Math.ceil(useGasPrice() / Math.pow(10, 9));
@@ -68,6 +69,7 @@ const Settings = ({
 
                 <div className="flex items-center justify-between rounded-xl bg-gray-200 gap-2 overflow-hidden ">
                     <input
+                        onInput={val => setCustomTransactionDetail(val.target.value)}
                         type="text"
                         placeholder="1"
                         className="py-2 px-4 focus:outline-none bg-gray-200"

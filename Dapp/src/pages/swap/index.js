@@ -27,6 +27,7 @@ const Swap = () => {
     const [selectedSpeedOption, setSelectedSpeedOption] = useState(0);
     const [selectedToleranceOption, setSelectedToleranceOption] = useState(0);
     const [customToleranceValue, setCustomToleranceValue] = useState("");
+    const [customTransactionDetail, setCustomTransactionDetail] = useState("1");
     //
     // settings screen state
     //
@@ -57,6 +58,10 @@ const Swap = () => {
                     fromInput={fromInput}
                     toInput={toInput}
                     accountAddress={accountAddress}
+                    selectedSpeedOption={selectedSpeedOption}
+                    selectedToleranceOption={selectedToleranceOption}
+                    customToleranceValue={customToleranceValue}
+                    customTransactionDetail={customTransactionDetail}
                 />
             );
             break;
@@ -70,6 +75,7 @@ const Swap = () => {
                     setSelectedSpeedOption={setSelectedSpeedOption}
                     setSelectedToleranceOption={setSelectedToleranceOption}
                     setCustomToleranceValue={setCustomToleranceValue}
+                    setCustomTransactionDetail={setCustomTransactionDetail}
                     useGasPrice={useGasPrice}
                 />
             );

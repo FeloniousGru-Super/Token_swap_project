@@ -17,6 +17,10 @@ const ConversionCard = ({
     fromInput,
     toInput,
     accountAddress,
+    selectedSpeedOption, 
+    selectedToleranceOption, 
+    customToleranceValue,
+    customTransactionDetail
 }) => {
     const [tooltipVisibility, setTooltipVisibility] = useState(false);
 
@@ -52,6 +56,10 @@ const ConversionCard = ({
 
     function handleSwap(fromInput, toInput, toTokenValue, fromTokenValue){
         console.log(accountAddress,' swap ',  fromTokenValue,' from ', " ", fromInput.title, " to ", toTokenValue, " ", toInput.title," ",);
+        console.log(selectedSpeedOption);
+        console.log(selectedToleranceOption);
+        console.log(customToleranceValue);
+        console.log(customTransactionDetail);
     }
 
     return (
