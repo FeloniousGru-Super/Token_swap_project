@@ -16,6 +16,7 @@ const ConversionCard = ({
     setToInput,
     fromInput,
     toInput,
+    accountAddress,
 }) => {
     const [tooltipVisibility, setTooltipVisibility] = useState(false);
 
@@ -126,7 +127,7 @@ const ConversionCard = ({
                                     className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
                                     onClick = {() => changeScreen("connect_wallet")}
                                 >
-                                    Connect to a Wallet
+                                { accountAddress == true ? ( <p>Connect to a Wallet</p> ) : <p>Swap</p> }
                                 </button>
                             </div>
                         </form>
