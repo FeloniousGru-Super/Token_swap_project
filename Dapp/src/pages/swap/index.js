@@ -11,7 +11,7 @@ import { Route, Switch } from "react-router";
 
 import bg_pattern_flip from "../../assets/bg_pattern_2.jpg";
 import Footer from "../../components/footer";
-import { useEthers, CHAIN_NAMES } from "@usedapp/core";
+import { useEthers, CHAIN_NAMES, useGasPrice } from "@usedapp/core";
 
 const Swap = () => {
     //
@@ -70,6 +70,7 @@ const Swap = () => {
                     setSelectedSpeedOption={setSelectedSpeedOption}
                     setSelectedToleranceOption={setSelectedToleranceOption}
                     setCustomToleranceValue={setCustomToleranceValue}
+                    useGasPrice={useGasPrice}
                 />
             );
             break;

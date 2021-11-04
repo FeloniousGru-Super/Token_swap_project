@@ -10,11 +10,14 @@ const Settings = ({
     setSelectedToleranceOption,
     customToleranceValue,
     setCustomToleranceValue,
+    useGasPrice
 }) => {
+    var gasPrice = Math.ceil(useGasPrice() / Math.pow(10, 9));
+
     const speedOptions = [
-        { title: "Standard (5)" },
-        { title: "Fast (6)" },
-        { title: "Instant (7)" },
+        { title: "Standard (" + gasPrice + ")" },
+        { title: "Fast (" + (gasPrice + 5) + ")" },
+        { title: "Instant (" + (gasPrice + 10) + ")" },
     ];
 
     const toleranceOptions = [
