@@ -11,6 +11,7 @@ import { Route, Switch } from "react-router";
 
 import bg_pattern_flip from "../../assets/bg_pattern_2.jpg";
 import Footer from "../../components/footer";
+import { useEthers, CHAIN_NAMES } from "@usedapp/core";
 
 const Swap = () => {
     //
@@ -42,6 +43,8 @@ const Swap = () => {
         if (inputField !== null) {
         }
     };
+
+    const { chainId } = useEthers();
 
     let component = null;
     switch (currentScreen) {
@@ -95,6 +98,7 @@ const Swap = () => {
                     changeScreen={changeScreen}
                     accountAddress={accountAddress} 
                     setAccountAddress={setAccountAddress}
+                    chain={CHAIN_NAMES[chainId]}
                 />
                 <Switch>
                     <Route path={"/swap/add_liq"}>

@@ -8,7 +8,7 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 
 const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
     const [switchBtn, setSwitchBtn] = useState(0);
-    const { activateBrowserWallet, account } = useEthers();
+    const { activateBrowserWallet, account, chainId } = useEthers();
     const etherBalance = useEtherBalance(account);
 
     useEffect(() => {
