@@ -64,7 +64,7 @@ const HowToBuy = () => {
                         <iframe
                             className="w-full shadow"
                             height="500"
-                            src="https://www.youtube.com/embed/QjiO_hFesTA"
+                            src="https://www.youtube.com/embed/xSN9fJzfvwc"
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
