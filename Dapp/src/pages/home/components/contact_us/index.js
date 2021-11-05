@@ -3,7 +3,7 @@ import { MdMail } from "react-icons/md";
 import {FaTelegramPlane, FaTwitter} from "react-icons/fa"
 const ContactUS = () => {
     return (
-        <div className="container mx-auto my-20 space-y-6" id={"contact_section"}>
+        <div className="max-w-screen-lgxl container mx-auto my-20 space-y-6" id={"contact_section"}>
             <div className=" space-y-4">
                 <h2 className="text-center text-4xl font-bold text-primary">
                     Contact Us

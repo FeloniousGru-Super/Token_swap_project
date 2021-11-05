@@ -5,7 +5,7 @@ import background from "./static/background.png";
 const Map = () => {
     return (
         <div
-            className="min-h-screen container mx-auto flex items-center justify-around"
+            className=" max-w-screen-lgxl min-h-screen container mx-auto flex items-center justify-around"
             style={{ backgroundImage: `url(${map})`, backgroundSize: "cover" }}
         >
             <div

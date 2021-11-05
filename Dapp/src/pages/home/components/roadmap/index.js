@@ -6,7 +6,7 @@ import ListItem from "./list_item";
 const Roadmap = () => {
     return (
         <div className="min-h-screen" id="roadmap_section">
-            <div className="px-8 container mx-auto space-y-20">
+            <div className="px-8 max-w-screen-lgxl container mx-auto space-y-20">
                 <div className=" space-y-8">
                     <h2 className="text-center text-4xl font-bold text-primary">Roadmap</h2>
                     <p className="text-center max-w-md mx-auto text-lg text-gray-600">
