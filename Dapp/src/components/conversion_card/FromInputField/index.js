@@ -1,7 +1,7 @@
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 
-const From = ({ onTokenChangeClick, fromInput, input = true }) => {
+const From = ({ onTokenChangeClick, fromInput, input = true, onChange }) => {
     return (
         <div className="rounded-8xl py-6 px-10 text-white bg-primary">
             <label htmlFor="" className="px-1 text-sm block text-white font-medium">
@@ -25,6 +25,7 @@ const From = ({ onTokenChangeClick, fromInput, input = true }) => {
                 </div>
                 {input && (
                     <input
+                        onInput={val => onChange(val.target.value)}
                         type="number"
                         placeholder="0.0"
                         className="flex-grow p-2 bg-transparent text-white text-right placeholder-white font-medium text-lg"

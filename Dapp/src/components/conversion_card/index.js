@@ -17,6 +17,10 @@ const ConversionCard = ({
     fromInput,
     toInput,
     accountAddress,
+    selectedSpeedOption, 
+    selectedToleranceOption, 
+    customToleranceValue,
+    customTransactionDetail
 }) => {
     const [tooltipVisibility, setTooltipVisibility] = useState(false);
 
@@ -38,6 +42,25 @@ const ConversionCard = ({
     };
 
     const [switchBtn, setSwitchBtn] = useState(0);
+
+    var fromTokenValue;
+    var toTokenValue;
+    
+    function onToChange(value){
+        toTokenValue = value;
+    }
+
+    function onFromChange(value){
+        fromTokenValue = value;
+    }
+
+    function handleSwap(fromInput, toInput, toTokenValue, fromTokenValue){
+        console.log(accountAddress,' swap ',  fromTokenValue,' from ', " ", fromInput.title, " to ", toTokenValue, " ", toInput.title," ",);
+        console.log(selectedSpeedOption);
+        console.log(selectedToleranceOption);
+        console.log(customToleranceValue);
+        console.log(customTransactionDetail);
+    }
 
     return (
         <>
@@ -101,6 +124,7 @@ const ConversionCard = ({
                                     setDisplayTokenSelect(true);
                                 }}
                                 fromInput={fromInput}
+                                onChange={onFromChange}
                             />
                             <div className="flex justify-center relative text-black mt-2">
                                 <button
@@ -118,17 +142,29 @@ const ConversionCard = ({
                                     setDisplayTokenSelect(true);
                                 }}
                                 toInput={toInput}
+                                onChange={onToChange}
                             />
 
                             <div className="text-center pt-6">
-                                <button
-                                    type="submit"
-                                    value="Connect to a Wallet"
-                                    className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
-                                    onClick = {() => changeScreen("connect_wallet")}
-                                >
-                                { accountAddress == true ? ( <p>Connect to a Wallet</p> ) : <p>Swap</p> }
-                                </button>
+                                { accountAddress == true ? ( 
+                                    <button
+                                        type="button"
+                                        value="Connect to a Wallet"
+                                        className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
+                                        onClick = {() => changeScreen("connect_wallet")}
+                                    >
+                                        <p>Connect to a Wallet</p>
+                                    </button>
+                                ) : 
+                                    <button
+                                        type="button"
+                                        value="Swap"
+                                        className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
+                                        onClick = {() => handleSwap(fromInput, toInput, toTokenValue, fromTokenValue)}
+                                    >
+                                        <p>Swap</p>
+                                    </button>
+                                }
                             </div>
                         </form>
                     )}
