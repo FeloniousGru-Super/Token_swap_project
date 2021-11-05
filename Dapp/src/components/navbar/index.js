@@ -13,7 +13,7 @@ const Navbar = ({ changeScreen, homepage }) => {
                 className="bg-secondary-light p-2 bg-center bg-cover relative"
                 style={{ backgroundImage: `url(${pattern_bg_flip})` }}
             >
-                <nav className="container mx-auto flex items-center p-4">
+                <nav className="max-w-screen-lgxl container mx-auto flex items-center p-4">
                     <div className="logo mr-8 flex items-center gap-2">
                         <img src={logo} alt="Site Logo" className="w-12" />
                         <span className="font-bold uppercase text-primary text-xl">

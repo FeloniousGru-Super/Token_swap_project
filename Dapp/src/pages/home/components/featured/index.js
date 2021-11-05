@@ -33,7 +33,7 @@ const Featured = () => {
 
     return (
         <div className="min-h-screen">
-            <div className="px-8 container mx-auto space-y-20 py-20">
+            <div className="px-8 max-w-screen-lgxl container mx-auto space-y-20 py-20">
                 <div className=" space-y-8">
                     <h2 className="text-center text-4xl font-bold text-primary">
                         Featured
@@ -46,7 +46,7 @@ const Featured = () => {
                 <Slider {...settings}>
                     {homepage_content.featured_carousel.map((featured) => (
                         <div className="p-2 md:w-1/4 " >
-                            <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light" style={{ height: '460px'}}>
+                            <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light" style={{ height: '560px'}}>
                                 <div className="flex justify-center h-32">
                                     <img
                                         src={featured.img}
