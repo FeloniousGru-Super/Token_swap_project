@@ -5,11 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
-import { DAppProvider } from '@usedapp/core'
+import { DAppProvider, ChainId } from '@usedapp/core'
 
 ReactDOM.render(
     <React.StrictMode>
-        <DAppProvider config={{}}>
+        <DAppProvider config={{
+            supportedChains: [ChainId.BSC, ChainId.Mainnet]
+        }}>
             <BrowserRouter>
                 <App />
             </BrowserRouter>

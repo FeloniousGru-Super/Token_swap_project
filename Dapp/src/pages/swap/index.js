@@ -53,6 +53,7 @@ const Swap = () => {
                     setToInput={setToInput}
                     fromInput={fromInput}
                     toInput={toInput}
+                    accountAddress={accountAddress}
                 />
             );
             break;
