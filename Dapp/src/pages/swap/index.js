@@ -47,6 +47,8 @@ const Swap = () => {
 
     const { chainId } = useEthers();
 
+    var gasPrice = Math.ceil(useGasPrice() / Math.pow(10, 9));
+
     let component = null;
     switch (currentScreen) {
         case "home":
@@ -62,6 +64,7 @@ const Swap = () => {
                     selectedToleranceOption={selectedToleranceOption}
                     customToleranceValue={customToleranceValue}
                     customTransactionDetail={customTransactionDetail}
+                    gasPrice={gasPrice}
                 />
             );
             break;
@@ -76,7 +79,7 @@ const Swap = () => {
                     setSelectedToleranceOption={setSelectedToleranceOption}
                     setCustomToleranceValue={setCustomToleranceValue}
                     setCustomTransactionDetail={setCustomTransactionDetail}
-                    useGasPrice={useGasPrice}
+                    gasPrice={gasPrice}
                 />
             );
             break;

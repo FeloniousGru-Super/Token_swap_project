@@ -5,7 +5,6 @@ import ToInputField from "../conversion_card/ToInputField";
 import SelectToken from "../select_token_card";
 import { MdArrowBack } from "react-icons/md";
 import {AiOutlinePlusCircle} from "react-icons/ai"
-import { Route, useHistory } from "react-router";
 
 const AddLiquidityForm = ({
     changeScreen
@@ -26,8 +25,6 @@ const AddLiquidityForm = ({
 
         setDisplayTokenSelect(false);
     };
-
-    // const history = useHistory()
 
     return (
         <>
