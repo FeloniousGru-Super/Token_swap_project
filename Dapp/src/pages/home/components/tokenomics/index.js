@@ -2,11 +2,11 @@ import React from "react";
 import pattern from "../../../../assets/bg_pattern_1.png";
 import pieChart from "../../static/pie_chart.png";
 import "chart.js";
-import { PieChart } from "react-chartkick";
+
 import "chartkick/chart.js";
 
 const Tokenomics = () => {
-    const colors = ["#e24717", "#f0af6d", "#741F04", "#E17C5D"];
+    
 
     return (
         <div className="min-h-screen overflow-hidden bg-secondary-light relative">
@@ -20,7 +20,7 @@ const Tokenomics = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto px-8 py-32 relative" style={{ zIndex: 1 }}>
+            <div className="max-w-screen-lgxl container mx-auto px-8 py-32 relative" style={{ zIndex: 1 }}>
                 <div className="text-center space-y-4">
                     <h2 className="text-4xl font-bold text-primary">
                         Tokenomics

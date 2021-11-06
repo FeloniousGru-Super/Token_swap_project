@@ -17,7 +17,7 @@ const FAQ = () => {
             </div>
 
             <div
-                className="container mx-auto py-32 px-16  relative"
+                className="max-w-screen-lgxl container mx-auto py-32 px-16  relative"
                 style={{ zIndex: 1 }}
             >
                 <div className="text-center space-y-4">

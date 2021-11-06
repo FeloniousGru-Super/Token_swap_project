@@ -33,7 +33,7 @@ const Upcoming = () => {
 
     return (
         <div className="min-h-screen">
-            <div className="container px-8 mx-auto space-y-20">
+            <div className="max-w-screen-lgxl container px-8 mx-auto space-y-20">
                 <div className="text-center space-y-4">
                     <h2 className="text-4xl font-bold text-primary">
                         What's coming Next?

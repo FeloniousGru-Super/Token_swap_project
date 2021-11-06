@@ -11,8 +11,8 @@ import coin from "./static/coin.png";
 const Footer = () => {
     return (
         <div className="bg-secondary-light py-12">
-            <div className="container mx-auto p-8 md:p-12 space-y-8">
-                <div className="md:flex flex-wrap gap-16 justify-between space-y-8">
+            <div className="max-w-screen-lgxl container mx-auto p-8 md:p-12 space-y-8">
+                <div className="md:flex flex-wrap gap-8 justify-between space-y-8">
                     <div className="flex gap-6">
                         <div>
                             <img
