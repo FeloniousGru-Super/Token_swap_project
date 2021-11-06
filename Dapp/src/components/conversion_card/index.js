@@ -20,7 +20,8 @@ const ConversionCard = ({
     selectedSpeedOption, 
     selectedToleranceOption, 
     customToleranceValue,
-    customTransactionDetail
+    customTransactionDetail,
+    gasPrice
 }) => {
     const [tooltipVisibility, setTooltipVisibility] = useState(false);
 
@@ -54,12 +55,43 @@ const ConversionCard = ({
         fromTokenValue = value;
     }
 
+    function getGas(selectedSpeedOption) {
+        switch (selectedSpeedOption) {
+            case 0:
+                return gasPrice;
+            case 1:            
+                return gasPrice + 5;
+            case 2:
+                return gasPrice + 10;                
+            default:
+                break;
+        }
+    }
+
+    function getSlippage(selectedToleranceOption, customToleranceValue) {
+        if(customToleranceValue){
+            return customToleranceValue;
+        }
+
+        switch (selectedToleranceOption) {
+            case 0:
+                return 0.001;
+            case 1:            
+                return 0.005;
+            case 2:
+                return 0.01;                
+            default:
+                break;
+        }
+    }
+
     function handleSwap(fromInput, toInput, toTokenValue, fromTokenValue){
-        console.log(accountAddress,' swap ',  fromTokenValue,' from ', " ", fromInput.title, " to ", toTokenValue, " ", toInput.title," ",);
-        console.log(selectedSpeedOption);
-        console.log(selectedToleranceOption);
-        console.log(customToleranceValue);
-        console.log(customTransactionDetail);
+        if(fromInput && toInput){
+            console.log(accountAddress,' swap ',  fromTokenValue,' from ', " ", fromInput.title, " to ", toTokenValue, " ", toInput.title," ",);
+            console.log("gas", getGas(selectedSpeedOption));
+            console.log("slippage", getSlippage(selectedToleranceOption, customToleranceValue));
+            console.log("deadline (min)", customTransactionDetail);
+        }
     }
 
     return (

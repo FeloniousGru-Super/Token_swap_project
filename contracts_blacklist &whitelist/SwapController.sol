@@ -1,28 +1,75 @@
-pragma solidity 0.4.24;
+pragma solidity ^0.8.0;
 
-import "hanzo-solidity/contracts/Blacklist.sol";
-import "hanzo-solidity/contracts/Whitelist.sol";
-import "zeppelin-solidity/contracts/math/SafeMath.sol";
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import "zeppelin-solidity/contracts/lifecycle/Pausable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Pausable is Ownable {
+  event Pause();
+  event Unpause();
+
+  bool public paused = false;
+
+
+  /**
+   * @dev Modifier to make a function callable only when the contract is not paused.
+   */
+  modifier whenNotPaused() {
+    require(!paused);
+    _;
+  }
+
+  /**
+   * @dev Modifier to make a function callable only when the contract is paused.
+   */
+  modifier whenPaused() {
+    require(paused);
+    _;
+  }
+
+  /**
+   * @dev called by the owner to pause, triggers stopped state
+   */
+  function pause() onlyOwner whenNotPaused public {
+    paused = true;
+    emit Pause();
+  }
+
+  /**
+   * @dev called by the owner to unpause, returns to normal state
+   */
+  function unpause() onlyOwner whenPaused public {
+    paused = false;
+    emit Unpause();
+  }
+}
+
+contract BlackListed is Ownable {
+    mapping(address=>bool) isBlacklisted;
+
+    function blackList(address _user) public onlyOwner {
+        require(!isBlacklisted[_user], "user already blacklisted");
+        isBlacklisted[_user] = true;
+        // emit events as well
+    }
+    
+    function removeFromBlacklist(address _user) public onlyOwner {
+        require(isBlacklisted[_user], "user already whitelisted");
+        isBlacklisted[_user] = false;
+        // emit events as well
+    }
+    
+    function canSwap(address _to) public view returns (bool) {
+        return !isBlacklisted[_to];
+    }
+}
 
 contract SwapController is Ownable, Pausable {
-    Blacklist private blacklist;
-    Whitelist private whitelist;
+    BlackListed private blacklist = new BlackListed();
 
     event SwapEnabled();
     event SwapDisabled();
 
-    event AddedToWhitelist(address indexed _addr);
-    event RemovedFromWhitelist(address indexed _addr);
     event AddedToBlacklist(address indexed _addr);
     event RemovedFromBlacklist(address indexed _addr);
-
-    constructor() public Ownable() {
-        blacklist = new Blacklist();
-        whitelist = new Whitelist();
-        pause();
-    }
 
     function swapEnabled() public view returns (bool) {
         return !paused;
@@ -42,24 +89,8 @@ contract SwapController is Ownable, Pausable {
         return swapEnabled() && !isBlacklisted(addr);
     }
 
-    function addToWhitelist(address addr) public onlyOwner returns (bool) {
-        whitelist.addToWhitelist(addr);
-        emit AddedToWhitelist(addr);
-        return true;
-    }
-
-    function removeFromWhitelist(address addr) public onlyOwner returns (bool) {
-        whitelist.removeFromWhitelist(addr);
-        emit RemovedFromWhitelist(addr);
-        return true;
-    }
-
-    function isWhitelisted(address addr) public view returns (bool) {
-        return whitelist.isWhitelisted(addr);
-    }
-
     function addToBlacklist(address addr) public onlyOwner returns (bool) {
-        blacklist.addToBlacklist(addr);
+        blacklist.blackList(addr);
         emit AddedToBlacklist(addr);
         return true;
     }
@@ -71,6 +102,6 @@ contract SwapController is Ownable, Pausable {
     }
 
     function isBlacklisted(address addr) public view returns (bool) {
-        return blacklist.isBlacklisted(addr);
+        return !blacklist.canSwap(addr);
     }
 }

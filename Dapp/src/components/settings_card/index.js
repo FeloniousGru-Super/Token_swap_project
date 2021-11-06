@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdArrowBack, MdInfoOutline } from "react-icons/md";
 import OptionsBox from "./options_box";
 
@@ -11,10 +11,8 @@ const Settings = ({
     customToleranceValue,
     setCustomToleranceValue,
     setCustomTransactionDetail,
-    useGasPrice
+    gasPrice
 }) => {
-    var gasPrice = Math.ceil(useGasPrice() / Math.pow(10, 9));
-
     const speedOptions = [
         { title: "Standard (" + gasPrice + ")" },
         { title: "Fast (" + (gasPrice + 5) + ")" },
@@ -49,7 +47,7 @@ const Settings = ({
                 options={toleranceOptions}
                 onChange={setSelectedToleranceOption}
                 selected={selectedToleranceOption}
-                title="Slipage Tolerance"
+                title="Slippage Tolerance"
                 custom="true"
                 customToleranceValue={customToleranceValue}
                 setCustomToleranceValue={setCustomToleranceValue}

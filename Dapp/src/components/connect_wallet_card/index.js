@@ -7,8 +7,8 @@ import trustWallet from "../../assets/trustWallet.png";
 import { useEthers, useEtherBalance } from "@usedapp/core";
 
 const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
-    const [switchBtn, setSwitchBtn] = useState(0);
     const { activateBrowserWallet, account, chainId } = useEthers();
+    const [switchBtn, setSwitchBtn] = useState(chainId == 1 ? 1 : 0);
     const etherBalance = useEtherBalance(account);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
     function handleConnectWallet(){
         activateBrowserWallet();
         setAccountAddress(account);
-        console.log('etherBalance', etherBalance);
+        console.log('etherBalance', etherBalance, chainId);
     }
 
     return (
