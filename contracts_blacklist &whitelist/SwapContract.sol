@@ -2,79 +2,62 @@ pragma solidity ^0.8.0;
 
 import "./SwapController.sol";
 
-interface IERC20 {
-    /**
-     * @dev Returns the amount of tokens in existence.
-     */
-    function totalSupply() external view returns (uint256);
+import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 
-    /**
-     * @dev Returns the amount of tokens owned by `account`.
-     */
-    function balanceOf(address account) external view returns (uint256);
+library TransferHelper {
+    /// @notice Transfers tokens from the targeted address to the given destination
+    /// @notice Errors with 'STF' if transfer fails
+    /// @param token The contract address of the token to be transferred
+    /// @param from The originating address from which the tokens will be transferred
+    /// @param to The destination address of the transfer
+    /// @param value The amount to be transferred
+    function safeTransferFrom(
+        address token,
+        address from,
+        address to,
+        uint256 value
+    ) internal {
+        (bool success, bytes memory data) =
+            token.call(abi.encodeWithSelector(IERC20.transferFrom.selector, from, to, value));
+        require(success && (data.length == 0 || abi.decode(data, (bool))), 'STF');
+    }
 
-    /**
-     * @dev Moves `amount` tokens from the caller's account to `recipient`.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * Emits a {Transfer} event.
-     */
-    function transfer(address recipient, uint256 amount) external returns (bool);
+    /// @notice Transfers tokens from msg.sender to a recipient
+    /// @dev Errors with ST if transfer fails
+    /// @param token The contract address of the token which will be transferred
+    /// @param to The recipient of the transfer
+    /// @param value The value of the transfer
+    function safeTransfer(
+        address token,
+        address to,
+        uint256 value
+    ) internal {
+        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(IERC20.transfer.selector, to, value));
+        require(success && (data.length == 0 || abi.decode(data, (bool))), 'ST');
+    }
 
-    /**
-     * @dev Returns the remaining number of tokens that `spender` will be
-     * allowed to spend on behalf of `owner` through {transferFrom}. This is
-     * zero by default.
-     *
-     * This value changes when {approve} or {transferFrom} are called.
-     */
-    function allowance(address owner, address spender) external view returns (uint256);
+    /// @notice Approves the stipulated contract to spend the given allowance in the given token
+    /// @dev Errors with 'SA' if transfer fails
+    /// @param token The contract address of the token to be approved
+    /// @param to The target of the approval
+    /// @param value The amount of the given token the target will be allowed to spend
+    function safeApprove(
+        address token,
+        address to,
+        uint256 value
+    ) internal {
+        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(IERC20.approve.selector, to, value));
+        require(success && (data.length == 0 || abi.decode(data, (bool))), 'SA');
+    }
 
-    /**
-     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * IMPORTANT: Beware that changing an allowance with this method brings the risk
-     * that someone may use both the old and the new allowance by unfortunate
-     * transaction ordering. One possible solution to mitigate this race
-     * condition is to first reduce the spender's allowance to 0 and set the
-     * desired value afterwards:
-     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-     *
-     * Emits an {Approval} event.
-     */
-    function approve(address spender, uint256 amount) external returns (bool);
-
-    /**
-     * @dev Moves `amount` tokens from `sender` to `recipient` using the
-     * allowance mechanism. `amount` is then deducted from the caller's
-     * allowance.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * Emits a {Transfer} event.
-     */
-    function transferFrom(
-        address sender,
-        address recipient,
-        uint256 amount
-    ) external returns (bool);
-
-    /**
-     * @dev Emitted when `value` tokens are moved from one account (`from`) to
-     * another (`to`).
-     *
-     * Note that `value` may be zero.
-     */
-    event Transfer(address indexed from, address indexed to, uint256 value);
-
-    /**
-     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
-     * a call to {approve}. `value` is the new allowance.
-     */
-    event Approval(address indexed owner, address indexed spender, uint256 value);
+    /// @notice Transfers ETH to the recipient address
+    /// @dev Fails with `STE`
+    /// @param to The destination of the transfer
+    /// @param value The value to be transferred
+    function safeTransferETH(address to, uint256 value) internal {
+        (bool success, ) = to.call{value: value}(new bytes(0));
+        require(success, 'STE');
+    }
 }
 
 /// @title Callback for IUniswapV3PoolActions#swap
@@ -118,13 +101,15 @@ interface ISwapRouter is IUniswapV3SwapCallback {
 
 contract SwapContract  {
     //address of the LUNACHOW's uniswap v3 router
-    address private constant UNISWAP_V3_ROUTER = 0xD74D7918a4FdA5EDE44Fc9bF8823522205e73806;
-    
+    // address private constant UNISWAP_V3_ROUTER = 0xD74D7918a4FdA5EDE44Fc9bF8823522205e73806;
+    address private constant UNISWAP_V3_ROUTER = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
+
     //address of WETH token.  This is needed because some times it is better to trade through WETH.  
     //you might get a better price using WETH.  
     //example trading from token A to WETH then WETH to token B might result in a better price
-    address private constant WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
-    
+    // address private constant WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+    address private constant WETH = 0x0a180A76e4466bF68A7F86fB029BEd3cCcFaAac5;
+
     // The pool fee is 0.3%.    
     uint24 public constant poolFee = 3000;
         
@@ -148,35 +133,35 @@ contract SwapContract  {
     //to = the address you want the tokens to be sent to
     function swap(address _tokenIn, address _tokenOut, uint256 _amountIn, uint256 _amountOutMin) external returns (uint256 amountOut) {
         
-    if(!canSwap(msg.sender)){
-        return 0;
-    }
-      
-    //first we need to transfer the amount in tokens from the msg.sender to this contract
-    //this contract will have the amount of in tokens
-    IERC20(_tokenIn).transferFrom(msg.sender, address(this), _amountIn);
-    
-    //next we need to allow the uniswapv3 router to spend the token we just sent to this contract
-    //by calling IERC20 approve you allow the uniswap contract to spend the tokens in this contract 
-    IERC20(_tokenIn).approve(UNISWAP_V3_ROUTER, _amountIn);
-
-    // Naively set amountOutMinimum to 0. In production, use an oracle or other data source to choose a safer value for amountOutMinimum.        
-    // We also set the sqrtPriceLimitx96 to be 0 to ensure we swap our exact input amount.        
-    ISwapRouter.ExactInputSingleParams memory params =            
-        ISwapRouter.ExactInputSingleParams({                
-            tokenIn: _tokenIn,                
-            tokenOut: _tokenOut,                
-            fee: poolFee,                
-            recipient: msg.sender,                
-            deadline: block.timestamp,                
-            amountIn: _amountIn,                
-            amountOutMinimum: _amountOutMin,                
-            sqrtPriceLimitX96: 0            
-        });
+        if(!canSwap(msg.sender)){
+            return 0;
+        }
+          
+        //first we need to transfer the amount in tokens from the msg.sender to this contract
+        //this contract will have the amount of in tokens
+        TransferHelper.safeTransferFrom(_tokenIn, msg.sender, address(this), _amountIn);
         
-    ISwapRouter iSwapRouter;
-    // The call to `exactInputSingle` executes the swap.        
-    amountOut = iSwapRouter.exactInputSingle(params);
+        //next we need to allow the uniswapv3 router to spend the token we just sent to this contract
+        //by calling IERC20 approve you allow the uniswap contract to spend the tokens in this contract 
+        TransferHelper.safeApprove(_tokenIn, UNISWAP_V3_ROUTER, _amountIn);
+    
+        // Naively set amountOutMinimum to 0. In production, use an oracle or other data source to choose a safer value for amountOutMinimum.        
+        // We also set the sqrtPriceLimitx96 to be 0 to ensure we swap our exact input amount.        
+        ISwapRouter.ExactInputSingleParams memory params =            
+            ISwapRouter.ExactInputSingleParams({                
+                tokenIn: _tokenIn,                
+                tokenOut: _tokenOut,                
+                fee: poolFee,                
+                recipient: msg.sender,                
+                deadline: block.timestamp + 300,                
+                amountIn: _amountIn,                
+                amountOutMinimum: _amountOutMin,                
+                sqrtPriceLimitX96: 0            
+            });
+            
+        ISwapRouter iSwapRouter;
+        // The call to `exactInputSingle` executes the swap.        
+        amountOut = iSwapRouter.exactInputSingle(params);
     
     }
 
