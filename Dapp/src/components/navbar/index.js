@@ -28,7 +28,7 @@ const Navbar = ({ changeScreen, homepage }) => {
                     {/* mobile */}
                     <div className="ml-auto xl:hidden">
                         <button
-                            class="text-primary-muted bg-primary-darker p-2 rounded shadow-none"
+                            className="text-primary-muted bg-primary-darker p-2 rounded shadow-none"
                             onClick={() => setDisplayLinks(!displayLinks)}
                         >
                             <CgDetailsMore size={32} />
