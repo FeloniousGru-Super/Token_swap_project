@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdArrowBack, MdInfoOutline } from "react-icons/md";
 import OptionsBox from "./options_box";
 
@@ -10,11 +10,13 @@ const Settings = ({
     setSelectedToleranceOption,
     customToleranceValue,
     setCustomToleranceValue,
+    setCustomTransactionDetail,
+    gasPrice
 }) => {
     const speedOptions = [
-        { title: "Standard (5)" },
-        { title: "Fast (6)" },
-        { title: "Instant (7)" },
+        { title: "Standard (" + gasPrice + ")" },
+        { title: "Fast (" + (gasPrice + 5) + ")" },
+        { title: "Instant (" + (gasPrice + 10) + ")" },
     ];
 
     const toleranceOptions = [
@@ -45,7 +47,7 @@ const Settings = ({
                 options={toleranceOptions}
                 onChange={setSelectedToleranceOption}
                 selected={selectedToleranceOption}
-                title="Slipage Tolerance"
+                title="Slippage Tolerance"
                 custom="true"
                 customToleranceValue={customToleranceValue}
                 setCustomToleranceValue={setCustomToleranceValue}
@@ -65,6 +67,7 @@ const Settings = ({
 
                 <div className="flex items-center justify-between rounded-xl bg-gray-200 gap-2 overflow-hidden ">
                     <input
+                        onInput={val => setCustomTransactionDetail(val.target.value)}
                         type="text"
                         placeholder="1"
                         className="py-2 px-4 focus:outline-none bg-gray-200"

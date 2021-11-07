@@ -11,6 +11,7 @@ import { Route, Switch } from "react-router";
 
 import bg_pattern_flip from "../../assets/bg_pattern_2.jpg";
 import Footer from "../../components/footer";
+import { useEthers, CHAIN_NAMES, useGasPrice } from "@usedapp/core";
 
 const Swap = () => {
     //
@@ -26,6 +27,7 @@ const Swap = () => {
     const [selectedSpeedOption, setSelectedSpeedOption] = useState(0);
     const [selectedToleranceOption, setSelectedToleranceOption] = useState(0);
     const [customToleranceValue, setCustomToleranceValue] = useState("");
+    const [customTransactionDetail, setCustomTransactionDetail] = useState("1");
     //
     // settings screen state
     //
@@ -43,6 +45,10 @@ const Swap = () => {
         }
     };
 
+    const { chainId } = useEthers();
+
+    var gasPrice = Math.ceil(useGasPrice() / Math.pow(10, 9));
+
     let component = null;
     switch (currentScreen) {
         case "home":
@@ -54,6 +60,11 @@ const Swap = () => {
                     fromInput={fromInput}
                     toInput={toInput}
                     accountAddress={accountAddress}
+                    selectedSpeedOption={selectedSpeedOption}
+                    selectedToleranceOption={selectedToleranceOption}
+                    customToleranceValue={customToleranceValue}
+                    customTransactionDetail={customTransactionDetail}
+                    gasPrice={gasPrice}
                 />
             );
             break;
@@ -67,6 +78,8 @@ const Swap = () => {
                     setSelectedSpeedOption={setSelectedSpeedOption}
                     setSelectedToleranceOption={setSelectedToleranceOption}
                     setCustomToleranceValue={setCustomToleranceValue}
+                    setCustomTransactionDetail={setCustomTransactionDetail}
+                    gasPrice={gasPrice}
                 />
             );
             break;
@@ -95,6 +108,7 @@ const Swap = () => {
                     changeScreen={changeScreen}
                     accountAddress={accountAddress} 
                     setAccountAddress={setAccountAddress}
+                    chain={CHAIN_NAMES[chainId]}
                 />
                 <Switch>
                     <Route path={"/swap/add_liq"}>

@@ -17,6 +17,11 @@ const ConversionCard = ({
     fromInput,
     toInput,
     accountAddress,
+    selectedSpeedOption, 
+    selectedToleranceOption, 
+    customToleranceValue,
+    customTransactionDetail,
+    gasPrice
 }) => {
     const [tooltipVisibility, setTooltipVisibility] = useState(false);
 
@@ -38,6 +43,56 @@ const ConversionCard = ({
     };
 
     const [switchBtn, setSwitchBtn] = useState(0);
+
+    var fromTokenValue;
+    var toTokenValue;
+    
+    function onToChange(value){
+        toTokenValue = value;
+    }
+
+    function onFromChange(value){
+        fromTokenValue = value;
+    }
+
+    function getGas(selectedSpeedOption) {
+        switch (selectedSpeedOption) {
+            case 0:
+                return gasPrice;
+            case 1:            
+                return gasPrice + 5;
+            case 2:
+                return gasPrice + 10;                
+            default:
+                break;
+        }
+    }
+
+    function getSlippage(selectedToleranceOption, customToleranceValue) {
+        if(customToleranceValue){
+            return customToleranceValue;
+        }
+
+        switch (selectedToleranceOption) {
+            case 0:
+                return 0.001;
+            case 1:            
+                return 0.005;
+            case 2:
+                return 0.01;                
+            default:
+                break;
+        }
+    }
+
+    function handleSwap(fromInput, toInput, toTokenValue, fromTokenValue){
+        if(fromInput && toInput){
+            console.log(accountAddress,' swap ',  fromTokenValue,' from ', " ", fromInput.title, " to ", toTokenValue, " ", toInput.title," ",);
+            console.log("gas", getGas(selectedSpeedOption));
+            console.log("slippage", getSlippage(selectedToleranceOption, customToleranceValue));
+            console.log("deadline (min)", customTransactionDetail);
+        }
+    }
 
     return (
         <>
@@ -101,6 +156,7 @@ const ConversionCard = ({
                                     setDisplayTokenSelect(true);
                                 }}
                                 fromInput={fromInput}
+                                onChange={onFromChange}
                             />
                             <div className="flex justify-center relative text-black mt-2">
                                 <button
@@ -118,17 +174,29 @@ const ConversionCard = ({
                                     setDisplayTokenSelect(true);
                                 }}
                                 toInput={toInput}
+                                onChange={onToChange}
                             />
 
                             <div className="text-center pt-6">
-                                <button
-                                    type="submit"
-                                    value="Connect to a Wallet"
-                                    className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
-                                    onClick = {() => changeScreen("connect_wallet")}
-                                >
-                                { accountAddress == true ? ( <p>Connect to a Wallet</p> ) : <p>Swap</p> }
-                                </button>
+                                { accountAddress == true ? ( 
+                                    <button
+                                        type="button"
+                                        value="Connect to a Wallet"
+                                        className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
+                                        onClick = {() => changeScreen("connect_wallet")}
+                                    >
+                                        <p>Connect to a Wallet</p>
+                                    </button>
+                                ) : 
+                                    <button
+                                        type="button"
+                                        value="Swap"
+                                        className="py-6 px-12 border-white border-2 bg-primary text-white rounded-full mt-2 shadow-md font-medium"
+                                        onClick = {() => handleSwap(fromInput, toInput, toTokenValue, fromTokenValue)}
+                                    >
+                                        <p>Swap</p>
+                                    </button>
+                                }
                             </div>
                         </form>
                     )}

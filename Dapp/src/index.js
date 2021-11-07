@@ -10,7 +10,7 @@ import { DAppProvider, ChainId } from '@usedapp/core'
 ReactDOM.render(
     <React.StrictMode>
         <DAppProvider config={{
-            supportedChains: [ChainId.BSC, ChainId.Mainnet]
+            supportedChains: [ChainId.BSC, ChainId.Mainnet, ChainId.Kovan]
         }}>
             <BrowserRouter>
                 <App />
