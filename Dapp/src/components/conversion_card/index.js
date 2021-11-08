@@ -85,7 +85,7 @@ const ConversionCard = ({
         }
     }
 
-    function handleSwap(fromInput, toInput, toTokenValue, fromTokenValue){
+    function handleSwap(fromInput, toInput, toTokenValue, fromTokenValue) {
         if(fromInput && toInput){
             console.log(accountAddress,' swap ',  fromTokenValue,' from ', " ", fromInput.title, " to ", toTokenValue, " ", toInput.title," ",);
             console.log("gas", getGas(selectedSpeedOption));
