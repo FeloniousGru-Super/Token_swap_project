@@ -68,8 +68,8 @@ const Settings = ({
                 <div className="flex items-center justify-between rounded-xl bg-gray-200 gap-2 overflow-hidden ">
                     <input
                         onInput={val => setCustomTransactionDetail(val.target.value)}
-                        type="text"
-                        placeholder="1"
+                        type="number"
+                        placeholder="30"
                         className="py-2 px-4 focus:outline-none bg-gray-200"
                     />
                     <p className="pr-4">minutes</p>
