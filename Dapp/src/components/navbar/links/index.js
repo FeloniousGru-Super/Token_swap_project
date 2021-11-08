@@ -18,7 +18,7 @@ const NavbarLinks = ({ homepage = false }) => {
 
             <li>
                 <a
-                    href="#how_section"
+                    href="/how-to-buy"
                     className="font-medium text-lg  py-2 px-4"
                 >
                     How to Buy

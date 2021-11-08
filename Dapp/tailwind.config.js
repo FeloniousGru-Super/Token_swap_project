@@ -9,20 +9,21 @@ module.exports = {
                     muted: "#FFE7E0",
                     grayed: "#EDCFC6",
                     dark: "#E17C5D",
-                    darker: "#741F04"
+                    dark2: "#E67F5F",
+                    darker: "#741F04",
                 },
                 secondary: {
                     DEFAULT: "#f0af6d",
-                    light: "#ffe2da"
+                    light: "#ffe2da",
                 },
             },
             borderRadius: {
-                '8xl': '3rem',
-                '16xl': '6rem'
+                "8xl": "3rem",
+                "16xl": "6rem",
             },
             screens: {
-                'lgxl': '1140px'
-            }
+                lgxl: "1140px",
+            },
         },
     },
     variants: {
