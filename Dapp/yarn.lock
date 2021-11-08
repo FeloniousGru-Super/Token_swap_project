@@ -10706,65 +10706,72 @@
     "webpack-manifest-plugin" "2.2.0"
     "workbox-webpack-plugin" "5.1.4"
   optionalDependencies:
-    "fsevents" "^2.1.3"
+    fsevents "^2.1.3"
 
-"react-scroll@^1.8.4":
-  "integrity" "sha512-J9rFqmdzularCXJoK2vleHVg2//y9Fs6zh7K13x7Yz3Y1kHPfQ/TTq029L09q1Gr5/5JjFLBOB2Sa3yYIqyTyQ=="
-  "resolved" "https://registry.npmjs.org/react-scroll/-/react-scroll-1.8.4.tgz"
-  "version" "1.8.4"
+react-scroll@^1.8.4:
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.8.4.tgz#7cc882d7058d5b5aedcd362b1de13c88d64ebe4c"
+  integrity sha512-J9rFqmdzularCXJoK2vleHVg2//y9Fs6zh7K13x7Yz3Y1kHPfQ/TTq029L09q1Gr5/5JjFLBOB2Sa3yYIqyTyQ==
   dependencies:
-    "lodash.throttle" "^4.1.1"
-    "prop-types" "^15.7.2"
+    lodash.throttle "^4.1.1"
+    prop-types "^15.7.2"
 
-"react-slick@^0.28.1":
-  "integrity" "sha512-JwRQXoWGJRbUTE7eZI1rGIHaXX/4YuwX6gn7ulfvUZ4vFDVQAA25HcsHSYaUiRCduTr6rskyIuyPMpuG6bbluw=="
-  "resolved" "https://registry.npmjs.org/react-slick/-/react-slick-0.28.1.tgz"
-  "version" "0.28.1"
+react-slick@^0.28.1:
+  version "0.28.1"
+  resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.28.1.tgz#12c18d991b59432df9c3757ba540a227b3fb85b9"
+  integrity sha512-JwRQXoWGJRbUTE7eZI1rGIHaXX/4YuwX6gn7ulfvUZ4vFDVQAA25HcsHSYaUiRCduTr6rskyIuyPMpuG6bbluw==
   dependencies:
-    "classnames" "^2.2.5"
-    "enquire.js" "^2.1.6"
-    "json2mq" "^0.2.0"
-    "lodash.debounce" "^4.0.8"
-    "resize-observer-polyfill" "^1.5.0"
+    classnames "^2.2.5"
+    enquire.js "^2.1.6"
+    json2mq "^0.2.0"
+    lodash.debounce "^4.0.8"
+    resize-observer-polyfill "^1.5.0"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^15.5.4 || ^16.0.0 || ^17.0.0", "react@^17.0.2", "react@>= 16", "react@>=15", "react@>=16.8", "react@17.0.2":
-  "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
-  "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
-  "version" "17.0.2"
+react-switch@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-switch/-/react-switch-6.0.0.tgz#bd4a2dea08f211b8a32e55e8314fd44bc1ec947e"
+  integrity sha512-QV3/6eRK5/5epdQzIqvDAHRoGLbCv/wDpHUi6yBMXY1Xco5XGuIZxvB49PHoV1v/SpEgOCJLD/Zo43iic+aEIw==
   dependencies:
-    "loose-envify" "^1.1.0"
-    "object-assign" "^4.1.1"
+    prop-types "^15.7.2"
 
-"read-pkg-up@^2.0.0":
-  "integrity" "sha1-a3KoBImE4MQeeVEP1en6mbO1Sb4="
-  "resolved" "https://registry.npmjs.org/read-pkg-up/-/read-pkg-up-2.0.0.tgz"
-  "version" "2.0.0"
+react@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
+  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
   dependencies:
-    "find-up" "^2.0.0"
-    "read-pkg" "^2.0.0"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
 
-"read-pkg-up@^7.0.1":
-  "integrity" "sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg=="
-  "resolved" "https://registry.npmjs.org/read-pkg-up/-/read-pkg-up-7.0.1.tgz"
-  "version" "7.0.1"
+read-pkg-up@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-2.0.0.tgz#6b72a8048984e0c41e79510fd5e9fa99b3b549be"
+  integrity sha1-a3KoBImE4MQeeVEP1en6mbO1Sb4=
   dependencies:
-    "find-up" "^4.1.0"
-    "read-pkg" "^5.2.0"
-    "type-fest" "^0.8.1"
+    find-up "^2.0.0"
+    read-pkg "^2.0.0"
 
-"read-pkg@^2.0.0":
-  "integrity" "sha1-jvHAYjxqbbDcZxPEv6xGMysjaPg="
-  "resolved" "https://registry.npmjs.org/read-pkg/-/read-pkg-2.0.0.tgz"
-  "version" "2.0.0"
+read-pkg-up@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-7.0.1.tgz#f3a6135758459733ae2b95638056e1854e7ef507"
+  integrity sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==
   dependencies:
-    "load-json-file" "^2.0.0"
-    "normalize-package-data" "^2.3.2"
-    "path-type" "^2.0.0"
+    find-up "^4.1.0"
+    read-pkg "^5.2.0"
+    type-fest "^0.8.1"
 
-"read-pkg@^5.2.0":
-  "integrity" "sha512-Ug69mNOpfvKDAc2Q8DRpMjjzdtrnv9HcSMX+4VsZxD1aZ6ZzrIE7rlzXBtWTyhULSMKg076AW6WR5iZpD0JiOg=="
-  "resolved" "https://registry.npmjs.org/read-pkg/-/read-pkg-5.2.0.tgz"
-  "version" "5.2.0"
+read-pkg@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/read-pkg/-/read-pkg-2.0.0.tgz#8ef1c0623c6a6db0dc6713c4bfac46332b2368f8"
+  integrity sha1-jvHAYjxqbbDcZxPEv6xGMysjaPg=
+  dependencies:
+    load-json-file "^2.0.0"
+    normalize-package-data "^2.3.2"
+    path-type "^2.0.0"
+
+read-pkg@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/read-pkg/-/read-pkg-5.2.0.tgz#7bf295438ca5a33e56cd30e053b34ee7250c93cc"
+  integrity sha512-Ug69mNOpfvKDAc2Q8DRpMjjzdtrnv9HcSMX+4VsZxD1aZ6ZzrIE7rlzXBtWTyhULSMKg076AW6WR5iZpD0JiOg==
   dependencies:
     "@types/normalize-package-data" "^2.4.0"
     "normalize-package-data" "^2.5.0"
