@@ -260,10 +260,10 @@
 			]
 		},
 		"SwapContract.sol": {
-			"keccak256": "0x7e5f5c12ac1ca2ee642514a3f2936dff4792cf5d462ec023725bb96059ea4f6a",
+			"keccak256": "0xb851645283450f6590c8f97d9050f73d6340a4437772300deab416feb3641dec",
 			"urls": [
-				"bzz-raw://19ac2de79f5af73196d031b129e2e6a91f9cd4e839c4533b6ac4174e78e3fb80",
-				"dweb:/ipfs/QmPYMHCxmPqBtNEiB8ANVZ2XXvmjJVuyrBaG7DPhg47XZ9"
+				"bzz-raw://271731c3f882023c9bdb7cdec374bc07c9ececaced6e5dcdf84372874f709e82",
+				"dweb:/ipfs/QmUvyCPgULTbkp7u9SM9pkyHnYKwqfbcecTnLexqB8w2JX"
 			]
 		},
 		"SwapController.sol": {
