@@ -22,7 +22,8 @@ import ContactUS from "./components/contact_us";
 import CryptoNews from "./components/news";
 import Map from "./components/map";
 import homepage_content from "./static/content/content";
-import hero_background_3 from "../../assets/hero_background_5.png";
+import hero_background_7 from "../../assets/hero_background_7_0.png";
+
 import CopyToClipboard from "react-copy-to-clipboard";
 
 const Home = () => {
@@ -97,7 +98,7 @@ const Home = () => {
 
                 <div className="hidden md:flex w-1/2 h-96 justify-center">
                   <img
-                    src={hero_background_3}
+                    src={hero_background_7}
                     alt=""
                     className="object-cover drop-shadow-2xl relative transform scale-125"
                   />
