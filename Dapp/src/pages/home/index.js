@@ -75,18 +75,26 @@ const Home = () => {
                     ))}
                   </div>
 
-                  <div class="">
+                  <div class="flex gap-4">
                     <a
                       href="https://lunachow.com/wp-content/uploads/2021/08/LunaChow-Whitepaper-V2.pdf"
-                      className="block w-full text-center font-medium bg-gradient-to-b from-yellow-500 to-yellow-600 rounded-full text-white p-3">
+                      className="block text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
                       Whitepaper
+                    </a>
+
+                    <a 
+                      href="https://www.lunachow.com//wp-content/uploads/2021/08/audit.pdf"
+                      className="block text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
+                      Audit
                     </a>
                   </div>
 
                   <div className="flex gap-4">
-                    <button className="w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
+                    <a 
+                      href="/charity"
+                      className="block text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
                       Donate
-                    </button>
+                    </a>
 
                     <a
                       href="/swap"
