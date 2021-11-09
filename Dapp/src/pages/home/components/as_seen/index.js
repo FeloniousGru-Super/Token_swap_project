@@ -75,7 +75,7 @@ const PrevButton = ({ onClick, className, style }) => {
     return (
         <button
             onClick={onClick}
-            className={`${className} -mt-4`}
+            className={`${className} -mt-7`}
             style={{ ...style}}>
             <span className="text-primary">
                 <GrPrevious size={28}/>
@@ -88,7 +88,7 @@ const NextButton = ({ onClick, className, style }) => {
     return (
         <button
             onClick={onClick}
-            className={`${className} -mt-4`}
+            className={`${className} -mt-7`}
             style={{ ...style }}>
             <p className="text-primary">
                 <GrNext size={28} />
