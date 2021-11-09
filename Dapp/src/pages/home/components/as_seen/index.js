@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import image1 from "./static/1.png";
 import image2 from "./static/2.png";
@@ -12,61 +12,56 @@ import image9 from "./static/9.png";
 import image10 from "./static/10.png";
 import image11 from "./static/11.png";
 import image12 from "./static/12.png";
+import Slider from "react-slick";
+import { GrNext } from "react-icons/gr";
+import { GrPrevious } from "react-icons/gr";
 
 const AsSeen = () => {
+    const images = [
+        image1,
+        image2,
+        image3,
+        image4,
+        image5,
+        image6,
+        image7,
+        image8,
+        image9,
+        image10,
+        image11,
+        image12,
+    ];
+
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 5,
+        prevArrow: <PrevButton />,
+        nextArrow: <NextButton />,
+    };
+
     return (
-        <div className="">
+        <div className="overflow-hidden">
             <div className="px-8 max-w-screen-lgxl container mx-auto my-20">
-                <div className=" space-y-16">
-                    <h2 className="text-center text-4xl font-bold text-primary">
-                        As seen in
-                    </h2>
+                <div className="space-y-16">
+                    <h2 className="text-center text-4xl font-bold text-primary">As seen in</h2>
 
-                    <div className="flex flex-wrap gap-8 items-center justify-center">
-                        <div>
-                            <img src={image1} alt="" />
+                    <div className="">
+                        <div className="px-8">
+                            <Slider {...settings}>
+                                {images.map((image) => (
+                                    <div className="px-3">
+                                        <img
+                                            src={image}
+                                            style={{ height: "80px", width: "250px" }}
+                                            alt=""
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                ))}
+                            </Slider>
                         </div>
-                        <div>
-                            <img src={image2} alt="" />
-                        </div>
-                        <div>
-                            <img src={image3} alt="" />
-                        </div>
-                        <div>
-                            <img src={image4} alt="" />
-                        </div>
-                        <div>
-                            <img src={image5} alt="" />
-                        </div>
-
-                        <div>
-                            <img src={image6} alt="" />
-                        </div>
-
-                        <div>
-                            <img src={image7} alt="" />
-                        </div>
-
-                        <div>
-                            <img src={image8} alt="" />
-                        </div>
-
-                        <div>
-                            <img src={image9} alt="" />
-                        </div>
-
-                        <div>
-                            <img src={image10} alt="" />
-                        </div>
-
-                        <div>
-                            <img src={image11} alt="" />
-                        </div>
-
-                        <div>
-                            <img src={image12} alt="" />
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -75,3 +70,29 @@ const AsSeen = () => {
 };
 
 export default AsSeen;
+
+const PrevButton = ({ onClick, className, style }) => {
+    return (
+        <button
+            onClick={onClick}
+            className={`${className} -mt-4`}
+            style={{ ...style}}>
+            <span className="text-primary">
+                <GrPrevious size={28}/>
+            </span>
+        </button>
+    );
+};
+
+const NextButton = ({ onClick, className, style }) => {
+    return (
+        <button
+            onClick={onClick}
+            className={`${className} -mt-4`}
+            style={{ ...style }}>
+            <p className="text-primary">
+                <GrNext size={28} />
+            </p>
+        </button>
+    );
+};
