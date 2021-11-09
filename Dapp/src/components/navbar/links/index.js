@@ -36,7 +36,7 @@ const NavbarLinks = ({ homepage = false }) => {
 
             <li>
                 <a
-                    href="#charity_section"
+                    href="/charity"
                     className="font-medium text-lg  py-2 px-4"
                 >
                     Charity
