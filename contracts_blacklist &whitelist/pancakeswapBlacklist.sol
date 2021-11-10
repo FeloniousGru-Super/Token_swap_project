@@ -155,7 +155,7 @@ contract tokenSwap {
     //token out = the token address you want as the output of this trade
     //amount in = the amount of tokens you are sending in
     //amount out Min = the minimum amount of tokens you want out of the trade
-    function swap(address _tokenIn, address _tokenOut, uint256 _amountIn, uint256 _amountOutMin) external {
+    function swap(address _tokenIn, address _tokenOut, uint256 _amountIn, uint256 _amountOutMin, uint256 _deadline) external {
         require(controllerTokenAddress.canSwap(msg.sender), "User blacklisted");
         
         //first we need to transfer the amount in tokens from the msg.sender to this contract
@@ -183,10 +183,10 @@ contract tokenSwap {
         //then we will call swapExactTokensForTokens
         //for the deadline we will pass in block.timestamp
         //the deadline is the latest time the trade is valid for
-        IUniswapV2Router02(UNISWAP_V2_ROUTER).swapExactTokensForTokens(_amountIn, _amountOutMin, path, msg.sender, block.timestamp);
+        IUniswapV2Router02(UNISWAP_V2_ROUTER).swapExactTokensForTokens(_amountIn, _amountOutMin, path, msg.sender, block.timestamp + _deadline);
     }
     
-    function convertLunaChowToExactBNB(address _tokenIn, uint256 _amountIn, uint256 _amountOutMin) external {
+    function convertLunaChowToExactBNB(address _tokenIn, uint256 _amountIn, uint256 _amountOutMin, uint256 _deadline) external {
         require(controllerTokenAddress.canSwap(msg.sender), "User blacklisted");
         
         //first we need to transfer the amount in tokens from the msg.sender to this contract
@@ -197,22 +197,20 @@ contract tokenSwap {
         //by calling IERC20 approve you allow the uniswap contract to spend the tokens in this contract 
         IERC20(_tokenIn).approve(UNISWAP_V2_ROUTER, _amountIn);
 
-        uint256 deadline = block.timestamp + 15; // using 'now' for convenience, for mainnet pass deadline from frontend!
         address[] memory path;
         path = new address[](2);
         path[0] = _tokenIn;
         path[1] = WETH;
-        IUniswapV2Router02(UNISWAP_V2_ROUTER).swapTokensForExactETH(_amountOutMin, _amountIn, path, msg.sender, deadline);
+        IUniswapV2Router02(UNISWAP_V2_ROUTER).swapTokensForExactETH(_amountOutMin, _amountIn, path, msg.sender, block.timestamp + _deadline);
     }
     
-    function convertBNBToExactLunaChow( address _tokenOut, uint256 _amountOut) external payable {
+    function convertBNBToExactLunaChow( address _tokenOut, uint256 _amountOut, uint256 _deadline) external payable {
         require(controllerTokenAddress.canSwap(msg.sender), "User blacklisted");
         
-        uint256 deadline = block.timestamp + 15; // using 'now' for convenience, for mainnet pass deadline from frontend!
         address[] memory path = new address[](2);
         path[0] = WETH;
         path[1] = _tokenOut;
-        IUniswapV2Router02(UNISWAP_V2_ROUTER).swapETHForExactTokens{ value: msg.value }(_amountOut, path, msg.sender, deadline);
+        IUniswapV2Router02(UNISWAP_V2_ROUTER).swapETHForExactTokens{ value: msg.value }(_amountOut, path, msg.sender, block.timestamp + _deadline);
     }
     
     //this function will return the minimum amount from a swap

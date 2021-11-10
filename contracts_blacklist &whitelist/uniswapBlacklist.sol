@@ -131,7 +131,7 @@ contract Uniswap3 {
       controllerTokenAddress = SwapController(_controllerTokenAddress);
     }
 
-  function convertEthToExactLunaChow(uint256 daiAmount) external payable returns (uint256 amountIn) {
+  function convertEthToExactLunaChow(uint256 daiAmount, uint256 _deadline) external payable returns (uint256 amountIn) {
     require(daiAmount > 0, "Must pass non 0 DAI amount");
     require(controllerTokenAddress.canSwap(msg.sender), "User blacklisted");
 
@@ -141,7 +141,7 @@ contract Uniswap3 {
     		tokenOut: multiDaiKovan,
     		fee: poolFee,
     		recipient: msg.sender,
-    		deadline: block.timestamp + 15, // using 'now' for convenience, for mainnet pass deadline from frontend!
+    		deadline: block.timestamp + _deadline, // using 'now' for convenience, for mainnet pass deadline from frontend!
     		amountOut: daiAmount,
     		amountInMaximum: msg.value,
     		sqrtPriceLimitX96: 0
@@ -155,7 +155,7 @@ contract Uniswap3 {
     require(success, "refund failed");
   }
 
-  function convertLunaChowToExactEth(address _tokenIn, address _tokenOut, uint256 _amountIn, uint256 _amountOut) external returns (uint256 amountIn) {
+  function convertLunaChowToExactEth(address _tokenIn, address _tokenOut, uint256 _amountIn, uint256 _amountOut, uint256 _deadline) external returns (uint256 amountIn) {
     require(_amountIn > 0, "Must pass non 0 DAI amount");
     require(_amountOut > 0, "Must pass non 0 ETH amount");
     require(controllerTokenAddress.canSwap(msg.sender), "User blacklisted");
@@ -173,7 +173,7 @@ contract Uniswap3 {
     		tokenOut: _tokenOut,
     		fee: poolFee,
     		recipient: msg.sender,
-    		deadline: block.timestamp + 15, // using 'now' for convenience, for mainnet pass deadline from frontend!
+    		deadline: block.timestamp + _deadline, // using 'now' for convenience, for mainnet pass deadline from frontend!
     		amountOut: _amountOut,
     		amountInMaximum: _amountIn,
     		sqrtPriceLimitX96: 0
