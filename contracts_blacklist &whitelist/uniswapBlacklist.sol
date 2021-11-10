@@ -2,7 +2,9 @@ pragma solidity ^0.8.0;
 pragma abicoder v2;
 
 import "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/contracts/interfaces/ISwapRouter.sol";
-import '@openzeppelin/contracts/access/Ownable.sol';
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
 
 contract Pausable is Ownable {
   event Pause();
@@ -114,12 +116,11 @@ interface IUniswapRouter is ISwapRouter {
 
 contract Uniswap3 {
   IUniswapRouter public constant uniswapRouter = IUniswapRouter(0xE592427A0AEce92De3Edee1F18E0157C05861564);
-  IQuoter public constant quoter = IQuoter(0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6);
-//   address private constant multiDaiKovan = 0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa;
-//   address private constant WETH9 = 0xd0A1E359811322d97991E03f863a0C30C2cF029C;
   address private constant multiDaiKovan = 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984;
   address private constant WETH9 = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
     SwapController public controllerTokenAddress;
+    
+    uint24 public constant poolFee = 3000;
 
     constructor(
       address _controllerTokenAddress
@@ -130,65 +131,23 @@ contract Uniswap3 {
       controllerTokenAddress = SwapController(_controllerTokenAddress);
     }
 
-  function convertExactEthToDai() external payable {
-    require(msg.value > 0, "Must pass non 0 ETH amount");
-    require(controllerTokenAddress.canSwap(msg.sender), "User blacklisted");
-
-    uint256 deadline = block.timestamp + 15; // using 'now' for convenience, for mainnet pass deadline from frontend!
-    address tokenIn = WETH9;
-    address tokenOut = multiDaiKovan;
-    uint24 fee = 3000;
-    address recipient = msg.sender;
-    uint256 amountIn = msg.value;
-    uint256 amountOutMinimum = 1;
-    uint160 sqrtPriceLimitX96 = 0;
-
-    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams(
-        tokenIn,
-        tokenOut,
-        fee,
-        recipient,
-        deadline,
-        amountIn,
-        amountOutMinimum,
-        sqrtPriceLimitX96
-    );
-
-    uniswapRouter.exactInputSingle{ value: msg.value }(params);
-    uniswapRouter.refundETH();
-
-    // refund leftover ETH to user
-    (bool success,) = msg.sender.call{ value: address(this).balance }("");
-    require(success, "refund failed");
-  }
-
-  function convertEthToExactDai(uint256 daiAmount) external payable {
+  function convertEthToExactLunaChow(uint256 daiAmount, uint256 _deadline) external payable returns (uint256 amountIn) {
     require(daiAmount > 0, "Must pass non 0 DAI amount");
-    require(msg.value > 0, "Must pass non 0 ETH amount");
     require(controllerTokenAddress.canSwap(msg.sender), "User blacklisted");
 
+    ISwapRouter.ExactOutputSingleParams memory params =
+    	ISwapRouter.ExactOutputSingleParams({
+    		tokenIn: WETH9,
+    		tokenOut: multiDaiKovan,
+    		fee: poolFee,
+    		recipient: msg.sender,
+    		deadline: block.timestamp + _deadline, // using 'now' for convenience, for mainnet pass deadline from frontend!
+    		amountOut: daiAmount,
+    		amountInMaximum: msg.value,
+    		sqrtPriceLimitX96: 0
+	});
 
-    uint256 deadline = block.timestamp + 15; // using 'now' for convenience, for mainnet pass deadline from frontend!
-    address tokenIn = WETH9;
-    address tokenOut = multiDaiKovan;
-    uint24 fee = 3000;
-    address recipient = msg.sender;
-    uint256 amountOut = daiAmount;
-    uint256 amountInMaximum = msg.value;
-    uint160 sqrtPriceLimitX96 = 0;
-
-    ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter.ExactOutputSingleParams(
-        tokenIn,
-        tokenOut,
-        fee,
-        recipient,
-        deadline,
-        amountOut,
-        amountInMaximum,
-        sqrtPriceLimitX96
-    );
-
-    uniswapRouter.exactOutputSingle{ value: msg.value }(params);
+    amountIn = uniswapRouter.exactOutputSingle{ value: msg.value }(params);
     uniswapRouter.refundETH();
 
     // refund leftover ETH to user
@@ -196,6 +155,40 @@ contract Uniswap3 {
     require(success, "refund failed");
   }
 
+  function convertLunaChowToExactEth(address _tokenIn, address _tokenOut, uint256 _amountIn, uint256 _amountOut, uint256 _deadline) external returns (uint256 amountIn) {
+    require(_amountIn > 0, "Must pass non 0 DAI amount");
+    require(_amountOut > 0, "Must pass non 0 ETH amount");
+    require(controllerTokenAddress.canSwap(msg.sender), "User blacklisted");
+    
+    // Transfer the specified amount of DAI to this contract.
+    TransferHelper.safeTransferFrom(_tokenIn, msg.sender, address(this), _amountIn);
+
+    // Approve the router to spend the specifed `amountInMaximum` of DAI.
+    // In production, you should choose the maximum amount to spend based on oracles or other data sources to acheive a better swap.
+    TransferHelper.safeApprove(_tokenIn, address(uniswapRouter), _amountIn);
+    
+    ISwapRouter.ExactOutputSingleParams memory params =
+    	ISwapRouter.ExactOutputSingleParams({
+    		tokenIn: _tokenIn,
+    		tokenOut: _tokenOut,
+    		fee: poolFee,
+    		recipient: msg.sender,
+    		deadline: block.timestamp + _deadline, // using 'now' for convenience, for mainnet pass deadline from frontend!
+    		amountOut: _amountOut,
+    		amountInMaximum: _amountIn,
+    		sqrtPriceLimitX96: 0
+	});
+
+    amountIn = uniswapRouter.exactOutputSingle(params);
+
+    // For exact output swaps, the amountInMaximum may not have all been spent.
+    // If the actual amount spent (amountIn) is less than the specified maximum amount, we must refund the msg.sender and approve the swapRouter to spend 0.
+    if (amountIn < _amountIn) {
+        TransferHelper.safeApprove(_tokenIn, address(uniswapRouter), 0);
+        TransferHelper.safeTransfer(_tokenIn, msg.sender, _amountIn - amountIn);
+    } 
+  }
+  
   // important to receive ETH
   receive() payable external {}
 }
