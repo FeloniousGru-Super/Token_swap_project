@@ -5,25 +5,9 @@ import FromInputField from "./FromInputField";
 import ToInputField from "./ToInputField";
 import SelectToken from "../select_token_card";
 import Pool from "./pool";
-import mainnetSwapAbi from "./mainnetSwapAbi.json";
-import { Contract, utils } from "ethers";
-import { useContractFunction } from "@usedapp/core";
-
-export function initUniswapContract() {
-    const mainnetSwapInterface = new utils.Interface(mainnetSwapAbi);
-    return new Contract("0xe2C0Ae988413afD7a1EDe13E6e386b9cd9bE9E12", mainnetSwapInterface);
-}
-
-export function initApproveContract(tokenAddress) {
-    let abi = ["function approve(address _spender, uint256 _value) public returns (bool success)"];
-    const approveInterface = new utils.Interface(abi);
-    return new Contract(tokenAddress, approveInterface);
-}
-
-export function useContractMethod(contract, methodName) {
-    const { state, send } = useContractFunction(contract, methodName, {});
-    return { state, send };
-}
+import { utils } from "ethers";
+import { useEthers, ChainId } from "@usedapp/core";
+import { initUniswapMainnetContract, useContractMethod, initApproveContract, initPancakeSwapBSCContract } from "./swapHooks";
 
 const ConversionCard = ({
     changeScreen,
@@ -39,23 +23,60 @@ const ConversionCard = ({
     gasPrice,
 }) => {
     const [tooltipVisibility, setTooltipVisibility] = useState(false);
+    const { chainId } = useEthers();
 
-    const uniswapContract = initUniswapContract();
-    const { state: convertLunaChowToExactEthState, send: convertLunaChowToExactEth } =
-        useContractMethod(uniswapContract, "convertLunaChowToExactEth");
-    const { state: convertEthToExactLunaChowState, send: convertEthToExactLunaChow } =
-        useContractMethod(uniswapContract, "convertEthToExactLunaChow");
+    // Uniswap Contract
+    const uniswapMainnetContract = initUniswapMainnetContract();
+    const { state: mainnetConvertLunaChowToExactEthState, send: mainnetConvertLunaChowToExactEth } =
+        useContractMethod(uniswapMainnetContract, "convertLunaChowToExactEth");
+    const { state: mainnetConvertEthToExactLunaChowState, send: mainnetConvertEthToExactLunaChow } =
+        useContractMethod(uniswapMainnetContract, "convertEthToExactLunaChow");
 
-    const approveWETHContract = initApproveContract("0xc778417E063141139Fce010982780140Aa0cD5Ab");
-    const approveLunaChowContract = initApproveContract(
-        "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
+    // Approve Mainnet WETH
+    const approveMainnetWETHContract = initApproveContract(
+        "0xc778417E063141139Fce010982780140Aa0cD5Ab"
     );
-    const { state: approveWETHState, send: approveWETH } = useContractMethod(
-        approveWETHContract,
+    const { state: approveMainnetWETHState, send: approveMainnetWETH } = useContractMethod(
+        approveMainnetWETHContract,
         "approve"
     );
-    const { state: approveLunaChowState, send: approveLunaChow } = useContractMethod(
-        approveLunaChowContract,
+
+    // Approve Mainnet Luna Chow
+    const approveMainnetLunaChowContract = initApproveContract(
+        "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
+    );
+    const { state: approveMainnetLunaChowState, send: approveMainnetLunaChow } = useContractMethod(
+        approveMainnetLunaChowContract,
+        "approve"
+    );
+
+    
+    // Pancakswap Contract
+    const pancakeSwapBSCContract = initPancakeSwapBSCContract();
+    const { state: bscConvertBNBToExactLunaChowState, send: bscConvertBNBToExactLunaChow } =
+        useContractMethod(pancakeSwapBSCContract, "convertBNBToExactLunaChow");
+    const { state: bscConvertLunaChowToExactBNBState, send: bscConvertLunaChowToExactBNB } =
+        useContractMethod(pancakeSwapBSCContract, "convertLunaChowToExactBNB");
+    const { state: bscSwapState, send: bscSwap } = useContractMethod(
+        pancakeSwapBSCContract,
+        "swap"
+    );
+
+    // Approve BSC BNB
+    const approveBSCWBNBContract = initApproveContract(
+        "0xc778417E063141139Fce010982780140Aa0cD5Ab"
+    );
+    const { state: approveBSCWBNBState, send: approveBSCWBNB } = useContractMethod(
+        approveBSCWBNBContract,
+        "approve"
+    );
+
+    // Approve BSC Luna Chow
+    const approveBSCLunaChowContract = initApproveContract(
+        "0x442Be68395613bDCD19778e761f03261ec46C06D"
+    );
+    const { state: approveBSCLunaChowState, send: approveBSCLunaChow } = useContractMethod(
+        approveBSCLunaChowContract,
         "approve"
     );
 
@@ -119,9 +140,92 @@ const ConversionCard = ({
         }
     }
 
+    function approve(
+        currentSwapState,
+        _tokenIn,
+        approveToken,
+        approveNativeToken,
+        token,
+        nativeToken,
+        swapContract
+    ) {
+        console.log(currentSwapState);
+        if (
+            currentSwapState.errorMessage === "execution reverted: STF" ||
+            currentSwapState.errorMessage === "execution reverted: Insufficient allowance"
+        ) {
+            if (_tokenIn === token) {
+                approveToken(swapContract, "10000000000000000000");
+            } else if (_tokenIn === nativeToken) {
+                approveNativeToken(swapContract, "10000000000000000000");
+            }
+        }
+    }
+
+    async function mainnetHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline) {
+        if (fromInput["id"] === 1) {
+            await mainnetConvertEthToExactLunaChow(_amountOut, _deadline, {
+                value: _amountIn,
+            }).then(console.log(mainnetConvertEthToExactLunaChowState));
+        } else {
+            await mainnetConvertLunaChowToExactEth(
+                _tokenIn,
+                _tokenOut,
+                _amountIn,
+                _amountOut,
+                _deadline
+            ).then(() => {
+                approve(
+                    mainnetConvertLunaChowToExactEthState,
+                    _tokenIn,
+                    approveMainnetLunaChow,
+                    approveMainnetWETH,
+                    "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+                    "0xc778417E063141139Fce010982780140Aa0cD5Ab",
+                    "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                );
+            });
+        }
+    }
+
+    async function bscHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline) {
+        if (fromInput["id"] === 1) {
+            await bscConvertBNBToExactLunaChow(_tokenIn, _amountOut, _deadline, {
+                value: _amountIn,
+            }).then.console.log(bscConvertBNBToExactLunaChowState);
+        } else if (toInput["id"] === 1) {
+            await bscConvertLunaChowToExactBNB(_tokenIn, _amountIn, _amountOut, _deadline).then(
+                () => {
+                    approve(
+                        bscConvertLunaChowToExactBNBState,
+                        _tokenIn,
+                        approveBSCLunaChow,
+                        approveBSCWBNB,
+                        "0x442Be68395613bDCD19778e761f03261ec46C06D",
+                        "0xc778417E063141139Fce010982780140Aa0cD5Ab",
+                        "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                    );
+                }
+            );
+        } else {
+            await bscSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline).then(() => {
+                approve(
+                    bscSwapState,
+                    _tokenIn,
+                    approveBSCLunaChow,
+                    approveBSCWBNB,
+                    "0x442Be68395613bDCD19778e761f03261ec46C06D",
+                    "0xc778417E063141139Fce010982780140Aa0cD5Ab",
+                    "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                );
+            });
+        }
+    }
+
     async function handleSwap() {
         if (fromInput && toInput && fromTokenValue && toTokenValue) {
-            const _tokenIn = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984";
+            // const _tokenIn = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984";
+            const _tokenIn = "0x442Be68395613bDCD19778e761f03261ec46C06D";
             const _tokenOut = "0xc778417E063141139Fce010982780140Aa0cD5Ab";
             const _amountIn = utils.parseEther(fromTokenValue.toString());
             const _amountOut = utils.parseEther(toTokenValue.toString());
@@ -129,33 +233,18 @@ const ConversionCard = ({
             // console.log("gas", getGas(selectedSpeedOption));
             // console.log("slippage", getSlippage(selectedToleranceOption, customToleranceValue));
             // console.log("deadline (min)", customTransactionDetail);
-            console.log(fromInput["id"]);
-            if (fromInput["id"] === 1) {
-                await convertEthToExactLunaChow(_amountOut, _deadline, {
-                    value: _amountIn,
-                });
-            } else {
-                await convertLunaChowToExactEth(
-                    _tokenIn,
-                    _tokenOut,
-                    _amountIn,
-                    _amountOut,
-                    _deadline
-                ).then(() => {
-                    if (convertLunaChowToExactEthState.errorMessage === "execution reverted: STF") {
-                        if (_tokenIn === "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984") {
-                            approveLunaChow(
-                                "0xe2C0Ae988413afD7a1EDe13E6e386b9cd9bE9E12",
-                                "10000000000000000000"
-                            );
-                        } else if (_tokenIn === "0xc778417E063141139Fce010982780140Aa0cD5Ab") {
-                            approveWETH(
-                                "0xe2C0Ae988413afD7a1EDe13E6e386b9cd9bE9E12",
-                                "10000000000000000000"
-                            );
-                        }
-                    }
-                });
+            switch (chainId) {
+                case ChainId.Mainnet:
+                    await mainnetHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline);
+                    break;
+
+                // case ChainId.BSC:
+                case ChainId.Ropsten:
+                    await bscHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline);
+                    break;
+
+                default:
+                    break;
             }
         }
     }
