@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router";
 import "./App.css";
-import Charity from "./pages/charity";
-import Home from "./pages/home";
+// import Charity from "./pages/charity";
+// import Home from "./pages/home";
 import HowToBuy from "./pages/how_to_buy";
 import Swap from "./pages/swap";
 function App() {
@@ -15,13 +15,13 @@ function App() {
                 <HowToBuy />
             </Route>
 
-            <Route path="/charity">
+            {/* <Route path="/charity">
                 <Charity />
-            </Route>
+            </Route> */}
 
-            <Route path="/">
+            {/* <Route path="/">
                 <Home />
-            </Route>
+            </Route> */}
         </Switch>
     );
 }
