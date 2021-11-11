@@ -5,31 +5,9 @@ import FromInputField from "./FromInputField";
 import ToInputField from "./ToInputField";
 import SelectToken from "../select_token_card";
 import Pool from "./pool";
-import mainnetSwapAbi from "./mainnetSwapAbi.json";
-import bscSwapAbi from "./bscSwapAbi.json";
-import { Contract, utils } from "ethers";
-import { useContractFunction, useEthers, ChainId } from "@usedapp/core";
-
-export function initUniswapMainnetContract() {
-    const mainnetSwapInterface = new utils.Interface(mainnetSwapAbi);
-    return new Contract("0xe2C0Ae988413afD7a1EDe13E6e386b9cd9bE9E12", mainnetSwapInterface);
-}
-
-export function initPancakeSwapBSCContract() {
-    const bscSwapInterface = new utils.Interface(bscSwapAbi);
-    return new Contract("0xefcfcE917dFF09482A371acCC26d444c747d1D36", bscSwapInterface);
-}
-
-export function initApproveContract(tokenAddress) {
-    let abi = ["function approve(address _spender, uint256 _value) public returns (bool success)"];
-    const approveInterface = new utils.Interface(abi);
-    return new Contract(tokenAddress, approveInterface);
-}
-
-export function useContractMethod(contract, methodName) {
-    const { state, send } = useContractFunction(contract, methodName, {});
-    return { state, send };
-}
+import { utils } from "ethers";
+import { useEthers, ChainId } from "@usedapp/core";
+import { initUniswapMainnetContract, useContractMethod, initApproveContract, initPancakeSwapBSCContract } from "./swapHooks";
 
 const ConversionCard = ({
     changeScreen,
@@ -72,6 +50,7 @@ const ConversionCard = ({
         "approve"
     );
 
+    
     // Pancakswap Contract
     const pancakeSwapBSCContract = initPancakeSwapBSCContract();
     const { state: bscConvertBNBToExactLunaChowState, send: bscConvertBNBToExactLunaChow } =
@@ -161,6 +140,88 @@ const ConversionCard = ({
         }
     }
 
+    function approve(
+        currentSwapState,
+        _tokenIn,
+        approveToken,
+        approveNativeToken,
+        token,
+        nativeToken,
+        swapContract
+    ) {
+        console.log(currentSwapState);
+        if (
+            currentSwapState.errorMessage === "execution reverted: STF" ||
+            currentSwapState.errorMessage === "execution reverted: Insufficient allowance"
+        ) {
+            if (_tokenIn === token) {
+                approveToken(swapContract, "10000000000000000000");
+            } else if (_tokenIn === nativeToken) {
+                approveNativeToken(swapContract, "10000000000000000000");
+            }
+        }
+    }
+
+    async function mainnetHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline) {
+        if (fromInput["id"] === 1) {
+            await mainnetConvertEthToExactLunaChow(_amountOut, _deadline, {
+                value: _amountIn,
+            }).then(console.log(mainnetConvertEthToExactLunaChowState));
+        } else {
+            await mainnetConvertLunaChowToExactEth(
+                _tokenIn,
+                _tokenOut,
+                _amountIn,
+                _amountOut,
+                _deadline
+            ).then(() => {
+                approve(
+                    mainnetConvertLunaChowToExactEthState,
+                    _tokenIn,
+                    approveMainnetLunaChow,
+                    approveMainnetWETH,
+                    "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+                    "0xc778417E063141139Fce010982780140Aa0cD5Ab",
+                    "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                );
+            });
+        }
+    }
+
+    async function bscHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline) {
+        if (fromInput["id"] === 1) {
+            await bscConvertBNBToExactLunaChow(_tokenIn, _amountOut, _deadline, {
+                value: _amountIn,
+            }).then.console.log(bscConvertBNBToExactLunaChowState);
+        } else if (toInput["id"] === 1) {
+            await bscConvertLunaChowToExactBNB(_tokenIn, _amountIn, _amountOut, _deadline).then(
+                () => {
+                    approve(
+                        bscConvertLunaChowToExactBNBState,
+                        _tokenIn,
+                        approveBSCLunaChow,
+                        approveBSCWBNB,
+                        "0x442Be68395613bDCD19778e761f03261ec46C06D",
+                        "0xc778417E063141139Fce010982780140Aa0cD5Ab",
+                        "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                    );
+                }
+            );
+        } else {
+            await bscSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline).then(() => {
+                approve(
+                    bscSwapState,
+                    _tokenIn,
+                    approveBSCLunaChow,
+                    approveBSCWBNB,
+                    "0x442Be68395613bDCD19778e761f03261ec46C06D",
+                    "0xc778417E063141139Fce010982780140Aa0cD5Ab",
+                    "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                );
+            });
+        }
+    }
+
     async function handleSwap() {
         if (fromInput && toInput && fromTokenValue && toTokenValue) {
             // const _tokenIn = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984";
@@ -174,104 +235,12 @@ const ConversionCard = ({
             // console.log("deadline (min)", customTransactionDetail);
             switch (chainId) {
                 case ChainId.Mainnet:
-                    if (fromInput["id"] === 1) {
-                        await mainnetConvertEthToExactLunaChow(_amountOut, _deadline, {
-                            value: _amountIn,
-                        }).then(console.log(mainnetConvertEthToExactLunaChowState));
-                    } else {
-                        await mainnetConvertLunaChowToExactEth(
-                            _tokenIn,
-                            _tokenOut,
-                            _amountIn,
-                            _amountOut,
-                            _deadline
-                        ).then(() => {
-                            console.log(mainnetConvertLunaChowToExactEthState)
-                            if (
-                                mainnetConvertLunaChowToExactEthState.errorMessage ===
-                                    "execution reverted: STF" ||
-                                mainnetConvertLunaChowToExactEthState.errorMessage ===
-                                    "execution reverted: Insufficient allowance"
-                            ) {
-                                if (_tokenIn === "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984") {
-                                    approveMainnetLunaChow(
-                                        "0xe2C0Ae988413afD7a1EDe13E6e386b9cd9bE9E12",
-                                        "10000000000000000000"
-                                    );
-                                } else if (
-                                    _tokenIn === "0xc778417E063141139Fce010982780140Aa0cD5Ab"
-                                ) {
-                                    approveMainnetWETH(
-                                        "0xe2C0Ae988413afD7a1EDe13E6e386b9cd9bE9E12",
-                                        "10000000000000000000"
-                                    );
-                                }
-                            }
-                        });
-                    }
+                    await mainnetHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline);
                     break;
 
                 // case ChainId.BSC:
                 case ChainId.Ropsten:
-                    if (fromInput["id"] === 1) {
-                        await bscConvertBNBToExactLunaChow(_tokenIn, _amountOut, _deadline, {
-                            value: _amountIn,
-                        }).then.console.log(bscConvertBNBToExactLunaChowState);
-                    } else if (toInput["id"] === 1) {
-                        await bscConvertLunaChowToExactBNB(
-                            _tokenIn,
-                            _amountIn,
-                            _amountOut,
-                            _deadline
-                        ).then(() => {
-                            console.log(bscConvertLunaChowToExactBNBState);
-                            if (
-                                bscConvertLunaChowToExactBNBState.errorMessage ===
-                                    "execution reverted: STF" ||
-                                bscConvertLunaChowToExactBNBState.errorMessage ===
-                                    "execution reverted: Insufficient allowance"
-                            ) {
-                                if (_tokenIn === "0x442Be68395613bDCD19778e761f03261ec46C06D") {
-                                    approveBSCLunaChow(
-                                        "0xefcfcE917dFF09482A371acCC26d444c747d1D36",
-                                        "10000000000000000000"
-                                    );
-                                } else if (
-                                    _tokenIn === "0xc778417E063141139Fce010982780140Aa0cD5Ab"
-                                ) {
-                                    approveBSCWBNB(
-                                        "0xefcfcE917dFF09482A371acCC26d444c747d1D36",
-                                        "10000000000000000000"
-                                    );
-                                }
-                            }
-                        });
-                    } else {
-                        await bscSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline).then(
-                            () => {
-                                console.log(bscSwapState);
-                                if (
-                                    bscSwapState.errorMessage === "execution reverted: STF" ||
-                                    bscSwapState.errorMessage ===
-                                        "execution reverted: Insufficient allowance"
-                                ) {
-                                    if (_tokenIn === "0x442Be68395613bDCD19778e761f03261ec46C06D") {
-                                        approveBSCLunaChow(
-                                            "0xefcfcE917dFF09482A371acCC26d444c747d1D36",
-                                            "10000000000000000000"
-                                        );
-                                    } else if (
-                                        _tokenIn === "0xc778417E063141139Fce010982780140Aa0cD5Ab"
-                                    ) {
-                                        approveBSCWBNB(
-                                            "0xefcfcE917dFF09482A371acCC26d444c747d1D36",
-                                            "10000000000000000000"
-                                        );
-                                    }
-                                }
-                            }
-                        );
-                    }
+                    await bscHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline);
                     break;
 
                 default:
