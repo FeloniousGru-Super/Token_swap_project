@@ -1,5 +1,6 @@
 import React from "react";
 import MyNavLink from "./nav_link";
+import MyNavLinkDropdown from "./nav_link_dropdown";
 
 const NavbarLinks = ({ homepage = false }) => {
     return (
@@ -11,34 +12,39 @@ const NavbarLinks = ({ homepage = false }) => {
             </li>
 
             <li>
-                <MyNavLink homepage={homepage} to={"about_section"}>
-                    About
-                </MyNavLink>
+                <MyNavLinkDropdown
+                    title="About"
+                    links={[<MyNavLink>About us</MyNavLink>, <MyNavLink>How to buy</MyNavLink>]}
+                />
             </li>
 
             <li>
-                <a
-                    href="/how-to-buy"
-                    className="font-medium text-lg  py-2 px-4"
-                >
-                    How to Buy
-                </a>
+                <MyNavLinkDropdown
+                    title="Earn"
+                    links={[<MyNavLink>Stake</MyNavLink>, <MyNavLink>Farm</MyNavLink>]}
+                />
             </li>
 
             <li>
-                <a
-                    href="#marketplace_section"
-                    className="font-medium text-lg  py-2 px-4"
-                >
-                    Marketplace
-                </a>
+                <MyNavLinkDropdown
+                    title="Win"
+                    links={[<MyNavLink>Lottery</MyNavLink>, <MyNavLink>Prediction</MyNavLink>]}
+                />
             </li>
 
             <li>
-                <a
-                    href="#charity_section"
-                    className="font-medium text-lg  py-2 px-4"
-                >
+                <MyNavLinkDropdown
+                    title="Marketplace"
+                    links={[
+                        <MyNavLink>NFT</MyNavLink>,
+                        <MyNavLink>Merch</MyNavLink>,
+                        <MyNavLink>Swap</MyNavLink>,
+                    ]}
+                />
+            </li>
+
+            <li>
+                <a href="#charity_section" className="font-medium text-lg  py-2 px-4">
                     Charity
                 </a>
             </li>
@@ -50,18 +56,14 @@ const NavbarLinks = ({ homepage = false }) => {
             </li>
 
             <li>
-                <MyNavLink homepage={homepage} to={"contact_section"}>
-                    Contact us
-                </MyNavLink>
-            </li>
-
-            <li>
-                <a
-                    href="#more_section"
-                    className="font-medium text-lg  py-2 px-4"
-                >
-                    More
-                </a>
+                <MyNavLinkDropdown
+                    title="More"
+                    links={[
+                        <MyNavLink>Blog</MyNavLink>,
+                        <MyNavLink>FAQ</MyNavLink>,
+                        <MyNavLink>Contact Us</MyNavLink>,
+                    ]}
+                />
             </li>
         </ul>
     );

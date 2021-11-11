@@ -7,9 +7,11 @@ import homepage_content from "../../static/content/content";
 const What = () => {
     const settings = {
         dots: true,
-        infinite: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         responsive: [
             {
@@ -66,7 +68,7 @@ const What = () => {
                     <Slider {...settings}>
                         {homepage_content.what_section_slider.map((what) => (
                             <div className="p-2">
-                                <div className="px-8 py-12 bg-primary rounded-8xl space-y-4" style={{minHeight: '360px'}}>
+                                <div className="px-10 py-12 bg-primary rounded-8xl space-y-4" style={{minHeight: '340px'}}>
                                     <h3 className="font-medium text-primary-darker text-center text-lg">
                                         {what.tite}
                                     </h3>

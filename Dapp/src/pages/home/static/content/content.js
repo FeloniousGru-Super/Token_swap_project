@@ -66,10 +66,6 @@ const homepage_content = {
             img: require("./featured_section_images/london_daily.png").default,
             desc: "LunaChow draws inspiration from community-driven projects like Dogecoin and Shiba Inu while delivering unprecedented levels of integrity and value. After a thorough analysis of the emerging cryptographic and economic mechanisms available in the industry.",
         },
-        {
-            img: require("./featured_section_images/market_watch.png").default,
-            desc: "LunaChow draws inspiration from community-driven projects like Dogecoin and Shiba Inu while delivering unprecedented levels of integrity and value. After a thorough analysis of the emerging cryptographic and economic mechanisms available in the industry.",
-        },
     ],
     news: [
         {

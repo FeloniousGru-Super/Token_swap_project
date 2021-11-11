@@ -31,25 +31,10 @@ const Tokenomics = () => {
                     </p>
 
                     <div className="pt-32 flex justify-center ">
-                        <div>
+                        <div className="max-w-2xl">
                             <img src={pieChart} alt="" className="" />
                         </div>
-                        {/* <Pie3D data={data} config={config}/> */}
-
-                        {/* <PieChart
-                            height="600px"
-                            data={[
-                                ["Vitalik Buterin", 5],
-                                ["Team", 10],
-                                ["Liquidity Pool", 30],
-                                ["Burned", 15],
-                            ]}
-                            donut={true}
-                            colors={colors}
-                            legend={true}
-                            suffix="%"
-                            
-                        /> */}
+                        
                     </div>
                 </div>
             </div>
