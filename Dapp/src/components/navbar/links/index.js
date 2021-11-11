@@ -44,7 +44,7 @@ const NavbarLinks = ({ homepage = false }) => {
             </li>
 
             <li>
-                <a href="#charity_section" className="font-medium text-lg  py-2 px-4">
+                <a href="/charity" className="font-medium text-lg  py-2 px-4">
                     Charity
                 </a>
             </li>
