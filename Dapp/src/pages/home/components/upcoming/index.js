@@ -7,8 +7,10 @@ import polygon from "../../static/polygon.png";
 const Upcoming = () => {
     const settings = {
         dots: true,
-        infinite: false,
-        speed: 500,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        
         slidesToShow: 3,
         slidesToScroll: 1,
         responsive: [
@@ -104,27 +106,7 @@ const Upcoming = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="py-16 px-2">
-                            <div className="px-8 pb-8 bg-primary-dark rounded-3xl text-center relative" style={{ height: '260px'}}>
-                                <div className="flex justify-center relative -top-10">
-                                    <img
-                                        src={polygon}
-                                        alt=""
-                                        className="w-32 h-32"
-                                        style={{
-                                            filter: "drop-shadow(-15px 15px 20px rgba(0,0,0,.5))",
-                                        }}
-                                    />
-                                </div>
-                                <h4 className="text-primary-darker text-lg">
-                                    Lunachow now on Polygon Chain
-                                </h4>
-                                <p className="text-white">
-                                    LUCHOW is now available on Polygon
-                                    blockchain.{" "}
-                                </p>
-                            </div>
-                        </div>
+                        
                     </Slider>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-scroll";
 
-const MyNavLink = ({ homepage, to, children }) => {
+const MyNavLink = ({ homepage = false, to = "", children }) => {
     return (
         <>
             {homepage ? (

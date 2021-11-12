@@ -10,8 +10,7 @@ const Roadmap = () => {
                 <div className=" space-y-8">
                     <h2 className="text-center text-4xl font-bold text-primary">Roadmap</h2>
                     <p className="text-center max-w-md mx-auto text-lg text-gray-600">
-                        The Revolutionary LunaChow Burn Structure at launch –
-                        Burn now, Not Later!
+                        Our Roadmap is just the beginning of our journey, not the destination.
                     </p>
 
                     <div className="max-w-md mx-auto">
@@ -23,7 +22,7 @@ const Roadmap = () => {
                     </div>
 
                     <div className="p-8 space-y-4 md:p-0 md:space-y-0 md:flex md:justify-center lg:gap-44 relative lg:-top-20">
-                        <div className="md:w-1/4 relative md:-top-32">
+                        <div className="md:w-2/4 relative md:-top-32">
                             <h3 className="text-lg font-medium ">Phase 1</h3>
                             <ul className="text-gray-600">
                                 <ListItem checked={true}>Token Launch</ListItem>
@@ -33,7 +32,7 @@ const Roadmap = () => {
                             </ul>
                         </div>
 
-                        <div className="md:w-1/4 ">
+                        <div className="md:w-2/4 ">
                             <h3 className="text-lg font-medium">Phase 2</h3>
                             <ul className="text-gray-600">
                                 <ListItem checked={true}>List on CoinMarketCap</ListItem>
@@ -43,7 +42,7 @@ const Roadmap = () => {
                             </ul>
                         </div>
 
-                        <div className="md:w-1/4 relative md:-top-32">
+                        <div className="md:w-2/4 relative md:-top-32">
                             <h3 className="text-lg font-medium">Phase 3</h3>
                             <ul className="text-gray-600">
                                 <ListItem>Third Party Auditing of Contract</ListItem>
@@ -58,8 +57,7 @@ const Roadmap = () => {
                             <ul className="text-gray-600">
                                 <ListItem>Exchange App Development - Stage 1</ListItem>
                                 <ListItem>Global multimedia marketing push</ListItem>
-                                <ListItem>Partnership with Payment System Providers - CoinPayments etc</ListItem>
-                                <ListItem>Token Launch</ListItem>
+                                <ListItem>Partnership with Payment System Provider (CoinPayments etc)</ListItem>
                             </ul>
                         </div>
                     </div>

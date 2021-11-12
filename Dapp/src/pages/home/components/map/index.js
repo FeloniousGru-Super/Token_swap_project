@@ -6,7 +6,7 @@ const Map = () => {
     return (
         <div
             className=" max-w-screen-lgxl min-h-screen container mx-auto flex items-center justify-around"
-            style={{ backgroundImage: `url(${map})`, backgroundSize: "cover" }}
+            style={{ backgroundImage: `url(${map})`, backgroundSize: "contain", backgroundRepeat: "no-repeat" }}
         >
             <div
                 className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center "
@@ -42,8 +42,34 @@ const Map = () => {
                 }}
             >
                 <div className="relative -top-1 -left-1 text-center">
-                    <h4 className="text-2xl font-medium">Holder</h4>
-                    <p className="text-center">2,682,322</p>
+                    <h4 className="text-2xl font-medium">Burned</h4>
+                    <p className="text-center">426.32945 TR</p>
+                </div>
+            </div>
+
+            <div
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center "
+                style={{
+                    backgroundImage: `url(${background})`,
+                    backgroundSize: "contain",
+                }}
+            >
+                <div className="relative -top-1 -left-1 text-center">
+                    <h4 className="text-2xl font-medium">Circulating</h4>
+                    <p className="text-center">573.67055 TR</p>
+                </div>
+            </div>
+
+            <div
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center "
+                style={{
+                    backgroundImage: `url(${background})`,
+                    backgroundSize: "contain",
+                }}
+            >
+                <div className="relative -top-1 -left-1 text-center">
+                    <h4 className="text-2xl font-medium">Market Cap</h4>
+                    <p className="text-center">$1.28502 B</p>
                 </div>
             </div>
         </div>

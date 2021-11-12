@@ -33,8 +33,10 @@ const AsSeen = () => {
     ];
 
     const settings = {
-        dots: false,
-        infinite: false,
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        infinite: true,
         speed: 300,
         slidesToShow: 5,
         prevArrow: <PrevButton />,
@@ -73,12 +75,9 @@ export default AsSeen;
 
 const PrevButton = ({ onClick, className, style }) => {
     return (
-        <button
-            onClick={onClick}
-            className={`${className} -mt-7`}
-            style={{ ...style}}>
+        <button onClick={onClick} className={`${className} -mt-7`} style={{ ...style }}>
             <span className="text-primary">
-                <GrPrevious size={28}/>
+                <GrPrevious size={28} />
             </span>
         </button>
     );
@@ -86,10 +85,7 @@ const PrevButton = ({ onClick, className, style }) => {
 
 const NextButton = ({ onClick, className, style }) => {
     return (
-        <button
-            onClick={onClick}
-            className={`${className} -mt-7`}
-            style={{ ...style }}>
+        <button onClick={onClick} className={`${className} -mt-7`} style={{ ...style }}>
             <p className="text-primary">
                 <GrNext size={28} />
             </p>
