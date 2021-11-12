@@ -18,7 +18,7 @@ const CoreValues = () => {
                 <div className="text-center space-y-4">
                     <h2 className="font-bold text-4xl text-primary">Core Values</h2>
                     <p className="text-center max-w-md mx-auto text-gray-600">
-                        The Revolutionary LunaChow Burn Structure at launch – Burn now, Not Later!
+                        Our guiding principles and fundamental beliefs.
                     </p>
                 </div>
 

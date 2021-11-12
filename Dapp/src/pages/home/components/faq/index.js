@@ -25,8 +25,7 @@ const FAQ = () => {
                         Frequently Asked Questions
                     </h2>
                     <p className="text-lg max-w-sm mx-auto text-gray-600">
-                        The revolutionary LunaChow burn structure at launch -
-                        Burn now, not later!
+                        Below you will find the most popular questions about LunaChow. For additional information, please reach out to the team!
                     </p>
 
                     <div className="space-y-4">

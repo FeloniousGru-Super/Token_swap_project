@@ -42,8 +42,34 @@ const Map = () => {
                 }}
             >
                 <div className="relative -top-1 -left-1 text-center">
-                    <h4 className="text-2xl font-medium">Holder</h4>
-                    <p className="text-center">5,682,322</p>
+                    <h4 className="text-2xl font-medium">Burned</h4>
+                    <p className="text-center">426.32945 TR</p>
+                </div>
+            </div>
+
+            <div
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center "
+                style={{
+                    backgroundImage: `url(${background})`,
+                    backgroundSize: "contain",
+                }}
+            >
+                <div className="relative -top-1 -left-1 text-center">
+                    <h4 className="text-2xl font-medium">Circulating</h4>
+                    <p className="text-center">573.67055 TR</p>
+                </div>
+            </div>
+
+            <div
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center "
+                style={{
+                    backgroundImage: `url(${background})`,
+                    backgroundSize: "contain",
+                }}
+            >
+                <div className="relative -top-1 -left-1 text-center">
+                    <h4 className="text-2xl font-medium">Market Cap</h4>
+                    <p className="text-center">$1.28502 B</p>
                 </div>
             </div>
         </div>

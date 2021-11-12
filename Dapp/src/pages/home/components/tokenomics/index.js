@@ -30,8 +30,8 @@ const Tokenomics = () => {
                         Burn now, not later!
                     </p>
 
-                    <div className="pt-32 flex justify-center ">
-                        <div className="max-w-2xl">
+                    <div className="pt-12 flex justify-center">
+                        <div className="max-w-3xl">
                             <img src={pieChart} alt="" className="" />
                         </div>
                         
