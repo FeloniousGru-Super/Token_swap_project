@@ -55,7 +55,7 @@ const Footer = () => {
                     </div>
 
                     <div className="space-y-3">
-                        <h3 className="font-medium text-center">Service</h3>
+                        <h3 className="font-medium">Service</h3>
                         <ul className="space-y-1">
                             <li>
                                 <a href="#" className="text-gray-700">

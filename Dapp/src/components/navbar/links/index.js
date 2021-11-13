@@ -14,7 +14,8 @@ const NavbarLinks = ({ homepage = false }) => {
             <li>
                 <MyNavLinkDropdown
                     title="About"
-                    links={[<MyNavLink>About us</MyNavLink>, <MyNavLink>How to buy</MyNavLink>]}
+                    links={[<a href="/about-us" className="text-lg md:text-lg font-medium ">About us</a>,
+                    <a href="/how-to-buy" className="text-lg md:text-lg font-medium ">How to buy</a>]}
                 />
             </li>
 
@@ -38,7 +39,7 @@ const NavbarLinks = ({ homepage = false }) => {
                     links={[
                         <MyNavLink>NFT</MyNavLink>,
                         <MyNavLink>Merch</MyNavLink>,
-                        <MyNavLink>Swap</MyNavLink>,
+                        <a href="/swap" className="text-lg md:text-lg font-medium">Swap</a>,
                     ]}
                 />
             </li>
@@ -60,8 +61,8 @@ const NavbarLinks = ({ homepage = false }) => {
                     title="More"
                     links={[
                         <MyNavLink>Blog</MyNavLink>,
-                        <MyNavLink>FAQ</MyNavLink>,
-                        <MyNavLink>Contact Us</MyNavLink>,
+                        <MyNavLink homepage={homepage} to={"faq_section"}>FAQ</MyNavLink>,
+                        <MyNavLink homepage={homepage} to={"contact_section"}>Contact Us</MyNavLink>,
                     ]}
                 />
             </li>

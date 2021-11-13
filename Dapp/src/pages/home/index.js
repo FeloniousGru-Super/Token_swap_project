@@ -103,7 +103,7 @@ const Home = () => {
                                         </a>
 
                                         <a
-                                            href="/swap"
+                                            href="/swap" target="_blank"
                                             className="block text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
                                             Swap
                                         </a>
