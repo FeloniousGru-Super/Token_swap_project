@@ -6,8 +6,8 @@ const MyNavLinkDropdown = ({ title, links }) => {
 
     return (
         <div onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
-            <button className="font-medium text-lg px-4 flex items-center gap-2">
-                {title}
+            <button className="font-medium text-lg px-4 flex items-center justify-center w-full gap-2">
+                <span>{title}</span>
                 <span className="">
                     <BiChevronDown />
                 </span>

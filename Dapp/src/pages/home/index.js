@@ -35,6 +35,7 @@ const Home = () => {
             <Navbar homepage={true} />
             <div className="min-h-screen" id="section1">
                 <div className="bg-primary-grayed rounded-br-16xl">
+
                     <div className="hero overflow-hidden bg-secondary-light rounded-br-16xl">
                         <div
                             className="max-w-screen-lgxl container mx-auto relative px-8 md:px-0"
@@ -132,10 +133,11 @@ const Home = () => {
                                         className="object-cover drop-shadow-2xl relative transform scale-125"
                                     />
                                 </div>
+                                
                             </div>
                         </div>
 
-                        <div className="relative h-40">
+                        <div className="relative h-8">
                             <div className="absolute -bottom-40 -left-20 w-full">
                                 <img src={pattern} alt="" style={{ transform: "scaleY(-1)" }} />
                             </div>
