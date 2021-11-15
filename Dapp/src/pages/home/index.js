@@ -35,7 +35,6 @@ const Home = () => {
             <Navbar homepage={true} />
             <div className="min-h-screen" id="section1">
                 <div className="bg-primary-grayed rounded-br-16xl">
-
                     <div className="hero overflow-hidden bg-secondary-light rounded-br-16xl">
                         <div
                             className="max-w-screen-lgxl container mx-auto relative px-8 md:px-0"
@@ -47,8 +46,11 @@ const Home = () => {
                                             Community Driven
                                         </span>
                                         <span className="block text-4xl md:text-6xl font-nomal text-gray-800">
-                                            Decentralized  
-                                            <span className="text-4xl md:text-6xl font-nomal text-yellow-600"> Protocol</span>
+                                            Decentralized
+                                            <span className="text-4xl md:text-6xl font-nomal text-yellow-600">
+                                                {" "}
+                                                Protocol
+                                            </span>
                                         </span>
                                     </h2>
                                     <div className="flex flex-wrap justify-between gap-1">
@@ -57,8 +59,14 @@ const Home = () => {
                                                 <div className="w-6">
                                                     <img src={contract.img} alt="" />
                                                 </div>
-                                                <span>{contract.text}</span>
-                                                <CopyToClipboard text={contract.text}>
+                                                <span>
+                                                    {contract.licence.substr(0, 6)}...
+                                                    {contract.licence.substr(
+                                                        contract.licence.length - 9
+                                                    )}
+                                                    
+                                                </span>
+                                                <CopyToClipboard text={contract.licence}>
                                                     <button className="rounded hover:bg-primary-dark focus:bg-primary-darker">
                                                         <MdCopyAll size={22} />
                                                     </button>
@@ -72,8 +80,12 @@ const Home = () => {
                                                 <div className="w-6">
                                                     <img src={contract.img} alt="" />
                                                 </div>
-                                                <span>{contract.text}</span>
-                                                <CopyToClipboard text={contract.text}>
+                                                <span>
+                                                    {contract.licence.substr(0, 6)}...
+                                                    {contract.licence.substr(
+                                                        contract.licence.length - 9
+                                                    )}</span>
+                                                <CopyToClipboard text={contract.licence}>
                                                     <button className="rounded hover:bg-primary-dark focus:bg-primary-darker">
                                                         <MdCopyAll size={22} />
                                                     </button>
@@ -104,7 +116,8 @@ const Home = () => {
                                         </a>
 
                                         <a
-                                            href="/swap" target="_blank"
+                                            href="/swap"
+                                            target="_blank"
                                             className="block text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
                                             Swap
                                         </a>
@@ -134,7 +147,6 @@ const Home = () => {
                                         className="object-cover drop-shadow-2xl relative transform scale-125"
                                     />
                                 </div>
-                                
                             </div>
                         </div>
 
@@ -151,7 +163,8 @@ const Home = () => {
                                 Buy $LUCHOW
                             </h2>
                             <p className="text-center md:text-left text-2xl text-gray-600 max-w-md">
-                                You can buy $LUCHOW on Uniswap, Pancakeswap, Quickswap, Dexlab, Sushiswap, 1inch.
+                                You can buy $LUCHOW on Uniswap, Pancakeswap, Quickswap, Dexlab,
+                                Sushiswap, 1inch.
                             </p>
                         </div>
 

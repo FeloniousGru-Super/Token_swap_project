@@ -1,30 +1,37 @@
+const invisibleCharatercs = "​​";
 const homepage_content = {
     contracts_1: [
         {
             img: "https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg",
             text: "0xAdFF...54yTd7U83",
+            licence: "0xa5ef74068d04ba0809b7379dd76af5ce34ab7c57",
         },
         {
-            img: require('./contracts_images/2.png').default,
+            img: require("./contracts_images/2.png").default,
             text: "0xAdFF...54yTd7U83",
+            licence: "0xe4e8e6878718bfe533702d4a6571eb74d79b0915",
         },
         {
-            img: require('./contracts_images/3.png').default,
+            img: require("./contracts_images/3.png").default,
             text: "0xAdFF...54yTd7U83",
+            licence: "0xc4bb7277a74678f053259cb1f96140347efbfd46",
         },
     ],
     contracts_2: [
         {
-            img: require('./contracts_images/4.png').default,
+            img: require("./contracts_images/4.png").default,
             text: "0xAdFF...54yTd7U83",
+            licence: "0x7BEB05cf5681f402E762F8569c2Fc138a2172978",
         },
         {
-            img: require('./contracts_images/5.png').default,
+            img: require("./contracts_images/5.png").default,
             text: "0xAdFF...54yTd7U83",
+            licence: "3mZMtzsr11srDX7jdpkacsxAo1Na5H4kqepxehjhTkLE",
         },
         {
-            img: require('./contracts_images/6.png').default,
+            img: require("./contracts_images/6.png").default,
             text: "0xAdFF...54yTd7U83",
+            licence: "0x65e66a61d0a8f1e686c2d6083ad611a10d84d97a",
         },
     ],
     what_section_slider: [
@@ -53,19 +60,19 @@ const homepage_content = {
         {
             img: require("./featured_section_images/market_watch.png").default,
             desc: "To counteract these potential threats, many projects burn tokens at the launch or periodically to deliver value to shareholders. LunaChow leverages this approach in a unique way. By burning 99.9% of the initial supply, LunaChow fairly and immediately delivers years-worth of value",
+            link: "https://www.marketwatch.com/press-release/lunachow-what-makes-a-cryptocurrency-launch-fair-2021-08-25",
         },
         {
             img: require("./featured_section_images/yahoo_finance.png").default,
-            desc: "The newly launched token is revolutionizing the crypto space with its community-based approach to development and its aggressive burn structure that benefits investors from project launch. LunaChow, a new de-fi            ",
+            desc: "The newly launched token is revolutionizing the crypto space with its community-based approach to development and its aggressive burn structure that benefits investors from project launch. LunaChow, a new de-fi",
+            link: "https://finance.yahoo.com/news/lunachow-makes-waves-first-token-120000580.html",
         },
         {
             img: require("./featured_section_images/london_daily.png").default,
             desc: "LunaChow draws inspiration from community-driven projects like Dogecoin and Shiba Inu while delivering unprecedented levels of integrity and value. After a thorough analysis of the emerging cryptographic and economic mechanisms available in the industry.",
+            link: "https://www.bloomberg.com/press-releases/2021-09-17/lunachow-makes-waves-as-the-first-token-for-the-masses-by-the-masses",
         },
-        {
-            img: require("./featured_section_images/london_daily.png").default,
-            desc: "LunaChow draws inspiration from community-driven projects like Dogecoin and Shiba Inu while delivering unprecedented levels of integrity and value. After a thorough analysis of the emerging cryptographic and economic mechanisms available in the industry.",
-        },
+        
     ],
     news: [
         {
