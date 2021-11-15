@@ -46,8 +46,9 @@ const Home = () => {
                                         <span className="font-medium text-4xl md:text-6xl text-primary uppercase">
                                             Community Driven
                                         </span>
-                                        <span className="block text-4xl md:text-6xl font-light">
-                                            Decentralized Protocol
+                                        <span className="block text-4xl md:text-6xl font-nomal text-gray-800">
+                                            Decentralized  
+                                            <span className="text-4xl md:text-6xl font-nomal text-yellow-600"> Protocol</span>
                                         </span>
                                     </h2>
                                     <div className="flex flex-wrap justify-between gap-1">
@@ -103,7 +104,7 @@ const Home = () => {
                                         </a>
 
                                         <a
-                                            href="/swap"
+                                            href="/swap" target="_blank"
                                             className="block text-center w-1/2 rounded-full py-3 px-4 bg-gradient-to-b from-yellow-500 to-yellow-600 font-medium text-white">
                                             Swap
                                         </a>
@@ -150,7 +151,7 @@ const Home = () => {
                                 Buy $LUCHOW
                             </h2>
                             <p className="text-center md:text-left text-2xl text-gray-600 max-w-md">
-                                You can buy $LUCHOW Token from Uniswap, Pancake Swap & Dexlabs
+                                You can buy $LUCHOW on Uniswap, Pancakeswap, Quickswap, Dexlab, Sushiswap, 1inch.
                             </p>
                         </div>
 
@@ -162,19 +163,19 @@ const Home = () => {
                                 <a href="https://pancakeswap.finance/swap">
                                     <img src={cat} alt="" className="w-32" />
                                 </a>
-                                <a href="https://dexlabs.app/">
+                                <a href="https://trade.dexlab.space/#/swap">
                                     <img src={experiment} alt="" className="w-32" />
                                 </a>
                             </div>
                             <div className="flex justify-center gap-4">
-                                <a href="https://app.uniswap.org/#/swap">
-                                    <img src={unicorn_2} alt="" className="w-32" />
-                                </a>
-                                <a href="https://pancakeswap.finance/swap">
+                                <a href="https://quickswap.exchange/#/swap">
                                     <img src={dragon} alt="" className="w-32" />
                                 </a>
-                                <a href="https://dexlabs.app/">
+                                <a href="https://app.sushi.com/swap">
                                     <img src={drum} alt="" className="w-32" />
+                                </a>
+                                <a href="https://app.1inch.io/#/1/swap/ETH/DAI">
+                                    <img src={unicorn_2} alt="" className="w-32" />
                                 </a>
                             </div>
                         </div>

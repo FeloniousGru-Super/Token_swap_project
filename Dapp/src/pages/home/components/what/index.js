@@ -50,13 +50,15 @@ const What = () => {
                     <h2 className="text-4xl font-bold text-primary">
                         What is{" "}
                         <span className="uppercase text-yellow-500">
-                            $Luchow
+                            Luchow
                         </span>{" "}
-                        Token
+                        Token?
                     </h2>
                     <p className="text-lg text-gray-600">
-                        The revolutionary LunaChow burn structure at launch -
-                        Burn now, not later!
+                        Decentralized protocol on Ethereum network. 
+                    </p>
+                    <p className="text-lg text-gray-600">
+                        The world's first token with the most aggressive burn structure.
                     </p>
                 </div>
 
@@ -72,7 +74,7 @@ const What = () => {
                                     <h3 className="font-medium text-primary-darker text-center text-lg">
                                         {what.tite}
                                     </h3>
-                                    <p className="text-white text-sm">
+                                    <p className="text-white text-md">
                                         {what.text}
                                     </p>
                                 </div>

@@ -49,31 +49,31 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        <div className="space-y-3">
-                            <h3 className="font-medium">Service</h3>
-                            <ul className="space-y-1">
-                                <li>
-                                    <a href="#" className="text-gray-700">
-                                        Swap
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-700">
-                                        Stake
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-700">
-                                        NFT
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-700">
-                                        Donate
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div className="space-y-3">
+                        <h3 className="font-medium">Service</h3>
+                        <ul className="space-y-1">
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    Swap
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    Stake
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    NFT
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    Donate
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
                         <div className="space-y-3">
                             <h3 className="font-medium">Legal</h3>
