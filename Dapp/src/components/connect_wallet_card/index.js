@@ -8,13 +8,13 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 
 const ConnectWallet = ({ changeScreen, accountAddress, setAccountAddress }) => {
     const { activateBrowserWallet, account, chainId } = useEthers();
-    const [switchBtn, setSwitchBtn] = useState(chainId == 1 ? 1 : 0);
+    const [switchBtn, setSwitchBtn] = useState(chainId === 1 ? 1 : 0);
     const etherBalance = useEtherBalance(account);
 
     useEffect(() => {
         // activateBrowserWallet();
         console.log('etherBalance', etherBalance);
-    }, []);
+    });
 
     function handleConnectWallet(){
         activateBrowserWallet();

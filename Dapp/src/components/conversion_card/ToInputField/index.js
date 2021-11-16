@@ -1,6 +1,6 @@
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
-const To = ({ onTokenChangeClick, toInput, input = true, onChange }) => {
+const To = ({ onTokenChangeClick, toInput, input = true, toTokenValue, handlePrices }) => {
     return (
         <div className="rounded-8xl py-6 px-10 border-2 border-primary">
             <label htmlFor="" className="p-1 text-sm font-bold block text-primary">
@@ -10,8 +10,7 @@ const To = ({ onTokenChangeClick, toInput, input = true, onChange }) => {
             <div className="py-2 rounded flex items-center gap-4">
                 <div
                     className="hover:bg-red-300 px-1 py-2 rounded cursor-pointer flex items-center gap-2 select-none"
-                    onClick={onTokenChangeClick}
-                >
+                    onClick={onTokenChangeClick}>
                     {!!toInput && (
                         <div className="logo w-8">
                             <img src={toInput.img} alt="" />
@@ -24,8 +23,10 @@ const To = ({ onTokenChangeClick, toInput, input = true, onChange }) => {
                 </div>
                 {input && (
                     <input
-                        onInput={val => onChange(val.target.value)}
+                        onInput={(val) => handlePrices("to", Number(val.target.value))}
                         type="number"
+                        value={Number(toTokenValue.toString())}
+                        // value={toTokenValue === undefined ? 0.0 : (toTokenValue.toString().length <= 6 ? toTokenValue : toTokenValue.toFixed(6 + Number(toTokenValue.toString().split("-")[1])))}
                         placeholder="0.0"
                         className="bg-primary-muted flex-grow p-2 text-right text-lg font-bold placeholder-black"
                     />

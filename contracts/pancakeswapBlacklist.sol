@@ -131,12 +131,12 @@ interface IUniswapV2Factory {
 contract tokenSwap {
     
     //address of the uniswap v2 router
-    address private constant UNISWAP_V2_ROUTER = 0x10ED43C718714eb63d5aA57B78B54704E256024E;
+    address private constant UNISWAP_V2_ROUTER = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D;
     
     //address of WETH token.  This is needed because some times it is better to trade through WETH.  
     //you might get a better price using WETH.  
     //example trading from token A to WETH then WETH to token B might result in a better price
-    address private constant WETH = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
+    address private constant WETH = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
     
     SwapController public controllerTokenAddress;
 
@@ -235,6 +235,30 @@ contract tokenSwap {
         
         uint256[] memory amountOutMins = IUniswapV2Router02(UNISWAP_V2_ROUTER).getAmountsOut(_amountIn, path);
         return amountOutMins[path.length -1];  
+    }  
+    
+    //this function will return the minimum amount from a swap
+    //input the 3 parameters below and it will return the minimum amount out
+    //this is needed for the swap function above
+    function getAmountInMin(address _tokenIn, address _tokenOut, uint256 _amountOut) external view returns (uint256) {
+
+        //path is an array of addresses.
+        //this path array will have 3 addresses [tokenIn, WETH, tokenOut]
+        //the if statement below takes into account if token in or token out is WETH.  then the path is only 2 addresses
+        address[] memory path;
+        if (_tokenIn == WETH || _tokenOut == WETH) {
+            path = new address[](2);
+            path[0] = _tokenIn;
+            path[1] = _tokenOut;
+        } else {
+            path = new address[](3);
+            path[0] = _tokenIn;
+            path[1] = WETH;
+            path[2] = _tokenOut;
+        }
+        
+        uint256[] memory amountInMins = IUniswapV2Router02(UNISWAP_V2_ROUTER).getAmountsIn(_amountOut, path);
+        return amountInMins[0];  
     }  
     
     // important to receive ETH
