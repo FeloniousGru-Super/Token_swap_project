@@ -12,7 +12,7 @@ const Footer = () => {
     return (
         <div className="bg-secondary-light py-12">
             <div className="max-w-screen-lgxl container mx-auto p-8 md:p-12 space-y-8">
-                <div className="md:flex flex-wrap gap-8 justify-between space-y-8">
+                <div className="md:flex flex-wrap gap-4 justify-between space-y-8">
                     <div className="flex gap-6">
                         <div>
                             <img
@@ -28,7 +28,7 @@ const Footer = () => {
                                     Lunachow
                                 </h2>
                             </div>
-                            <p className="w-80 text-gray-500">
+                            <p className="md:w-80 text-gray-500">
                                 LUNACHOW is a decentralized digital currency
                                 that can be used as a medium of exchange or to
                                 facilitate a trade. It is a border less
@@ -47,14 +47,10 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a href="#" className="text-gray-700">
-                                    Terms and Conditions
+                                    Roadmap
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    Privacy Policy
-                                </a>
-                            </li>
+                            
                         </ul>
                     </div>
 
@@ -63,12 +59,17 @@ const Footer = () => {
                         <ul className="space-y-1">
                             <li>
                                 <a href="#" className="text-gray-700">
-                                    Buy Crypto
+                                    Swap
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-gray-700">
-                                    Buy NFT
+                                    Stake
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    NFT
                                 </a>
                             </li>
                             <li>
@@ -80,13 +81,8 @@ const Footer = () => {
                     </div>
 
                     <div className="space-y-3">
-                        <h3 className="font-medium">Support</h3>
+                        <h3 className="font-medium">Legal</h3>
                         <ul className="space-y-1">
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    About Us
-                                </a>
-                            </li>
                             <li>
                                 <a href="#" className="text-gray-700">
                                     Terms and Conditions
@@ -95,6 +91,31 @@ const Footer = () => {
                             <li>
                                 <a href="#" className="text-gray-700">
                                     Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    Disclaimer
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="space-y-3">
+                        <h3 className="font-medium">Support</h3>
+                        <ul className="space-y-1">
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    FAQ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    Help Center
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-gray-700">
+                                    Feedback
                                 </a>
                             </li>
                         </ul>

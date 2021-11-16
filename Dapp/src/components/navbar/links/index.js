@@ -1,5 +1,6 @@
 import React from "react";
 import MyNavLink from "./nav_link";
+import MyNavLinkDropdown from "./nav_link_dropdown";
 
 const NavbarLinks = ({ homepage = false }) => {
     return (
@@ -11,34 +12,40 @@ const NavbarLinks = ({ homepage = false }) => {
             </li>
 
             <li>
-                <MyNavLink homepage={homepage} to={"about_section"}>
-                    About
-                </MyNavLink>
+                <MyNavLinkDropdown
+                    title="About"
+                    links={[<a href="/about-us" className="text-lg md:text-lg font-medium ">About us</a>,
+                    <a href="/how-to-buy" className="text-lg md:text-lg font-medium ">How to buy</a>]}
+                />
             </li>
 
             <li>
-                <a
-                    href="/how-to-buy"
-                    className="font-medium text-lg  py-2 px-4"
-                >
-                    How to Buy
-                </a>
+                <MyNavLinkDropdown
+                    title="Earn"
+                    links={[<MyNavLink>Stake</MyNavLink>, <MyNavLink>Farm</MyNavLink>]}
+                />
             </li>
 
             <li>
-                <a
-                    href="#marketplace_section"
-                    className="font-medium text-lg  py-2 px-4"
-                >
-                    Marketplace
-                </a>
+                <MyNavLinkDropdown
+                    title="Win"
+                    links={[<MyNavLink>Lottery</MyNavLink>, <MyNavLink>Prediction</MyNavLink>]}
+                />
             </li>
 
             <li>
-                <a
-                    href="/charity"
-                    className="font-medium text-lg  py-2 px-4"
-                >
+                <MyNavLinkDropdown
+                    title="Marketplace"
+                    links={[
+                        <MyNavLink>NFT</MyNavLink>,
+                        <MyNavLink>Merch</MyNavLink>,
+                        <a href="/swap" className="text-lg md:text-lg font-medium">Swap</a>,
+                    ]}
+                />
+            </li>
+
+            <li>
+                <a href="/charity" className="font-medium text-lg  py-2 px-4">
                     Charity
                 </a>
             </li>
@@ -50,18 +57,14 @@ const NavbarLinks = ({ homepage = false }) => {
             </li>
 
             <li>
-                <MyNavLink homepage={homepage} to={"contact_section"}>
-                    Contact us
-                </MyNavLink>
-            </li>
-
-            <li>
-                <a
-                    href="#more_section"
-                    className="font-medium text-lg  py-2 px-4"
-                >
-                    More
-                </a>
+                <MyNavLinkDropdown
+                    title="More"
+                    links={[
+                        <MyNavLink>Blog</MyNavLink>,
+                        <MyNavLink homepage={homepage} to={"faq_section"}>FAQ</MyNavLink>,
+                        <MyNavLink homepage={homepage} to={"contact_section"}>Contact Us</MyNavLink>,
+                    ]}
+                />
             </li>
         </ul>
     );

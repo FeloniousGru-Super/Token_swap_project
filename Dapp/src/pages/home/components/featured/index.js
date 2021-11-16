@@ -8,9 +8,11 @@ import homepage_content from "../../static/content/content";
 const Featured = () => {
     const settings = {
         dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        
+        slidesToShow: 3,
         slidesToScroll: 1,
         responsive: [
             {
@@ -46,7 +48,7 @@ const Featured = () => {
                 <Slider {...settings}>
                     {homepage_content.featured_carousel.map((featured) => (
                         <div className="p-2 md:w-1/4 " >
-                            <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light" style={{ height: '560px'}}>
+                            <div className="rounded-3xl p-8 py-12 space-y-4 bg-secondary-light" style={{ height: '440px'}}>
                                 <div className="flex justify-center h-32">
                                     <img
                                         src={featured.img}

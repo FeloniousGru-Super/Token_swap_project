@@ -79,7 +79,7 @@ const Fair = () => {
                             />
                         </div>
                         <h4 className="text-secondary font-medium text-lg">
-                            Total
+                            Total Initial Supply
                         </h4>
                         <p className="text-white">
                             1,000,000,000,000,000 $LUCHOW

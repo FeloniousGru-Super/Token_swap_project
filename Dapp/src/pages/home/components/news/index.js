@@ -18,7 +18,7 @@ const CryptoNews = () => {
                 <div className="flex flex-wrap justify-center">
                     {homepage_content.news.map((news) => (
                         <div className="md:w-1/4 p-2">
-                            <div className="rounded-8xl overflow-hidden bg-secondary-light" style={{height: "395px"}}>
+                            <div className="rounded-8xl overflow-hidden bg-secondary-light" style={{height: "415px"}}>
                                 <div className="flex justify-center h-44">
                                     <img src={news.img} alt="" className="w-full h-full object-cover"/>
                                 </div>
@@ -27,7 +27,7 @@ const CryptoNews = () => {
                                     <h2 className="text-primary font-medium">
                                         {news.title}
                                     </h2>
-                                    <p className="max-h-20">
+                                    <p className="max-h-20 text-center">
                                         {news.desc}
                                     </p>
                                 </div>
