@@ -1,8 +1,7 @@
 import mainnetSwapAbi from "./mainnetSwapAbi.json";
 import bscSwapAbi from "./bscSwapAbi.json";
 import { Contract, utils } from "ethers";
-import { useContractFunction } from "@usedapp/core";
-
+import { useContractFunction, useContractCall, ContractCall } from "@usedapp/core";
 
 export function initUniswapMainnetContract() {
     const mainnetSwapInterface = new utils.Interface(mainnetSwapAbi);
@@ -11,7 +10,7 @@ export function initUniswapMainnetContract() {
 
 export function initPancakeSwapBSCContract() {
     const bscSwapInterface = new utils.Interface(bscSwapAbi);
-    return new Contract("0xefcfcE917dFF09482A371acCC26d444c747d1D36", bscSwapInterface);
+    return new Contract("0x7cb67b9F33cEcB98A5a3D078e5c3C95985dFDb4e", bscSwapInterface);
 }
 
 export function initApproveContract(tokenAddress) {
@@ -23,4 +22,27 @@ export function initApproveContract(tokenAddress) {
 export function useContractMethod(contract, methodName) {
     const { state, send } = useContractFunction(contract, methodName, {});
     return { state, send };
+}
+
+export function useContractMethodCallGetAmountOut(args) {
+    const bscSwapInterface = new utils.Interface(bscSwapAbi);
+    const call = {
+        abi: bscSwapInterface,
+        address: "0x7cb67b9F33cEcB98A5a3D078e5c3C95985dFDb4e",
+        method: "getAmountOutMin",
+        args: args,
+    };
+    const res = useContractCall(call) ?? [];
+    return res;
+}
+export function useContractMethodCallGetAmountIn(args) {
+    const bscSwapInterface = new utils.Interface(bscSwapAbi);
+    const call = {
+        abi: bscSwapInterface,
+        address: "0x7cb67b9F33cEcB98A5a3D078e5c3C95985dFDb4e",
+        method: "getAmountInMin",
+        args: args,
+    };
+    const res = useContractCall(call) ?? [];
+    return res;
 }

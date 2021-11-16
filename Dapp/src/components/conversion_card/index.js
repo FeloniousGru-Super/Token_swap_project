@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState } from "react";
 import Switch from "../switch";
 import { MdInfoOutline, MdOutlineSettings, MdArrowDownward } from "react-icons/md";
 import FromInputField from "./FromInputField";
@@ -7,7 +7,16 @@ import SelectToken from "../select_token_card";
 import Pool from "./pool";
 import { utils } from "ethers";
 import { useEthers, ChainId } from "@usedapp/core";
-import { initUniswapMainnetContract, useContractMethod, initApproveContract, initPancakeSwapBSCContract } from "./swapHooks";
+import {
+    initUniswapMainnetContract,
+    useContractMethod,
+    initApproveContract,
+    initPancakeSwapBSCContract,
+    useContractMethodCallGetAmountIn,
+    useContractMethodCallGetAmountOut,
+} from "./swapHooks";
+import { abi as IUniswapV3PoolABI } from "@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json";
+import { getPoolPrices } from "./myUniswapV3Api.ts";
 
 const ConversionCard = ({
     changeScreen,
@@ -16,16 +25,15 @@ const ConversionCard = ({
     fromInput,
     toInput,
     accountAddress,
-    selectedSpeedOption,
-    selectedToleranceOption,
+    // selectedSpeedOption,
+    // selectedToleranceOption,
     customToleranceValue,
     customTransactionDetail,
     gasPrice,
 }) => {
     const [tooltipVisibility, setTooltipVisibility] = useState(false);
-    const { chainId } = useEthers();
+    const { chainId, library } = useEthers();
 
-    // Uniswap Contract
     const uniswapMainnetContract = initUniswapMainnetContract();
     const { state: mainnetConvertLunaChowToExactEthState, send: mainnetConvertLunaChowToExactEth } =
         useContractMethod(uniswapMainnetContract, "convertLunaChowToExactEth");
@@ -36,21 +44,17 @@ const ConversionCard = ({
     const approveMainnetWETHContract = initApproveContract(
         "0xc778417E063141139Fce010982780140Aa0cD5Ab"
     );
-    const { state: approveMainnetWETHState, send: approveMainnetWETH } = useContractMethod(
-        approveMainnetWETHContract,
-        "approve"
-    );
+    const { send: approveMainnetWETH } = useContractMethod(approveMainnetWETHContract, "approve");
 
     // Approve Mainnet Luna Chow
     const approveMainnetLunaChowContract = initApproveContract(
         "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
     );
-    const { state: approveMainnetLunaChowState, send: approveMainnetLunaChow } = useContractMethod(
+    const { send: approveMainnetLunaChow } = useContractMethod(
         approveMainnetLunaChowContract,
         "approve"
     );
 
-    
     // Pancakswap Contract
     const pancakeSwapBSCContract = initPancakeSwapBSCContract();
     const { state: bscConvertBNBToExactLunaChowState, send: bscConvertBNBToExactLunaChow } =
@@ -65,50 +69,15 @@ const ConversionCard = ({
     // Approve BSC BNB
     const approveBSCWBNBContract = initApproveContract(
         "0xc778417E063141139Fce010982780140Aa0cD5Ab"
+        // "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
     );
-    const { state: approveBSCWBNBState, send: approveBSCWBNB } = useContractMethod(
-        approveBSCWBNBContract,
-        "approve"
-    );
+    const { send: approveBSCWBNB } = useContractMethod(approveBSCWBNBContract, "approve");
 
     // Approve BSC Luna Chow
     const approveBSCLunaChowContract = initApproveContract(
         "0x442Be68395613bDCD19778e761f03261ec46C06D"
     );
-    const { state: approveBSCLunaChowState, send: approveBSCLunaChow } = useContractMethod(
-        approveBSCLunaChowContract,
-        "approve"
-    );
-
-    const handleInvertClick = () => {
-        const temp = fromInput;
-        setFromInput(toInput);
-        setToInput(temp);
-    };
-
-    const [displayTokenSelect, setDisplayTokenSelect] = useState(false);
-    const [seletecingTokenFor, setSeletecingTokenFor] = useState("from"); // either from or to
-
-    const handleTokenSelect = (token) => {
-        if (seletecingTokenFor === "from") {
-            setFromInput(token);
-        } else setToInput(token);
-
-        setDisplayTokenSelect(false);
-    };
-
-    const [switchBtn, setSwitchBtn] = useState(0);
-
-    var fromTokenValue;
-    var toTokenValue;
-
-    function onToChange(value) {
-        toTokenValue = value;
-    }
-
-    function onFromChange(value) {
-        fromTokenValue = value;
-    }
+    const { send: approveBSCLunaChow } = useContractMethod(approveBSCLunaChowContract, "approve");
 
     function getGas(selectedSpeedOption) {
         switch (selectedSpeedOption) {
@@ -155,14 +124,23 @@ const ConversionCard = ({
             currentSwapState.errorMessage === "execution reverted: Insufficient allowance"
         ) {
             if (_tokenIn === token) {
-                approveToken(swapContract, "10000000000000000000");
+                approveToken(swapContract, "1000000000000000000000000000000");
             } else if (_tokenIn === nativeToken) {
-                approveNativeToken(swapContract, "10000000000000000000");
+                approveNativeToken(swapContract, "1000000000000000000000000000000");
             }
+        } else if (
+            currentSwapState.errorMessage === "execution reverted: ds-math-sub-underflow" ||
+            currentSwapState.errorMessage ===
+                "execution reverted: UniswapV2Router: EXCESSIVE_INPUT_AMOUNT"
+        ) {
+            console.log("Price Impact too high!");
+        } else if (currentSwapState.errorMessage === "execution reverted: Insufficient balance") {
+            console.log("Insufficient balance!");
         }
     }
 
     async function mainnetHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline) {
+        console.log("mainnetConvertEthToExactLunaChow");
         if (fromInput["id"] === 1) {
             await mainnetConvertEthToExactLunaChow(_amountOut, _deadline, {
                 value: _amountIn,
@@ -182,7 +160,7 @@ const ConversionCard = ({
                     approveMainnetWETH,
                     "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
                     "0xc778417E063141139Fce010982780140Aa0cD5Ab",
-                    "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                    "0x7cb67b9F33cEcB98A5a3D078e5c3C95985dFDb4e"
                 );
             });
         }
@@ -192,7 +170,7 @@ const ConversionCard = ({
         if (fromInput["id"] === 1) {
             await bscConvertBNBToExactLunaChow(_tokenIn, _amountOut, _deadline, {
                 value: _amountIn,
-            }).then.console.log(bscConvertBNBToExactLunaChowState);
+            }).then(console.log(bscConvertBNBToExactLunaChowState));
         } else if (toInput["id"] === 1) {
             await bscConvertLunaChowToExactBNB(_tokenIn, _amountIn, _amountOut, _deadline).then(
                 () => {
@@ -203,7 +181,7 @@ const ConversionCard = ({
                         approveBSCWBNB,
                         "0x442Be68395613bDCD19778e761f03261ec46C06D",
                         "0xc778417E063141139Fce010982780140Aa0cD5Ab",
-                        "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                        "0x7cb67b9F33cEcB98A5a3D078e5c3C95985dFDb4e"
                     );
                 }
             );
@@ -216,7 +194,7 @@ const ConversionCard = ({
                     approveBSCWBNB,
                     "0x442Be68395613bDCD19778e761f03261ec46C06D",
                     "0xc778417E063141139Fce010982780140Aa0cD5Ab",
-                    "0xefcfcE917dFF09482A371acCC26d444c747d1D36"
+                    "0x7cb67b9F33cEcB98A5a3D078e5c3C95985dFDb4e"
                 );
             });
         }
@@ -224,28 +202,144 @@ const ConversionCard = ({
 
     async function handleSwap() {
         if (fromInput && toInput && fromTokenValue && toTokenValue) {
-            // const _tokenIn = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984";
-            const _tokenIn = "0x442Be68395613bDCD19778e761f03261ec46C06D";
-            const _tokenOut = "0xc778417E063141139Fce010982780140Aa0cD5Ab";
-            const _amountIn = utils.parseEther(fromTokenValue.toString());
-            const _amountOut = utils.parseEther(toTokenValue.toString());
-            const _deadline = customTransactionDetail;
-            // console.log("gas", getGas(selectedSpeedOption));
-            // console.log("slippage", getSlippage(selectedToleranceOption, customToleranceValue));
-            // console.log("deadline (min)", customTransactionDetail);
+            try {
+                // const _tokenIn = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984";
+                const _tokenIn = "0x442Be68395613bDCD19778e761f03261ec46C06D";
+                const _tokenOut = "0xc778417E063141139Fce010982780140Aa0cD5Ab";
+                const _amountIn = utils.parseEther(fromTokenValue.toString());
+                const _amountOut = utils.parseEther(toTokenValue.toString());
+                const _deadline = customTransactionDetail;
+                // console.log("gas", getGas(selectedSpeedOption));
+                // console.log("slippage", getSlippage(selectedToleranceOption, customToleranceValue));
+                // console.log("deadline (min)", customTransactionDetail);
+                switch (chainId) {
+                    case ChainId.Mainnet:
+                    // case ChainId.Ropsten:
+                        await mainnetHandleSwap(
+                            _tokenIn,
+                            _tokenOut,
+                            _amountIn,
+                            _amountOut,
+                            _deadline
+                        );
+                        break;
+
+                    case ChainId.BSC:
+                    // case ChainId.Ropsten:
+                        await bscHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline);
+                        break;
+
+                    default:
+                        break;
+                }
+            } catch (error) {
+                console.log("Swap error:", error);
+            }
+        }
+    }
+
+    const handleInvertClick = () => {
+        const temp = fromInput;
+        setFromInput(toInput);
+        setToInput(temp);
+    };
+
+    const [displayTokenSelect, setDisplayTokenSelect] = useState(false);
+    const [seletecingTokenFor, setSeletecingTokenFor] = useState("from"); // either from or to
+
+    const handleTokenSelect = (token) => {
+        if (seletecingTokenFor === "from") {
+            setFromInput(token);
+        } else setToInput(token);
+
+        setDisplayTokenSelect(false);
+    };
+
+    const [switchBtn, setSwitchBtn] = useState(0);
+
+    const [fromTokenValue, setFromTokenValue] = useState(0.0);
+    const [from, setFrom] = useState(false);
+    const [toTokenValue, setToTokenValue] = useState(0.0);
+    const [to, setTo] = useState(false);
+
+    const tIn = "0xab55Be12B02cCCeF49CA09E3eE2614C68C1fA643";
+    const tOut = "0xc778417E063141139Fce010982780140Aa0cD5Ab";
+
+    var amIn = 0;
+    var amOut = 0;
+    try {
+        amIn = utils.parseEther(Number(fromTokenValue.toFixed(18)).toString());
+        amOut = utils.parseEther(Number(toTokenValue.toFixed(18)).toString());
+    } catch (error) {
+        console.log(error);
+    }
+    const bscAmountOutMin = useContractMethodCallGetAmountOut([tIn, tOut, amIn]) / 1e18;
+    const bscAmountInMin = useContractMethodCallGetAmountIn([tIn, tOut, amOut]) / 1e18;
+    // console.log(bscAmountOutMin, bscAmountInMin);
+    if (chainId == ChainId.Ropsten) {
+        console.log(bscAmountInMin.toString(), bscAmountOutMin.toString());
+        if (to) {
+            setFromTokenValue(bscAmountInMin);
+            setTo(false);
+        } else if (from) {
+            setToTokenValue(bscAmountOutMin);
+            setFrom(false);
+        }
+    }
+
+    async function handlePrices(type, value) {
+        if (type === "to") {
+            setToTokenValue(value);
+        } else if (type === "from") {
+            setFromTokenValue(value);
+        }
+        try {
             switch (chainId) {
                 case ChainId.Mainnet:
-                    await mainnetHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline);
+                    if (type === "to") {
+                        const _amountOut = utils.parseEther(Number(value.toFixed(18)).toString());
+                        const amountIn = await getPoolPrices(
+                            _amountOut,
+                            "0",
+                            chainId,
+                            IUniswapV3PoolABI,
+                            false,
+                            library
+                        );
+                        console.log(amountIn.toString(), _amountOut.toString());
+                        setFromTokenValue(amountIn);
+                    } else if (type === "from") {
+                        const _amountIn = utils.parseEther(Number(value.toFixed(18)).toString());
+                        const amountOut = await getPoolPrices(
+                            _amountIn,
+                            "0",
+                            chainId,
+                            IUniswapV3PoolABI,
+                            true,
+                            library
+                        );
+                        console.log(_amountIn.toString(), amountOut.toString());
+                        setToTokenValue(amountOut);
+                    }
                     break;
 
                 // case ChainId.BSC:
                 case ChainId.Ropsten:
-                    await bscHandleSwap(_tokenIn, _tokenOut, _amountIn, _amountOut, _deadline);
+                    // console.log(bscAmountInMin.toString(), bscAmountOutMin.toString());
+                    if (type === "to") {
+                        setTo(true);
+                        // setFromTokenValue(bscAmountInMin);
+                    } else if (type === "from") {
+                        setFrom(true);
+                        // setToTokenValue(bscAmountOutMin);
+                    }
                     break;
 
                 default:
                     break;
             }
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -302,7 +396,8 @@ const ConversionCard = ({
                                     setDisplayTokenSelect(true);
                                 }}
                                 fromInput={fromInput}
-                                onChange={onFromChange}
+                                fromTokenValue={fromTokenValue}
+                                handlePrices={handlePrices}
                             />
                             <div className="flex justify-center relative text-black mt-2">
                                 <button
@@ -319,11 +414,12 @@ const ConversionCard = ({
                                     setDisplayTokenSelect(true);
                                 }}
                                 toInput={toInput}
-                                onChange={onToChange}
+                                toTokenValue={toTokenValue}
+                                handlePrices={handlePrices}
                             />
 
                             <div className="text-center pt-6">
-                                {accountAddress == true ? (
+                                {accountAddress === true ? (
                                     <button
                                         type="button"
                                         value="Connect to a Wallet"

@@ -1,7 +1,7 @@
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 
-const From = ({ onTokenChangeClick, fromInput, input = true, onChange }) => {
+const From = ({ onTokenChangeClick, fromInput, input = true, fromTokenValue, handlePrices }) => {
     return (
         <div className="rounded-8xl py-6 px-10 text-white bg-primary">
             <label htmlFor="" className="px-1 text-sm block text-white font-medium">
@@ -11,8 +11,7 @@ const From = ({ onTokenChangeClick, fromInput, input = true, onChange }) => {
             <div className="py-2 rounded flex items-center gap-4">
                 <div
                     className="hover:bg-red-300 px-1 py-2 rounded cursor-pointer flex items-center gap-2"
-                    onClick={onTokenChangeClick}
-                >
+                    onClick={onTokenChangeClick}>
                     {!!fromInput && (
                         <div className="logo w-8">
                             <img src={fromInput.img} alt="" />
@@ -25,8 +24,10 @@ const From = ({ onTokenChangeClick, fromInput, input = true, onChange }) => {
                 </div>
                 {input && (
                     <input
-                        onInput={val => onChange(val.target.value)}
+                        onInput={(val) => handlePrices("from", Number(val.target.value))}
                         type="number"
+                        value={Number(fromTokenValue)}
+                        // value={fromTokenValue === undefined ? 0.0 : (fromTokenValue.toString().length <= 6 ? fromTokenValue : fromTokenValue.toFixed(6 + Number(fromTokenValue.toString().split("-")[1])))}
                         placeholder="0.0"
                         className="flex-grow p-2 bg-transparent text-white text-right placeholder-white font-medium text-lg"
                     />
