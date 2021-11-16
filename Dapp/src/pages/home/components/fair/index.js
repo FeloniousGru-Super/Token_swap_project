@@ -6,7 +6,7 @@ import coins_pot from "../../static/coins_pot.png";
 
 const Fair = () => {
     return (
-        <div className="min-h-screen">
+        <div className="">
             <div className="background-top relative" style={{ zIndex: -99 }}>
                 <div className="absolute right-0 -top-40">
                     <img

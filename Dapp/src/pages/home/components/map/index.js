@@ -5,11 +5,11 @@ import background from "./static/background.png";
 const Map = () => {
     return (
         <div
-            className="max-w-screen-lgxl min-h-screen container mx-auto flex flex-wrap gap-12 items-center justify-center pt-16"
+            className="max-w-screen-lgxl container mx-auto flex flex-wrap gap-12 items-center justify-center py-72"
             style={{ backgroundImage: `url(${map})`, backgroundSize: "contain", backgroundRepeat: "no-repeat" }}
         >
             <div
-                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 pb-8 "
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 "
                 style={{
                     backgroundImage: `url(${background})`,
                     backgroundSize: "contain",
@@ -22,7 +22,7 @@ const Map = () => {
             </div>
 
             <div
-                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 pb-8 "
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 "
                 style={{
                     backgroundImage: `url(${background})`,
                     backgroundSize: "contain",
@@ -35,7 +35,7 @@ const Map = () => {
             </div>
 
             <div
-                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 pb-8 "
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 "
                 style={{
                     backgroundImage: `url(${background})`,
                     backgroundSize: "contain",
@@ -48,7 +48,7 @@ const Map = () => {
             </div>
 
             <div
-                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 pb-8 "
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 "
                 style={{
                     backgroundImage: `url(${background})`,
                     backgroundSize: "contain",
@@ -61,14 +61,14 @@ const Map = () => {
             </div>
 
             <div
-                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8 pb-8 "
+                className=" h-40 w-40 bg-contain bg-no-repeat flex justify-center items-center px-8"
                 style={{
                     backgroundImage: `url(${background})`,
                     backgroundSize: "contain",
                 }}
             >
                 <div className="relative -top-1 -left-1 text-center">
-                    <h4 className="text-2xl font-medium">Market Cap</h4>
+                    <h4 className="text-lg font-medium">Market Cap</h4>
                     <p className="text-center">$1.28502 B</p>
                 </div>
             </div>

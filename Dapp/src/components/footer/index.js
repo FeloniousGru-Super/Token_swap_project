@@ -12,14 +12,10 @@ const Footer = () => {
     return (
         <div className="bg-secondary-light py-12">
             <div className="max-w-screen-lgxl container mx-auto p-8 md:p-12 space-y-8">
-                <div className="md:flex flex-wrap gap-4 justify-between space-y-8">
+                <div className="flex flex-wrap gap-4 justify-center xl:justify-between space-y-8">
                     <div className="flex gap-6">
                         <div>
-                            <img
-                                src={coin}
-                                alt=""
-                                className="filter drop-shadow-2xl"
-                            />
+                            <img src={coin} alt="" className="filter drop-shadow-2xl" />
                         </div>
                         <div className="space-y-2">
                             <div className="flex items-center gap-2">
@@ -29,30 +25,29 @@ const Footer = () => {
                                 </h2>
                             </div>
                             <p className="md:w-80 text-gray-500">
-                                LUNACHOW is a decentralized digital currency
-                                that can be used as a medium of exchange or to
-                                facilitate a trade. It is a border less
+                                LUNACHOW is a decentralized digital currency that can be used as a
+                                medium of exchange or to facilitate a trade. It is a border less
                                 democratic form of digital money.
                             </p>
                         </div>
                     </div>
 
-                    <div className="space-y-3">
-                        <h3 className="font-medium">Company</h3>
-                        <ul className="space-y-1">
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    Roadmap
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
+                    <div className="flex flex-wrap justify-center gap-12">
+                        <div className="space-y-3">
+                            <h3 className="font-medium">Company</h3>
+                            <ul className="space-y-1">
+                                <li>
+                                    <a href="#" className="text-gray-700">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="text-gray-700">
+                                        Roadmap
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
                     <div className="space-y-3">
                         <h3 className="font-medium">Service</h3>
@@ -80,45 +75,47 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="space-y-3">
-                        <h3 className="font-medium">Legal</h3>
-                        <ul className="space-y-1">
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    Terms and Conditions
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    Disclaimer
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="space-y-3">
-                        <h3 className="font-medium">Support</h3>
-                        <ul className="space-y-1">
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    FAQ
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    Help Center
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-700">
-                                    Feedback
-                                </a>
-                            </li>
-                        </ul>
+                        <div className="space-y-3">
+                            <h3 className="font-medium">Legal</h3>
+                            <ul className="space-y-1">
+                                <li>
+                                    <a href="#" className="text-gray-700">
+                                        Terms and Conditions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="text-gray-700">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="text-gray-700">
+                                        Disclaimer
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className="space-y-3">
+                            <h3 className="font-medium">Support</h3>
+                            <ul className="space-y-1">
+                                <li>
+                                    <a href="#" className="text-gray-700">
+                                        FAQ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="text-gray-700">
+                                        Help Center
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="text-gray-700">
+                                        Feedback
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
