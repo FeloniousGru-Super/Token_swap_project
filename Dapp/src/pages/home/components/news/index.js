@@ -3,7 +3,7 @@ import homepage_content from "../../static/content/content";
 
 const CryptoNews = () => {
     return (
-        <div className="min-h-screen">
+        <div className="">
             <div className="px-8 max-w-screen-lgxl container mx-auto space-y-20 py-20">
                 <div className=" space-y-8">
                     <h2 className="text-center text-4xl font-bold text-primary">

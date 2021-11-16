@@ -34,7 +34,7 @@ const What = () => {
     };
 
     return (
-        <div className=" overflow-hidden min-h-screen" id="about_section">
+        <div className=" overflow-hidden" id="about_section">
             <div className="background-top relative" style={{ zIndex: -99 }}>
                 <div className="absolute right-0 -top-40">
                     <img

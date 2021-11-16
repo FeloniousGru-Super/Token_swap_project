@@ -9,7 +9,7 @@ const Tokenomics = () => {
     
 
     return (
-        <div className="min-h-screen overflow-hidden bg-secondary-light relative">
+        <div className="overflow-hidden bg-secondary-light relative">
             <div className=" relative" style={{}}>
                 <div className="absolute right-0 -top-40">
                     <img
