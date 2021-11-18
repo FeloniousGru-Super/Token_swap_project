@@ -37,11 +37,11 @@ const What = () => {
         <div className=" overflow-hidden" id="about_section">
             <div className="background-top relative" style={{ zIndex: -99 }}>
                 <div className="absolute right-0 -top-40">
-                    <img
+                    {/* <img
                         src={pattern}
                         alt=""
                         style={{ transform: "scaleX(-1)" }}
-                    />
+                    /> */}
                 </div>
             </div>
 
@@ -86,12 +86,12 @@ const What = () => {
 
             <div className="background-top relative" style={{ zIndex: -99 }}>
                 <div className="absolute left-0 -top-36 md:-top-72">
-                    <img
+                    {/* <img
                         src={pattern}
                         alt=""
                         className="w-full"
                         style={{ transform: "scaleY(-1)" }}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>

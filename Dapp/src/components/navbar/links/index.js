@@ -4,7 +4,7 @@ import MyNavLinkDropdown from "./nav_link_dropdown";
 
 const NavbarLinks = ({ homepage = false }) => {
     return (
-        <ul className={`text-center xl:flex space-y-4 xl:space-y-0`}>
+        <ul className={`text-center xl:flex space-y-4 sm:space-y-0`}>
             <li>
                 <MyNavLink homepage={homepage} to={"section1"}>
                     Home

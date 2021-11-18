@@ -21,11 +21,11 @@ const To = ({ onTokenChangeClick, toInput, input = true, toTokenValue, handlePri
                     }`}</p>
                     <BsChevronDown />
                 </div>
-                {input && (
+                { input && (
                     <input
                         onInput={(val) => handlePrices("to", Number(val.target.value))}
                         type="number"
-                        value={Number(toTokenValue.toString())}
+                        value={toTokenValue && Number(toTokenValue.toString())}
                         // value={toTokenValue === undefined ? 0.0 : (toTokenValue.toString().length <= 6 ? toTokenValue : toTokenValue.toFixed(6 + Number(toTokenValue.toString().split("-")[1])))}
                         placeholder="0.0"
                         className="bg-primary-muted flex-grow p-2 text-right text-lg font-bold placeholder-black"

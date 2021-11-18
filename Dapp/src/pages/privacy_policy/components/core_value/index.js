@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import handshake from "./static/hand-shake.png";
 import together from "./static/together.png";
+import empowerment from "./static/empowerment.png";
 import transparency from "./static/transparency.png";
 import pattern from "../../../../assets/bg_pattern_1.png";
 
-const CoreValues = () => {
+const Core = () => {
     return (
-        <div className="overflow-hidden bg-secondary-light relative">
+        <div className="min-h-screen overflow-hidden bg-secondary-light relative">
             {/* pattern top */}
             <div className=" relative" style={{}}>
                 <div className="absolute right-0 -top-40">
-                    {/* <img src={pattern} alt="" style={{ transform: "scaleX(-1)" }} /> */}
+                    <img src={pattern} alt="" style={{ transform: "scaleX(-1)" }} />
                 </div>
             </div>
 
@@ -23,7 +24,7 @@ const CoreValues = () => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-8">
-                    <div className="bg-primary rounded-3xl px-4 pb-12 text-white text-center md:w-1/4">
+                    <div className="bg-primary rounded-3xl px-4 pb-12 text-white text-center md:w-1/5">
                         <div className="w-24 h-24 mx-auto rounded-full border-2 border-primary relative -top-10 bg-primary">
                             <div className="h-full rounded-full border-secondary-light border-4 flex items-center justify-center">
                                 <img src={transparency} alt="" className="w-12" />
@@ -37,7 +38,7 @@ const CoreValues = () => {
                         </p>
                     </div>
 
-                    <div className="bg-primary rounded-3xl px-4 pb-12 text-white text-center md:w-1/4">
+                    <div className="bg-primary rounded-3xl px-4 pb-12 text-white text-center md:w-1/5">
                         <div className="w-24 h-24 mx-auto rounded-full border-2 border-primary relative -top-10 bg-primary">
                             <div className="h-full rounded-full border-secondary-light border-4 flex items-center justify-center">
                                 <img src={handshake} alt="" className="w-12" />
@@ -51,7 +52,7 @@ const CoreValues = () => {
                         </p>
                     </div>
 
-                    <div className="bg-primary rounded-3xl px-4 pb-12 text-white text-center md:w-1/4">
+                    <div className="bg-primary rounded-3xl px-4 pb-12 text-white text-center md:w-1/5">
                         <div className="w-24 h-24 mx-auto rounded-full border-2 border-primary relative -top-10 bg-primary">
                             <div className="h-full rounded-full border-secondary-light border-4 flex items-center justify-center">
                                 <img src={together} alt="" className="w-12" />
@@ -64,16 +65,29 @@ const CoreValues = () => {
                             together.
                         </p>
                     </div>
+
+                    <div className="bg-primary rounded-3xl px-4 pb-12 text-white text-center md:w-1/5">
+                        <div className="w-24 h-24 mx-auto rounded-full border-2 border-primary relative -top-10 bg-primary">
+                            <div className="h-full rounded-full border-secondary-light border-4 flex items-center justify-center">
+                                <img src={empowerment} alt="" className="w-12" />
+                            </div>
+                        </div>
+
+                        <h3 className="text-lg font-medium">Community Empowerment</h3>
+                        <p>
+                            We believe that blockchain technology can be a power for good. Leveraging our community's wealth, we can help lift up fellow humans
+                        </p>
+                    </div>
                 </div>
             </div>
             {/* pattern bottom */}
             <div className="absolute -bottom-52 z-0">
                 <div className="">
-                    {/* <img src={pattern} alt="" style={{ transform: "scaleY(-1)" }} /> */}
+                    <img src={pattern} alt="" style={{ transform: "scaleY(-1)" }} />
                 </div>
             </div>
         </div>
     );
 };
 
-export default CoreValues;
+export default Core;
