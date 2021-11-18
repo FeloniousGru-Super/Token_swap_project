@@ -8,11 +8,11 @@ const FAQ = () => {
         <div className="overflow-hidden bg-secondary-light relative" id="faq_section">
             <div className="relative" style={{ zIndex: 1 }}>
                 <div className="absolute right-0 -top-40">
-                    <img
+                    {/* <img
                         src={pattern}
                         alt=""
                         style={{ transform: "scaleX(-1)" }}
-                    />
+                    /> */}
                 </div>
             </div>
 
@@ -38,11 +38,11 @@ const FAQ = () => {
 
             <div className="absolute -bottom-52" style={{}}>
                 <div className="">
-                    <img
+                    {/* <img
                         src={pattern}
                         alt=""
                         style={{ transform: "scaleY(-1)" }}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>

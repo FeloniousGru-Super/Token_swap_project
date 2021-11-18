@@ -5,6 +5,9 @@ import Home from "./pages/home";
 import HowToBuy from "./pages/how_to_buy";
 import Swap from "./pages/swap";
 import AboutUs from "./pages/about_us";
+import TermsConditions from "./pages/terms_and_conditions";
+import Disclaimer from "./pages/disclaimer";
+
 function App() {
     return (
         <Switch>
@@ -22,6 +25,14 @@ function App() {
 
             <Route path="/charity">
                 <Charity />
+            </Route>
+
+            <Route path="/terms-and-conditions">
+                <TermsConditions />
+            </Route>
+
+            <Route path="/disclaimer">
+                <Disclaimer />
             </Route>
 
             <Route path="/">

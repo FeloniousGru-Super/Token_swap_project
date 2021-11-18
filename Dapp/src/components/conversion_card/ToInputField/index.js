@@ -21,7 +21,7 @@ const To = ({ onTokenChangeClick, toInput, input = true, toTokenValue, handlePri
                     }`}</p>
                     <BsChevronDown />
                 </div>
-                {input && (
+                { input && (
                     <input
                         onInput={(val) => handlePrices("to", Number(val.target.value))}
                         type="number"

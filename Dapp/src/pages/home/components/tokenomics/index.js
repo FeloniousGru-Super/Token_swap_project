@@ -12,11 +12,11 @@ const Tokenomics = () => {
         <div className="overflow-hidden bg-secondary-light relative">
             <div className=" relative" style={{}}>
                 <div className="absolute right-0 -top-40">
-                    <img
+                    {/* <img
                         src={pattern}
                         alt=""
                         style={{ transform: "scaleX(-1)" }}
-                    />
+                    /> */}
                 </div>
             </div>
 
@@ -41,11 +41,11 @@ const Tokenomics = () => {
 
             <div className="absolute -bottom-52">
                 <div className="">
-                    <img
+                    {/* <img
                         src={pattern}
                         alt=""
                         style={{ transform: "scaleY(-1)" }}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>

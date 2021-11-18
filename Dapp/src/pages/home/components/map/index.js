@@ -16,7 +16,7 @@ const Map = () => {
                 }}
             >
                 <div className="relative -top-1 -left-1 text-center">
-                    <h4 className="text-2xl font-medium">Value</h4>
+                    <h4 className="text-lg font-medium">Value</h4>
                     <p className="text-center">0.000002240</p>
                 </div>
             </div>
@@ -29,7 +29,7 @@ const Map = () => {
                 }}
             >
                 <div className="relative -top-1 -left-1 text-center">
-                    <h4 className="text-2xl font-medium">Holder</h4>
+                    <h4 className="text-lg font-medium">Holder</h4>
                     <p className="text-center">2,682,322</p>
                 </div>
             </div>
@@ -42,7 +42,7 @@ const Map = () => {
                 }}
             >
                 <div className="relative -top-1 -left-1 text-center">
-                    <h4 className="text-2xl font-medium">Burned</h4>
+                    <h4 className="text-lg font-medium">Burned</h4>
                     <p className="text-center">426.32945 TR</p>
                 </div>
             </div>
@@ -55,7 +55,7 @@ const Map = () => {
                 }}
             >
                 <div className="relative -top-1 -left-1 text-center">
-                    <h4 className="text-2xl font-medium">Circulating</h4>
+                    <h4 className="text-lg font-medium">Circulating</h4>
                     <p className="text-center">573.67055 TR</p>
                 </div>
             </div>

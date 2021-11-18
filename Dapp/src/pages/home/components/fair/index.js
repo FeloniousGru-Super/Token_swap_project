@@ -9,11 +9,11 @@ const Fair = () => {
         <div className="">
             <div className="background-top relative" style={{ zIndex: -99 }}>
                 <div className="absolute right-0 -top-40">
-                    <img
+                    {/* <img
                         src={pattern}
                         alt=""
                         style={{ transform: "scaleX(-1)" }}
-                    />
+                    /> */}
                 </div>
             </div>
 
