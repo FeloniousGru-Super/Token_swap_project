@@ -27,7 +27,6 @@ const From = ({ onTokenChangeClick, fromInput, input = true, fromTokenValue, han
                         onInput={(val) => handlePrices("from", Number(val.target.value))}
                         type="number"
                         value={Number(fromTokenValue)}
-                        // value={fromTokenValue === undefined ? 0.0 : (fromTokenValue.toString().length <= 6 ? fromTokenValue : fromTokenValue.toFixed(6 + Number(fromTokenValue.toString().split("-")[1])))}
                         placeholder="0.0"
                         className="flex-grow p-2 bg-transparent text-white text-right placeholder-white font-medium text-lg"
                     />
