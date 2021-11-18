@@ -4,6 +4,8 @@ import { Token } from "@uniswap/sdk-core";
 import { ChainId, JSBI } from "@uniswap/sdk";
 import { abi as QuoterABI } from "@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json";
 
+const quoterAddress = "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6";
+
 interface Immutables {
     factory: string;
     token0: string;
@@ -75,61 +77,18 @@ function createPool(TokenA: Token, TokenB: Token, immutables: Immutables, state:
 }
 
 export async function getPoolPrices(
-    amountOut: number,
-    type: string,
+    amount: number,
+    tokenIn: string,
+    tokenOut: string,
     chainId: ChainId,
     IUniswapV3PoolABI: ethers.ContractInterface,
     isFromInput: boolean,
     signerOrProvider?: ethers.Signer | ethers.providers.Provider
 ) {
-    // const TokenA = new Token(
-    //     chainId,
-    //     "0xA5Ef74068d04ba0809B7379dD76Af5Ce34Ab7C57",
-    //     18,
-    //     "LUCHOW",
-    //     "LunaChow"
-    // );
-    // const TokenB = new Token(
-    //     chainId,
-    //     "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-    //     18,
-    //     "WETH",
-    //     "Wrapped Ether"
-    // );
-    var TokenA;
-    var TokenB;
-    const LUCHOW = new Token(
-        chainId,
-        "0xA5Ef74068d04ba0809B7379dD76Af5Ce34Ab7C57",
-        18,
-        "LUCHOW",
-        "LunaChow"
-    );
-    const WETH = new Token(
-        chainId,
-        "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-        18,
-        "WETH",
-        "Wrapped Ether"
-    );
-
-    switch (type) {
-        case "0":
-            TokenA = LUCHOW;
-            TokenB = WETH;
-            break;
-
-        case "1":
-            TokenA = WETH;
-            TokenB = LUCHOW;
-            break;
-
-        default:
-            return 0;
-    }
+    var TokenA = new Token(chainId, tokenIn, 18);
+    var TokenB = new Token(chainId, tokenOut, 18);
 
     const poolAdd = Pool.getAddress(TokenA, TokenB, FeeAmount.MEDIUM);
-
     const poolContract = new ethers.Contract(poolAdd, IUniswapV3PoolABI, signerOrProvider);
 
     const [immutables, state] = await Promise.all([
@@ -139,11 +98,11 @@ export async function getPoolPrices(
 
     const pool = createPool(TokenA, TokenB, immutables, state);
 
-    const [price, reversePrice] = await getPrices(pool, poolContract);
-    console.log("ETH-LUCHOW: ", price);
-    console.log("LUCHOW-ETH: ", reversePrice);
+    // Get pool's TWAP
+    // const [price, reversePrice] = await getTWAP(pool, poolContract);
+    // console.log("TokenA-TokenB: ", price);
+    // console.log("TokenB-TokenA: ", reversePrice);
 
-    const quoterAddress = "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6";
     const quoterContract = new ethers.Contract(quoterAddress, QuoterABI, signerOrProvider);
 
     if (isFromInput) {
@@ -152,10 +111,9 @@ export async function getPoolPrices(
                 TokenA.address,
                 TokenB.address,
                 immutables.fee,
-                amountOut.toString(),
+                amount.toString(),
                 0
             );
-            console.log(TokenA.address, result.toString());
             return result / 1e18;
         } catch (error) {
             console.log(error);
@@ -166,10 +124,9 @@ export async function getPoolPrices(
                 TokenA.address,
                 TokenB.address,
                 immutables.fee,
-                amountOut.toString(),
+                amount.toString(),
                 0
             );
-            console.log(TokenA.address, result.toString());
             return result / 1e18;
         } catch (error) {
             console.log(error);
@@ -177,20 +134,20 @@ export async function getPoolPrices(
     }
 }
 
-async function getPrices(pool: Pool, poolContract: ethers.Contract) {
-    const tickSpacing = pool.tickSpacing;
-    const [_, observations] = await poolContract.observe([0, pool.tickSpacing]);
-    const priceExponent = (observations[0] - observations[1]) / tickSpacing;
-    const price = 1.00001 ^ priceExponent;
-    const reversePrice = 1 / price;
+// async function getTWAP(pool: Pool, poolContract: ethers.Contract) {
+//     const tickSpacing = pool.tickSpacing;
+//     const [_, observations] = await poolContract.observe([0, pool.tickSpacing]);
+//     const priceExponent = (observations[0] - observations[1]) / tickSpacing;
+//     const price = 1.00001 ^ priceExponent;
+//     const reversePrice = 1 / price;
 
-    return [price, reversePrice];
-}
+//     return [price, reversePrice];
+// }
 
-function getToken1PriceFromPoolFraction(pool: Pool) {
-    return JSBI.toNumber(pool.sqrtRatioX96) ** 2 / 2 ** 192;
-}
+// function getToken1PriceFromPoolFraction(pool: Pool) {
+//     return JSBI.toNumber(pool.sqrtRatioX96) ** 2 / 2 ** 192;
+// }
 
-function getToken0PriceFromPoolFraction(pool: Pool) {
-    return 2 ** 192 / JSBI.toNumber(pool.sqrtRatioX96) ** 2;
-}
+// function getToken0PriceFromPoolFraction(pool: Pool) {
+//     return 2 ** 192 / JSBI.toNumber(pool.sqrtRatioX96) ** 2;
+// }
