@@ -115,9 +115,7 @@ export async function getPoolPrices(
                 0
             );
             return result / 1e18;
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (error) {}
     } else {
         try {
             const result = await quoterContract.callStatic.quoteExactOutputSingle(
@@ -128,9 +126,7 @@ export async function getPoolPrices(
                 0
             );
             return result / 1e18;
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (error) {}
     }
 }
 
@@ -144,10 +140,12 @@ export async function getPoolPrices(
 //     return [price, reversePrice];
 // }
 
+// Get exact price, not recommended for swaps/liquidity
 // function getToken1PriceFromPoolFraction(pool: Pool) {
 //     return JSBI.toNumber(pool.sqrtRatioX96) ** 2 / 2 ** 192;
 // }
 
+// Get exact price, not recommended for swaps/liquidity
 // function getToken0PriceFromPoolFraction(pool: Pool) {
 //     return 2 ** 192 / JSBI.toNumber(pool.sqrtRatioX96) ** 2;
 // }

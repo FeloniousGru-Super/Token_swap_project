@@ -12,8 +12,7 @@ import {
     useContractMethod,
     initApproveContract,
     initPancakeSwapBSCContract,
-    useContractMethodCallGetAmountIn,
-    useContractMethodCallGetAmountOut,
+    useContractMethodCall,
     getExpectedPrices,
     getTokens,
     approve,
@@ -50,7 +49,7 @@ const ConversionCard = ({
         tokensBSC,
     } = getTokens();
 
-    // Uniswap Contract
+    // My Uniswap Swap Contract
     const uniswapMainnetContract = initUniswapMainnetContract(swapContract_ETH);
     const { state: mainnetConvertLunaChowToExactEthState, send: mainnetConvertLunaChowToExactEth } =
         useContractMethod(uniswapMainnetContract, "convertLunaChowToExactEth");
@@ -68,7 +67,7 @@ const ConversionCard = ({
         "approve"
     );
 
-    // Pancakswap Contract
+    // My Pancakswap Swap Contract
     const pancakeSwapBSCContract = initPancakeSwapBSCContract(swapContract_BSC);
     const { state: bscConvertBNBToExactLunaChowState, send: bscConvertBNBToExactLunaChow } =
         useContractMethod(pancakeSwapBSCContract, "convertBNBToExactLunaChow");
@@ -186,12 +185,12 @@ const ConversionCard = ({
 
     const [switchBtn, setSwitchBtn] = useState(0);
 
-    const [fromTokenValue, setFromTokenValue] = useState(0.0);
+    const [fromTokenValue, setFromTokenValue] = useState(0);
     const [from, setFrom] = useState(false);
-    const [toTokenValue, setToTokenValue] = useState(0.0);
+    const [toTokenValue, setToTokenValue] = useState(0);
     const [to, setTo] = useState(false);
 
-    // Get and set BSC prices
+    // Get user input
     const { tIn, tOut, amIn, amOut } = getBSCTokenAndAmounts(
         tokensBSC,
         fromInput,
@@ -199,21 +198,27 @@ const ConversionCard = ({
         fromTokenValue,
         toTokenValue
     );
+
+    // Call BSC get prices contract
     const bscAmountOutMin =
-        useContractMethodCallGetAmountOut(swapContract_BSC, [tIn, tOut, amIn]) / 1e18;
+        useContractMethodCall("getAmountOutMin", swapContract_BSC, [tIn, tOut, amIn]) / 1e18;
     const bscAmountInMin =
-        useContractMethodCallGetAmountIn(swapContract_BSC, [tIn, tOut, amOut]) / 1e18;
-    setBSCTokenAmounts(
-        chainId,
-        bscAmountInMin,
-        bscAmountOutMin,
-        to,
-        setTo,
-        setFromTokenValue,
-        from,
-        setFrom,
-        setToTokenValue
-    );
+        useContractMethodCall("getAmountInMin", swapContract_BSC, [tIn, tOut, amOut]) / 1e18;
+
+    // Set BSC Prices
+    setTimeout(() => {
+        setBSCTokenAmounts(
+            chainId,
+            bscAmountInMin,
+            bscAmountOutMin,
+            to,
+            setTo,
+            setFromTokenValue,
+            from,
+            setFrom,
+            setToTokenValue
+        );
+    }, 1000);
 
     // Handle prices BSC/Mainnet
     async function handlePrices(type, value) {

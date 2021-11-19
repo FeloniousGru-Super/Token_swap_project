@@ -58,32 +58,18 @@ export function useContractMethod(contract, methodName) {
     return { state, send };
 }
 
-export function useContractMethodCallGetAmountOut(contract, args) {
+export function useContractMethodCall(methodName, contract, args) {
     const bscSwapInterface = new utils.Interface(bscSwapAbi);
     const call = {
         abi: bscSwapInterface,
         address: contract,
-        method: "getAmountOutMin",
-        args: args,
-    };
-    const res = useContractCall(call) ?? [];
-    return res;
-}
-
-export function useContractMethodCallGetAmountIn(contract, args) {
-    const bscSwapInterface = new utils.Interface(bscSwapAbi);
-    const call = {
-        abi: bscSwapInterface,
-        address: contract,
-        method: "getAmountInMin",
+        method: methodName,
         args: args,
     };
     try {
         const res = useContractCall(call) ?? [];
         return res;
-    } catch (error) {
-        console.log(error);
-    }
+    } catch (error) {}
 }
 
 export function approve(
@@ -122,36 +108,37 @@ export function getBSCTokenAndAmounts(tokensBSC, fromInput, toInput, fromTokenVa
     if (fromInput && toInput) {
         const tIn = tokensBSC[fromInput.id];
         const tOut = tokensBSC[toInput.id];
-
+        amIn = Number(fromTokenValue) ? fromTokenValue : 0;
+        amOut = Number(toTokenValue) ? toTokenValue : 0;
         try {
-            // amIn = utils.parseEther(Number(fromTokenValue).toFixed(18).toString());
-            // amOut = utils.parseEther(Number(toTokenValue).toFixed(18).toString());
-            amIn = utils.parseEther("1.5");
-            amOut = utils.parseEther("0.00002813622");
-            console.log("am", amIn.toString(), amOut.toString());
-        } catch (error) {
-            console.log(error);
-        }
-        console.log(tIn, tOut);
+            amIn = utils.parseEther(Number(amIn).toFixed(18).toString());
+            amOut = utils.parseEther(Number(amOut).toFixed(18).toString());
+        } catch (error) {}
         return { tIn, tOut, amIn, amOut };
     }
     var tIn;
     var tOut;
     return { tIn, tOut, amIn, amOut };
-
 }
 
-export function setBSCTokenAmounts(chainId, bscAmountInMin, bscAmountOutMin, to, setTo, setFromTokenValue, from, setFrom, setToTokenValue) {
+export async function setBSCTokenAmounts(
+    chainId,
+    bscAmountInMin,
+    bscAmountOutMin,
+    to,
+    setTo,
+    setFromTokenValue,
+    from,
+    setFrom,
+    setToTokenValue
+) {
     if (chainId == ChainId.Ropsten) {
-        console.log("amounts", bscAmountInMin.toString(), bscAmountOutMin.toString());
         if (to) {
-            console.log("here2");
             setTo(false);
             setFromTokenValue(bscAmountInMin);
         } else if (from) {
-            console.log("here1");
             setFrom(false);
-            setToTokenValue(bscAmountOutMin);
+            setToTokenValue(await bscAmountOutMin);
         }
     }
 }
@@ -177,36 +164,76 @@ export async function getExpectedPrices(
     try {
         switch (chainId) {
             case ChainId.Mainnet:
-                const _tokenInETH = tokensETH[fromInput.id];
-                const _tokenOutETH = tokensETH[toInput.id];
-                if (type === "to") {
-                    await setPrice(value, _tokenInETH, _tokenOutETH, chainId, false, library, setFromTokenValue);
-                } else if (type === "from") {
-                    await setPrice(value, _tokenInETH, _tokenOutETH, chainId, true, library, setToTokenValue);
-                }
+                await setMainnetPrices(
+                    tokensETH,
+                    fromInput,
+                    toInput,
+                    type,
+                    value,
+                    chainId,
+                    library,
+                    setFromTokenValue,
+                    setToTokenValue
+                );
                 break;
 
             // case ChainId.BSC:
             case ChainId.Ropsten:
-                // console.log(bscAmountInMin.toString(), bscAmountOutMin.toString());
-                if (type === "to") {
-                    setTo(true);
-                    // setFromTokenValue(bscAmountInMin);
-                } else if (type === "from") {
-                    setFrom(true);
-                    // setToTokenValue(bscAmountOutMin);
-                }
+                setBSCPrices(type, setTo, setFrom);
                 break;
 
             default:
                 break;
         }
-    } catch (error) {
-        console.log(error);
+    } catch (error) {}
+}
+
+function setBSCPrices(type, setTo, setFrom) {
+    if (type === "to") {
+        setTo(true);
+        // setFromTokenValue(bscAmountInMin);
+    } else if (type === "from") {
+        setFrom(true);
     }
 }
 
-async function setPrice(value, _tokenInETH, _tokenOutETH, chainId, isFromInput, library, setTokenValue) {
+async function setMainnetPrices(
+    tokensETH,
+    fromInput,
+    toInput,
+    type,
+    value,
+    chainId,
+    library,
+    setFromTokenValue,
+    setToTokenValue
+) {
+    const _tokenInETH = tokensETH[fromInput.id];
+    const _tokenOutETH = tokensETH[toInput.id];
+    if (type === "to") {
+        await setPrice(
+            value,
+            _tokenInETH,
+            _tokenOutETH,
+            chainId,
+            false,
+            library,
+            setFromTokenValue
+        );
+    } else if (type === "from") {
+        await setPrice(value, _tokenInETH, _tokenOutETH, chainId, true, library, setToTokenValue);
+    }
+}
+
+async function setPrice(
+    value,
+    _tokenInETH,
+    _tokenOutETH,
+    chainId,
+    isFromInput,
+    library,
+    setTokenValue
+) {
     const _amountInput = utils.parseEther(Number(value).toFixed(18).toString());
     const amountOutput = await getPoolPrices(
         _amountInput,
@@ -217,7 +244,6 @@ async function setPrice(value, _tokenInETH, _tokenOutETH, chainId, isFromInput, 
         isFromInput,
         library
     );
-    console.log(amountOutput.toString(), _amountInput.toString());
     setTokenValue(amountOutput);
 }
 
@@ -274,7 +300,6 @@ export async function swapHandler(
             const _deadline = Math.ceil((customTransactionDetail * 60) / 15);
             // console.log("gas", getGas(selectedSpeedOption, gasPrice));
             // console.log("slippage", getSlippage(selectedToleranceOption, customToleranceValue));
-            // console.log("deadline (min)", customTransactionDetail);
             switch (chainId) {
                 case ChainId.Mainnet:
                     // case ChainId.Ropsten:
@@ -289,11 +314,10 @@ export async function swapHandler(
                     );
                     break;
 
-                case ChainId.BSC:
-                    // case ChainId.Ropsten:
+                // case ChainId.BSC:
+                case ChainId.Ropsten:
                     const _tokenInBSC = tokensBSC[fromInput.id];
                     const _tokenOutBSC = tokensBSC[toInput.id];
-                    console.log(_tokenInBSC, _tokenOutBSC);
 
                     await bscHandleSwap(
                         _tokenInBSC,
