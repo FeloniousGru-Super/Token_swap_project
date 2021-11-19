@@ -4,6 +4,7 @@ import Footer from "../../components/footer";
 import DonationItem from "./item";
 
 import people from "./static/people.png";
+import world from "./static/world.png";
 import MakeDonation from "./make_donation";
 
 const Charity = () => {
@@ -81,6 +82,43 @@ const Charity = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div className="py-8 space-y-10 max-w-screen-lgxl container mx-auto px-8 relative" style={{zIndex: 1}}>
+                <div className="max-w-xs mx-auto">
+                    <img src={world} alt="" />
+                </div>
+
+                <div className="text-center space-y-4">
+                    <h2 className="font-bold text-3xl text-primary">Changing the World with Crypto</h2>
+                    <p className="text-center max-w-4xl mx-auto text-gray-600">
+                        Together, the LunaChow community is committed to using crypto to break down financial barriers by lifting up underserved communities and giving them the opportunity to build generational wealth.  
+                    </p>
+                </div>
+
+                <div className="text-center space-y-4">
+                    <h2 className="font-bold text-3xl text-primary">A Global Movement for Good</h2>
+                    <p className="text-center max-w-4xl mx-auto text-gray-600">
+                        Blockchain technology has disrupted traditional financial systems, giving new types of investors from across the globe an opportunity to grow life-changing wealth. The blockchain community now has the chance to disrupt those systems further by driving wealth redistribution and giving today’s most marginalized communities access to the resources needed to lift them out of poverty and grow their wealth.   
+                    </p>
+                </div>
+
+                <div className="text-center space-y-4">
+                    <h2 className="font-bold text-3xl text-primary">Driving A Brighter Future</h2>
+                    <p className="text-center max-w-4xl mx-auto text-gray-600">
+                        LunaChow is committed to driving global change through its charitable activities. Since LunaChow was founded for the masses by the masses, it only makes sense that together, the LunaChow community will serve those less fortunate by giving them the financial resources needed to grow their financial literacy, lift them out of poverty, and give them access to tools they need to thrive in all aspects of their life.  
+                    </p>
+                    <p className="text-center max-w-4xl mx-auto text-gray-600">
+                        With this in mind, our ongoing charity drive seeks to lift up those most vulnerable—children. 100% of our charity drive funds will go to charities that benefit underprivileged children, including those facing homelessness, extraordinary poverty, other economically distressed situations. By using our wealth to disrupt poverty early on in a child's life, we can help change the narrative for millions of children and their families worldwide. Once a child’s basic needs are met, they then can begin to access resources that help them and their families build generational stability and wealth.  
+                    </p>
+                </div>
+
+                <div className="text-center space-y-4">
+                    <h2 className="font-bold text-3xl text-primary">A Collective Movement for Change</h2>
+                    <p className="text-center max-w-4xl mx-auto text-gray-600">
+                        Together, we can rewrite the story for millions of children living in poverty, all through the power of crypto. We invite you to share your favorite charity that serves underprivileged children with us. Each month, our drive will benefit a different agency so we can serve the widest number of children possible and make the biggest global impact. While we can't guarantee we'll be able to serve them all, we will work together to make sure no child is left behind when so many of us in the world prosper.   
+                    </p>
                 </div>
             </div>
             {/* footer  */}

@@ -7,6 +7,7 @@ import Swap from "./pages/swap";
 import AboutUs from "./pages/about_us";
 import TermsConditions from "./pages/terms_and_conditions";
 import Disclaimer from "./pages/disclaimer";
+import PrivacyPolicy from "./pages/privacy_policy";
 
 function App() {
     return (
@@ -33,6 +34,10 @@ function App() {
 
             <Route path="/disclaimer">
                 <Disclaimer />
+            </Route>
+
+            <Route path="/privacy-policy">
+                <PrivacyPolicy />
             </Route>
 
             <Route path="/">
