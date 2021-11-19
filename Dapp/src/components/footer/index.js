@@ -79,17 +79,17 @@ const Footer = () => {
                             <h3 className="font-medium">Legal</h3>
                             <ul className="space-y-1">
                                 <li>
-                                    <a href="#" className="text-gray-700">
+                                    <a href="terms-and-conditions" className="text-gray-700">
                                         Terms and Conditions
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-700">
+                                    <a href="privacy-policy" className="text-gray-700">
                                         Privacy Policy
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-700">
+                                    <a href="disclaimer" className="text-gray-700">
                                         Disclaimer
                                     </a>
                                 </li>
