@@ -152,7 +152,7 @@ const Home = () => {
 
                         <div className="relative h-8">
                             <div className="absolute -bottom-40 -left-20 w-full">
-                                <img src={pattern} alt="" style={{ transform: "scaleY(-1)" }} />
+                                {/* <img src={pattern} alt="" style={{ transform: "scaleY(-1)" }} /> */}
                             </div>
                         </div>
                     </div>
