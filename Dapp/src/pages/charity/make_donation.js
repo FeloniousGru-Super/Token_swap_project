@@ -84,7 +84,7 @@ const MakeDonation = () => {
                 </div>
             </div>
 
-            <form action="" className="space-y-4">
+            <form action="https://nowpayments.io/donation/?api_key=N19SF16-ZJ84XBV-HKFVNT8-Z8NRK63" className="space-y-4">
                 {/* amount */}
                 <div className="space-y-3">
                     <div className="text-sm px-3">
