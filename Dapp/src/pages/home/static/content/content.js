@@ -14,14 +14,14 @@ const homepage_content = {
         {
             img: require("./contracts_images/3.png").default,
             text: "0xAdFF...54yTd7U83",
-            licence: "0xc4bb7277a74678f053259cb1f96140347efbfd46",
+            licence: "3mZMtzsr11srDX7jdpkacsxAo1Na5H4kqepxehjhTkLE",
         },
     ],
     contracts_2: [
         {
             img: require("./contracts_images/4.png").default,
             text: "0xAdFF...54yTd7U83",
-            licence: "0x7BEB05cf5681f402E762F8569c2Fc138a2172978",
+            licence: "0xc4bb7277a74678f053259cb1f96140347efbfd46",
         },
         {
             img: require("./contracts_images/5.png").default,
@@ -31,7 +31,7 @@ const homepage_content = {
         {
             img: require("./contracts_images/6.png").default,
             text: "0xAdFF...54yTd7U83",
-            licence: "0x65e66a61d0a8f1e686c2d6083ad611a10d84d97a",
+            licence: "0x7BEB05cf5681f402E762F8569c2Fc138a2172978",
         },
     ],
     what_section_slider: [
@@ -44,7 +44,7 @@ const homepage_content = {
             text: "LUCHOW is a decentralized digital currency that can be used as a medium of exchange or to facilitate a trade. It is a borderless democratic form of digital money with an inflation resisting measures.",
         },
         {
-            tite: "Cross-chain",
+            tite: "Multi-chain",
             text: "LunaChow is available on several networks, thanks to bridge integration system. LunaChow has been bridged to the following blockchain – Binance Smart Chain, Polygon, Avalanche, Harmony, Solana and counting.",
         },
         {

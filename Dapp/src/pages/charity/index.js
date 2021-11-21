@@ -6,6 +6,7 @@ import DonationItem from "./item";
 import people from "./static/people.png";
 import world from "./static/world.png";
 import MakeDonation from "./make_donation";
+import MakeDonation1 from "./make_donation1";
 
 const Charity = () => {
     return (
@@ -26,23 +27,23 @@ const Charity = () => {
                             <div className="w-1/2 space-y-6">
                                 <img src={people} alt="" />
                                 <div className="space-y-2 text-white">
-                                    <h2 className="text-primary-darker font-medium text-lg">
+                                    <h2 className="text-primary-darker font-medium text-4xl">
                                         Join the cause
                                     </h2>
-                                    <p>Total charity Donations</p>
-                                    <p className="text-4xl font-medium">$349,000,000</p>
-                                    <p>
+                                    <p className="text-xl">Total charity Donations</p>
+                                    <p className="text-7xl font-medium">$349,000,000</p>
+                                    <p className="text-xl">
                                         PawsWithCause plus FurKids work with 45 different shelters
                                         in the USA! We have already donated $95,000+ with much more
                                         to come!
                                     </p>
-                                    <h4 className="text-primary-darker font-medium text-lg">
+                                    <h4 className="text-primary-darker font-medium text-4xl">
                                         Donate to our Charity Wallet using NowPayments
                                     </h4>
                                 </div>
                             </div>
                             <div className="w-1/2">
-                                <MakeDonation />
+                                <MakeDonation1 />
                             </div>
                         </div>
                     </div>
